@@ -1,0 +1,9 @@
+{
+  "parent": "logicates:block/not_logicate/back",
+  "textures": {
+    "slab": "block/smooth_stone",
+    "particle": "logicates:block/single_input/right_powered",
+    "top": "logicates:block/single_input/right_powered",
+    "torch": "minecraft:block/redstone_torch"
+  }
+}
