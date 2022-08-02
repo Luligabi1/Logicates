@@ -5,7 +5,9 @@ import me.luligabi.logicates.common.block.property.PropertyRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.Pair;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.World;
 
 public abstract class DualInputLogicateBlock extends LogicateBlock {
 
@@ -34,6 +36,16 @@ public abstract class DualInputLogicateBlock extends LogicateBlock {
             case LEFT, RIGHT, BACK -> throw new IllegalStateException("Illegal single input blockstate on dual input Logicate!");
         }
         return new Pair<>(direction, direction);
+    }
+
+    protected int getInputA(World world, BlockPos pos, BlockState state) {
+        Pair<Direction, Direction> inputSides = getInputSides(state);
+        return world.getEmittedRedstonePower(pos.offset(inputSides.getLeft()), inputSides.getLeft());
+    }
+
+    protected int getInputB(World world, BlockPos pos, BlockState state) {
+        Pair<Direction, Direction> inputSides = getInputSides(state);
+        return world.getEmittedRedstonePower(pos.offset(inputSides.getRight()), inputSides.getRight());
     }
 
 }

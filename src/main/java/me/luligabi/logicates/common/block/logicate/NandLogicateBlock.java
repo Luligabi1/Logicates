@@ -5,11 +5,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class AndLogicateBlock extends DualInputLogicateBlock {
+public class NandLogicateBlock extends DualInputLogicateBlock {
+
 
     @Override
     protected int getPower(World world, BlockPos pos, BlockState state) {
-        return (getInputA(world, pos, state) > 0 && getInputB(world, pos, state) > 0) ? 15 : 0;
+        return (getInputA(world, pos, state) <= 0 || getInputB(world, pos, state) <= 0) ? 15 : 0;
     }
 
 }
