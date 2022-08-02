@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-public abstract class LogicateBlock extends AbstractRedstoneGateBlock {
+public abstract class LogicateBlock extends AbstractRedstoneGateBlock { // TODO: Add redstone particles
 
     protected LogicateBlock() {
         super(FabricBlockSettings.copyOf(Blocks.REPEATER));
