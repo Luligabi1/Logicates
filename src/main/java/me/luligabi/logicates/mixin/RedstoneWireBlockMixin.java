@@ -1,13 +1,13 @@
 package me.luligabi.logicates.mixin;
 
+import me.luligabi.logicates.common.block.DualInputLogicateBlock;
 import me.luligabi.logicates.common.block.LogicateBlock;
 import me.luligabi.logicates.common.block.SingleInputLogicateBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneWireBlock;
-import net.minecraft.block.RepeaterBlock;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.Direction;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -28,6 +28,16 @@ public class RedstoneWireBlockMixin {
             Direction outputDirection = state.get(LogicateBlock.FACING);
 
             callbackInfo.setReturnValue(dir == inputDirection || dir == outputDirection);
+        }
+        if(block instanceof DualInputLogicateBlock) {
+            Pair<Direction, Direction> inputDirection = ((DualInputLogicateBlock) block).getInputSides(state);
+            Direction outputDirection = state.get(LogicateBlock.FACING);
+
+            callbackInfo.setReturnValue(
+                    dir == inputDirection.getLeft().getOpposite() ||
+                    dir == inputDirection.getRight().getOpposite() ||
+                    dir == outputDirection
+            );
         }
     }
 }
