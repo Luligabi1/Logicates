@@ -1,6 +1,5 @@
-package me.luligabi.logicates.common.block.logicate;
+package me.luligabi.logicates.common.block.logicate.input.dual;
 
-import me.luligabi.logicates.common.block.DualInputLogicateBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

@@ -1,9 +1,13 @@
 package me.luligabi.logicates.common.block;
 
 import me.luligabi.logicates.common.Logicates;
-import me.luligabi.logicates.common.block.logicate.*;
+import me.luligabi.logicates.common.block.fabricator.LogicateFabricatorBlock;
+import me.luligabi.logicates.common.block.logicate.input.dual.*;
+import me.luligabi.logicates.common.block.logicate.input.single.NotLogicateBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.registry.Registry;
 
@@ -17,6 +21,8 @@ public class BlockRegistry {
         initBlock("nand_logicate", NAND_LOGICATE);
         initBlock("nor_logicate", NOR_LOGICATE);
         initBlock("xnor_logicate", XNOR_LOGICATE);
+
+        initBlock("logicate_fabricator", LOGICATE_FABRICATOR);
     }
 
 
@@ -28,10 +34,12 @@ public class BlockRegistry {
     public static final Block NOR_LOGICATE = new NorLogicateBlock();
     public static final Block XNOR_LOGICATE = new XnorLogicateBlock();
 
+    public static final Block LOGICATE_FABRICATOR = new LogicateFabricatorBlock(FabricBlockSettings.copy(Blocks.SMITHING_TABLE));
 
 
     private static void initBlock(String identifier, Block block) {
         Registry.register(Registry.BLOCK, Logicates.id(identifier), block);
         Registry.register(Registry.ITEM, Logicates.id(identifier), new BlockItem(block, new FabricItemSettings().group(Logicates.ITEM_GROUP)));
     }
+
 }

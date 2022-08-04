@@ -1,8 +1,8 @@
 package me.luligabi.logicates.mixin;
 
-import me.luligabi.logicates.common.block.DualInputLogicateBlock;
-import me.luligabi.logicates.common.block.LogicateBlock;
-import me.luligabi.logicates.common.block.SingleInputLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.input.dual.DualInputLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.LogicateBlock;
+import me.luligabi.logicates.common.block.logicate.input.single.SingleInputLogicateBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneWireBlock;

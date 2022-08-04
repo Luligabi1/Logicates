@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:stone_slab"
+  },
+  "result": "logicates:logicate_plate",
+  "count": 4
+}

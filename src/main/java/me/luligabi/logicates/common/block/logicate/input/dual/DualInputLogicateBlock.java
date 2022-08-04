@@ -1,5 +1,6 @@
-package me.luligabi.logicates.common.block;
+package me.luligabi.logicates.common.block.logicate.input.dual;
 
+import me.luligabi.logicates.common.block.logicate.input.InputtableLogicateBlock;
 import me.luligabi.logicates.common.block.property.InputSides;
 import me.luligabi.logicates.common.block.property.PropertyRegistry;
 import net.minecraft.block.BlockState;
@@ -9,15 +10,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-public abstract class DualInputLogicateBlock extends LogicateBlock {
+public abstract class DualInputLogicateBlock extends InputtableLogicateBlock {
 
     protected DualInputLogicateBlock() {
         super();
         setDefaultState(getStateManager().getDefaultState().with(FACING, Direction.NORTH).with(POWERED, false).with(getInputSideProperty(), InputSides.LEFT_RIGHT));
     }
 
-    @Override
-    EnumProperty<InputSides> getInputSideProperty() {
+    protected EnumProperty<InputSides> getInputSideProperty() {
         return PropertyRegistry.DUAL_INPUT_SIDE;
     }
 

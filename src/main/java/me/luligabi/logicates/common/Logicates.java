@@ -2,6 +2,9 @@ package me.luligabi.logicates.common;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
 import me.luligabi.logicates.common.block.property.PropertyRegistry;
+import me.luligabi.logicates.common.item.ItemRegistry;
+import me.luligabi.logicates.common.misc.recipe.RecipeRegistry;
+import me.luligabi.logicates.common.misc.screenhandler.ScreenHandlingRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
@@ -13,6 +16,10 @@ public class Logicates implements ModInitializer {
     public void onInitialize() {
         PropertyRegistry.init();
         BlockRegistry.init();
+        ItemRegistry.init();
+
+        RecipeRegistry.init();
+        ScreenHandlingRegistry.init();
     }
 
 
