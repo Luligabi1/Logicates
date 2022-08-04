@@ -30,15 +30,15 @@ public class LogicateFabricatorDisplayCategory implements DisplayCategory<Logica
                 .disableBackground()
                 .markOutput());
 
-        widgets.add(Widgets.createSlot(new Point(startPoint.x - 13, startPoint.y - 13))
+        widgets.add(Widgets.createSlot(new Point(startPoint.x - 14, startPoint.y - 13))
                 .entries(display.getInputEntries().get(0)).markInput());
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y - 13))
                 .entries(display.getInputEntries().get(1)).markInput());
-        widgets.add(Widgets.createSlot(new Point(startPoint.x - 13, startPoint.y + 5))
+        widgets.add(Widgets.createSlot(new Point(startPoint.x - 14, startPoint.y + 5))
                 .entries(display.getInputEntries().get(2)).markInput());
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 5))
                 .entries(display.getInputEntries().get(3)).markInput());
-        widgets.add(Widgets.createSlot(new Point(startPoint.x - 13, startPoint.y + 23))
+        widgets.add(Widgets.createSlot(new Point(startPoint.x - 14, startPoint.y + 23))
                 .entries(display.getInputEntries().get(4)).markInput());
         widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 23))
                 .entries(display.getInputEntries().get(5)).markInput());
@@ -50,7 +50,7 @@ public class LogicateFabricatorDisplayCategory implements DisplayCategory<Logica
 
     @Override
     public Text getTitle() {
-        return Text.translatable("rei.logicates.logicate_fabrication");
+        return Text.translatable("container.logicates.logicate_fabricator");
     }
 
     @Override

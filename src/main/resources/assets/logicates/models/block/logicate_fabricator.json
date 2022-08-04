@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "logicates:block/logicate_fabricator/logicate_fabricator_front",
+    "south": "logicates:block/logicate_fabricator/logicate_fabricator_front",
+    "west": "logicates:block/logicate_fabricator/logicate_fabricator_side",
+    "east": "logicates:block/logicate_fabricator/logicate_fabricator_side",
+    "up": "logicates:block/logicate_fabricator/logicate_fabricator_top",
+    "down": "logicates:block/logicate_fabricator/logicate_fabricator_bottom",
+    "particle": "logicates:block/logicate_fabricator/logicate_fabricator_front"
+  }
+}

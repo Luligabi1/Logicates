@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "LSL",
+    "PPP"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:smithing_table"
+    },
+    "P": {
+      "item": "logicates:logicate_plate"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+  "result": {
+    "item": "logicates:logicate_fabricator",
+    "count": 1
+  }
+}

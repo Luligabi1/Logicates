@@ -1,0 +1,16 @@
+{
+  "block.logicates.and_logicate": "AND Logicate",
+  "block.logicates.or_logicate": "OR Logicate",
+  "block.logicates.xor_logicate": "XOR Logicate",
+  "block.logicates.not_logicate": "NOT Logicate",
+  "block.logicates.nand_logicate": "NAND Logicate",
+  "block.logicates.nor_logicate": "NOR Logicate",
+  "block.logicates.xnor_logicate": "XNOR Logicate",
+
+  "block.logicates.logicate_fabricator": "Logicate Fabricator",
+  "container.logicates.logicate_fabricator": "Logicate Fabrication",
+
+  "item.logicates.logicate_plate": "Logicate Plate",
+
+  "itemGroup.logicates.item_group": "Logicates"
+}
