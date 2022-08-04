@@ -15,11 +15,17 @@
   "icon": "assets/logicates/icon.png",
   "environment": "*",
   "entrypoints": {
+    "main": [
+      "me.luligabi.logicates.common.Logicates"
+    ],
     "client": [
       "me.luligabi.logicates.client.LogicatesClient"
     ],
-    "main": [
-      "me.luligabi.logicates.common.Logicates"
+    "rei_common": [
+      "me.luligabi.logicates.rei.common.CommonReiPlugin"
+    ],
+    "rei_client": [
+      "me.luligabi.logicates.rei.client.ClientReiPlugin"
     ]
   },
   "mixins": [
