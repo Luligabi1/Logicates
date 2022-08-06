@@ -70,7 +70,6 @@ public class LogicateFabricatorScreenHandler extends ScreenHandler {
 
                 if(!logicateFabricationRecipe.matches(input, world)) {
                     LogicateFabricatorScreenHandler.this.refreshAvailableRecipes(input);
-                    System.out.println("!");
                 } else {
                     outputSlot.setStack(logicateFabricationRecipe.getOutput());
                 }
