@@ -4,10 +4,14 @@ import me.luligabi.logicates.common.Logicates;
 import me.luligabi.logicates.common.block.fabricator.LogicateFabricatorBlock;
 import me.luligabi.logicates.common.block.logicate.input.dual.*;
 import me.luligabi.logicates.common.block.logicate.input.single.NotLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.inputless.timer.TimerLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.inputless.timer.TimerLogicateBlockEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.registry.Registry;
 
@@ -22,6 +26,9 @@ public class BlockRegistry {
         initBlock("nor_logicate", NOR_LOGICATE);
         initBlock("xnor_logicate", XNOR_LOGICATE);
 
+        initBlock("timer_logicate", TIMER_LOGICATE);
+        TIMER_LOGICATE_BLOCK_ENTITY_TYPE = Registry.register(Registry.BLOCK_ENTITY_TYPE, Logicates.id("timer_logicate"), FabricBlockEntityTypeBuilder.create(TimerLogicateBlockEntity::new, TIMER_LOGICATE).build());
+
         initBlock("logicate_fabricator", LOGICATE_FABRICATOR);
     }
 
@@ -33,6 +40,9 @@ public class BlockRegistry {
     public static final Block NAND_LOGICATE = new NandLogicateBlock();
     public static final Block NOR_LOGICATE = new NorLogicateBlock();
     public static final Block XNOR_LOGICATE = new XnorLogicateBlock();
+
+    public static final Block TIMER_LOGICATE = new TimerLogicateBlock();
+    public static BlockEntityType<TimerLogicateBlockEntity> TIMER_LOGICATE_BLOCK_ENTITY_TYPE;
 
     public static final Block LOGICATE_FABRICATOR = new LogicateFabricatorBlock(FabricBlockSettings.copy(Blocks.SMITHING_TABLE));
 

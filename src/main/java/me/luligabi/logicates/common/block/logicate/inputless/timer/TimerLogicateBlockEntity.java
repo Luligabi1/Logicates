@@ -1,0 +1,82 @@
+package me.luligabi.logicates.common.block.logicate.inputless.timer;
+
+import me.luligabi.logicates.common.block.BlockRegistry;
+import me.luligabi.logicates.common.block.logicate.LogicateBlock;
+import me.luligabi.logicates.common.misc.screenhandler.TimerLogicateScreenHandler;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.PropertyDelegate;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+public class TimerLogicateBlockEntity extends BlockEntity implements NamedScreenHandlerFactory {
+
+    public TimerLogicateBlockEntity(BlockPos pos, BlockState state) {
+        super(BlockRegistry.TIMER_LOGICATE_BLOCK_ENTITY_TYPE, pos, state);
+        this.propertyDelegate = new PropertyDelegate() {
+
+            @Override
+            public int get(int index) {
+                return index == 0 ? TimerLogicateBlockEntity.this.maxTicks : 33;
+            }
+
+            @Override
+            public void set(int index, int value) {
+                if(index != 0) return;
+                TimerLogicateBlockEntity.this.maxTicks = value;
+            }
+
+            @Override
+            public int size() {
+                return 1;
+            }
+        };
+    }
+
+    @Nullable
+    @Override
+    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+        return new TimerLogicateScreenHandler(syncId, propertyDelegate);
+    }
+
+    public static void tick(World world, BlockPos pos, BlockState state, TimerLogicateBlockEntity blockEntity) {
+        if(blockEntity.ticks <= blockEntity.maxTicks) {
+            blockEntity.ticks++;
+        } else {
+            world.setBlockState(pos, state.with(LogicateBlock.POWERED, true), Block.NOTIFY_ALL);
+            world.setBlockState(pos, state.with(LogicateBlock.POWERED, false), Block.NOTIFY_ALL);
+            blockEntity.ticks = 0;
+        }
+    }
+
+    @Override
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        this.ticks = nbt.getInt("Ticks");
+        this.maxTicks = nbt.getInt("MaxTicks");
+    }
+
+    @Override
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        nbt.putInt("Ticks", ticks);
+        nbt.putInt("MaxTicks", maxTicks);
+    }
+
+    @Override
+    public Text getDisplayName() {
+        return Text.translatable("block.logicates.timer_logicate");
+    }
+
+    private int ticks = 0;
+    private int maxTicks = 200;
+    protected final PropertyDelegate propertyDelegate;
+}

@@ -8,6 +8,8 @@ import net.minecraft.screen.ScreenHandlerType;
 @SuppressWarnings("deprecation")
 public class ScreenHandlingRegistry {
 
+    public static final ScreenHandlerType<TimerLogicateScreenHandler> TIMER_LOGICATE_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(Logicates.id("timer_logicate"), TimerLogicateScreenHandler::new);
+
     public static final ScreenHandlerType<LogicateFabricatorScreenHandler> LOGICATE_FABRICATOR_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(Logicates.id("logicate_fabricator"), LogicateFabricatorScreenHandler::new);
 
 
