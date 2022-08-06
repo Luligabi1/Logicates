@@ -3,6 +3,7 @@ package me.luligabi.logicates.common.block.logicate.inputless.timer;
 import me.luligabi.logicates.common.block.BlockRegistry;
 import me.luligabi.logicates.common.block.logicate.LogicateBlock;
 import me.luligabi.logicates.common.block.logicate.LogicateType;
+import me.luligabi.logicates.common.block.logicate.inputless.InputlessLogicateBlock;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -20,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class TimerLogicateBlock extends LogicateBlock implements BlockEntityProvider {
+public class TimerLogicateBlock extends InputlessLogicateBlock implements BlockEntityProvider {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -56,11 +57,6 @@ public class TimerLogicateBlock extends LogicateBlock implements BlockEntityProv
     @Nullable
     protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
         return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
-    }
-
-    @Override
-    protected LogicateType getLogicateType() {
-        return LogicateType.INPUTLESS;
     }
 
     @Override // TODO: Add tooltip
