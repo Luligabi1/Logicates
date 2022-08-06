@@ -150,6 +150,16 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
         }
 
         @Override
+        public void renderTooltip(MatrixStack matrices, int mouseX, int mouseY) {
+            String firstLineKey = timerOffset > 0 ? "timer_logicate.increase" : "timer_logicate.decrease";
+            String secondLineKey = timerOffset > 0 ? "timer_logicate.shift_increase" : "timer_logicate.shift_decrease";
+            TimerLogicateScreen.this.renderTooltip(matrices, List.of(
+                    Text.translatable(firstLineKey, timerOffset > 0 ? timerOffset : Math.abs(timerOffset)),
+                    Text.translatable(secondLineKey, timerOffset > 0 ? timerOffset/20 : Math.abs(timerOffset/20))
+            ), mouseX, mouseY);
+        }
+
+        @Override
         public boolean shouldRenderTooltip() {
             return this.hovered && !disabled;
         }

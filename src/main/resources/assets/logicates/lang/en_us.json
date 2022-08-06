@@ -22,6 +22,11 @@
 
   "block.logicates.timer_logicate": "Timer Logicate",
   "logicates.ticks": "%d ticks (%d seconds)",
+  "timer_logicate.increase": "§eClick §7to increase time by §e%d §7ticks.",
+  "timer_logicate.shift_increase": "§eShift-Click §7to increase time by §e%d §7ticks.",
+
+  "timer_logicate.decrease": "§eClick §7to decrease time by §e%d §7ticks.",
+  "timer_logicate.shift_decrease": "§eShift-Click §7to decrease time by §e%d §7ticks.",
 
   "block.logicates.logicate_fabricator": "Logicate Fabricator",
   "container.logicates.logicate_fabricator": "Logicate Fabrication",
