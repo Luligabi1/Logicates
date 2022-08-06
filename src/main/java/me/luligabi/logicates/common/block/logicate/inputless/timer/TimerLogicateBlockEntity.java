@@ -25,12 +25,11 @@ public class TimerLogicateBlockEntity extends BlockEntity implements NamedScreen
 
             @Override
             public int get(int index) {
-                return index == 0 ? TimerLogicateBlockEntity.this.maxTicks : 33;
+                return TimerLogicateBlockEntity.this.maxTicks;
             }
 
             @Override
             public void set(int index, int value) {
-                if(index != 0) return;
                 TimerLogicateBlockEntity.this.maxTicks = value;
             }
 
@@ -47,7 +46,7 @@ public class TimerLogicateBlockEntity extends BlockEntity implements NamedScreen
         return new TimerLogicateScreenHandler(syncId, propertyDelegate);
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, TimerLogicateBlockEntity blockEntity) {
+    public static void tick(World world, BlockPos pos, BlockState state, TimerLogicateBlockEntity blockEntity) { // TODO: Add way to stop timer
         if(blockEntity.ticks <= blockEntity.maxTicks) {
             blockEntity.ticks++;
         } else {

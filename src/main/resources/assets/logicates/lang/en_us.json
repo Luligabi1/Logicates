@@ -20,6 +20,8 @@
   "block.logicates.xnor_logicate": "XNOR Logicate",
   "tooltip.logicates.xnor_logicate": "Emits a signal if both inputs are equal.",
 
+  "block.logicates.timer_logicate": "Timer Logicate",
+  "logicates.ticks": "%d ticks (%d seconds)",
 
   "block.logicates.logicate_fabricator": "Logicate Fabricator",
   "container.logicates.logicate_fabricator": "Logicate Fabrication",

@@ -70,4 +70,7 @@ public class TimerLogicateBlock extends LogicateBlock implements BlockEntityProv
         );
     }
 
+    public static final int MIN_VALUE = 4;
+    public static final int MAX_VALUE = 6*60*60*20; // 6 hours
+
 }
