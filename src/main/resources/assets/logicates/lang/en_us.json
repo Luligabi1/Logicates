@@ -1,16 +1,34 @@
 {
   "block.logicates.and_logicate": "AND Logicate",
+  "tooltip.logicates.and_logicate": "Emits a signal if both inputs are powered.",
+
   "block.logicates.or_logicate": "OR Logicate",
+  "tooltip.logicates.or_logicate": "Emits a signal if either input is powered.",
+
   "block.logicates.xor_logicate": "XOR Logicate",
+  "tooltip.logicates.xor_logicate": "Emits a signal if only one of the inputs is powered.",
+
   "block.logicates.not_logicate": "NOT Logicate",
+  "tooltip.logicates.not_logicate": "Inverts the input's signal.",
+
   "block.logicates.nand_logicate": "NAND Logicate",
+  "tooltip.logicates.nand_logicate": "Emits a signal unless both inputs are powered.",
+
   "block.logicates.nor_logicate": "NOR Logicate",
+  "tooltip.logicates.nor_logicate": "Emits a signal if no input is powered.",
+
   "block.logicates.xnor_logicate": "XNOR Logicate",
+  "tooltip.logicates.xnor_logicate": "Emits a signal if both inputs are equal.",
+
 
   "block.logicates.logicate_fabricator": "Logicate Fabricator",
   "container.logicates.logicate_fabricator": "Logicate Fabrication",
 
   "item.logicates.logicate_plate": "Logicate Plate",
+
+  "logicateType.logicates.single_input": "Single Input",
+  "logicateType.logicates.dual_input": "Dual Input",
+  "logicateType.logicates.inputless": "Inputless",
 
   "itemGroup.logicates.item_group": "Logicates"
 }

@@ -1,5 +1,6 @@
 package me.luligabi.logicates.common.block.logicate.input.single;
 
+import me.luligabi.logicates.common.block.logicate.LogicateType;
 import me.luligabi.logicates.common.block.logicate.input.InputtableLogicateBlock;
 import me.luligabi.logicates.common.block.property.InputSides;
 import me.luligabi.logicates.common.block.property.PropertyRegistry;
@@ -14,6 +15,11 @@ public abstract class SingleInputLogicateBlock extends InputtableLogicateBlock {
     protected SingleInputLogicateBlock() {
         super();
         setDefaultState(getStateManager().getDefaultState().with(FACING, Direction.NORTH).with(POWERED, false).with(getInputSideProperty(), InputSides.BACK));
+    }
+
+    @Override
+    protected LogicateType getLogicateType() {
+        return LogicateType.SINGLE_INPUT;
     }
 
     @Override

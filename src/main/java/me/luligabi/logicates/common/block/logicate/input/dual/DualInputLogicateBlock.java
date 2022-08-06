@@ -1,5 +1,6 @@
 package me.luligabi.logicates.common.block.logicate.input.dual;
 
+import me.luligabi.logicates.common.block.logicate.LogicateType;
 import me.luligabi.logicates.common.block.logicate.input.InputtableLogicateBlock;
 import me.luligabi.logicates.common.block.property.InputSides;
 import me.luligabi.logicates.common.block.property.PropertyRegistry;
@@ -17,6 +18,12 @@ public abstract class DualInputLogicateBlock extends InputtableLogicateBlock {
         setDefaultState(getStateManager().getDefaultState().with(FACING, Direction.NORTH).with(POWERED, false).with(getInputSideProperty(), InputSides.LEFT_RIGHT));
     }
 
+    @Override
+    protected LogicateType getLogicateType() {
+        return LogicateType.DUAL_INPUT;
+    }
+
+    @Override
     protected EnumProperty<InputSides> getInputSideProperty() {
         return PropertyRegistry.DUAL_INPUT_SIDE;
     }
