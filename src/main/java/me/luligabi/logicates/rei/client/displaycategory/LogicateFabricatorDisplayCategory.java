@@ -20,7 +20,7 @@ public class LogicateFabricatorDisplayCategory implements DisplayCategory<Logica
 
     @Override
     public List<Widget> setupDisplay(LogicateFabricatorDisplay display, Rectangle bounds) {
-        Point startPoint = new Point(bounds.getCenterX() - 41, bounds.getCenterY() - 13);
+        Point startPoint = new Point(bounds.getCenterX() - 34, bounds.getCenterY() - 13);
         List<Widget> widgets = Lists.newArrayList();
         widgets.add(Widgets.createRecipeBase(bounds));
         widgets.add(Widgets.createArrow(new Point(startPoint.x + 27, startPoint.y + 4)));
