@@ -1,0 +1,9 @@
+{
+  "parent": "logicates:block/inputless",
+  "textures": {
+    "slab": "block/smooth_stone",
+    "particle": "logicates:block/inputless/inputless_powered",
+    "top": "logicates:block/inputless/inputless_powered",
+    "torch": "block/redstone_torch"
+  }
+}

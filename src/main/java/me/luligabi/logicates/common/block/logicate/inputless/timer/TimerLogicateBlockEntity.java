@@ -1,6 +1,7 @@
 package me.luligabi.logicates.common.block.logicate.inputless.timer;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
+import me.luligabi.logicates.common.block.ClientSyncedBlockEntity;
 import me.luligabi.logicates.common.block.logicate.LogicateBlock;
 import me.luligabi.logicates.common.misc.screenhandler.TimerLogicateScreenHandler;
 import net.minecraft.block.Block;
@@ -17,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class TimerLogicateBlockEntity extends BlockEntity implements NamedScreenHandlerFactory {
+public class TimerLogicateBlockEntity extends ClientSyncedBlockEntity implements NamedScreenHandlerFactory {
 
     public TimerLogicateBlockEntity(BlockPos pos, BlockState state) {
         super(BlockRegistry.TIMER_LOGICATE_BLOCK_ENTITY_TYPE, pos, state);
@@ -54,20 +55,29 @@ public class TimerLogicateBlockEntity extends BlockEntity implements NamedScreen
             world.setBlockState(pos, state.with(LogicateBlock.POWERED, false), Block.NOTIFY_ALL);
             blockEntity.ticks = 0;
         }
+        blockEntity.sync();
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
+    public void toTag(NbtCompound nbt) {
+        nbt.putInt("Ticks", ticks);
+        nbt.putInt("MaxTicks", maxTicks);
+    }
+
+    @Override
+    public void fromTag(NbtCompound nbt) {
         this.ticks = nbt.getInt("Ticks");
         this.maxTicks = nbt.getInt("MaxTicks");
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        nbt.putInt("Ticks", ticks);
-        nbt.putInt("MaxTicks", maxTicks);
+    public void toClientTag(NbtCompound nbt) {
+        toTag(nbt);
+    }
+
+    @Override
+    public void fromClientTag(NbtCompound nbt) {
+        fromTag(nbt);
     }
 
     @Override
@@ -75,7 +85,7 @@ public class TimerLogicateBlockEntity extends BlockEntity implements NamedScreen
         return Text.translatable("block.logicates.timer_logicate");
     }
 
-    private int ticks = 0;
-    private int maxTicks = 200;
+    public int ticks = 0;
+    public int maxTicks = 200;
     protected final PropertyDelegate propertyDelegate;
 }
