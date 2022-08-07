@@ -59,10 +59,11 @@ public class TimerLogicateBlock extends InputlessLogicateBlock implements BlockE
         return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
     }
 
-    @Override // TODO: Add tooltip
+    @Override
     protected List<MutableText> getLogicateTooltip() {
         return List.of(
-                Text.empty()
+                Text.translatable("tooltip.logicates.timer_logicate.1"),
+                Text.translatable("tooltip.logicates.timer_logicate.2")
         );
     }
 

@@ -1,0 +1,44 @@
+{
+  "block.logicates.and_logicate": "Lógicado AND",
+  "tooltip.logicates.and_logicate": "Emite um sinal se ambas as entradas estão energizadas.",
+
+  "block.logicates.or_logicate": "Lógicado OR Logicate",
+  "tooltip.logicates.or_logicate": "Emite um sinal se qualquer entrada está energizada.",
+
+  "block.logicates.xor_logicate": "Lógicado XOR",
+  "tooltip.logicates.xor_logicate": "Emite um sinal se apenas uma das entradas está energizada.",
+
+  "block.logicates.not_logicate": "Lógicado NOT",
+  "tooltip.logicates.not_logicate": "Inverte o sinal da entrada.",
+
+  "block.logicates.nand_logicate": "Lógicado NAND",
+  "tooltip.logicates.nand_logicate": "Emite um sinal a não ser que ambas as entradas sejam energizadas.",
+
+  "block.logicates.nor_logicate": "Lógicado NOR",
+  "tooltip.logicates.nor_logicate": "Emite um sinal se nenhuma entrada está energizada.",
+
+  "block.logicates.xnor_logicate": "Lógicado XNOR",
+  "tooltip.logicates.xnor_logicate": "Emite um sinal se ambas entradas forem iguais.",
+
+  "block.logicates.timer_logicate": "Lógicado Timer",
+  "tooltip.logicates.timer_logicate.1": "Emite um sinal a cada X ticks.",
+  "tooltip.logicates.timer_logicate.2": "Right-clique para configurar.",
+
+
+  "logicates.ticks": "%d ticks (%d segundos)",
+  "timer_logicate.increase": "§Clique §7para aumentar tempo em §e%d §7ticks.",
+  "timer_logicate.shift_increase": "§eShift-Clique §7para aumentar tempo em §e%d §7ticks.",
+
+  "timer_logicate.decrease": "§eClique §7para diminuir tempo em §e%d §7ticks.",
+  "timer_logicate.shift_decrease": "§eShift-Clique §7para diminuir tempo em §e%d §7ticks.",
+
+  "block.logicates.logicate_fabricator": "Fabricador de Lógicados",
+  "container.logicates.logicate_fabricator": "Fabricação de Lógicados",
+
+  "item.logicates.logicate_plate": "Placa de Lógicado",
+
+  "logicateType.logicates.single_input": "Entrada Única",
+  "logicateType.logicates.dual_input": "Entrada Dupla",
+  "logicateType.logicates.inputless": "Sem Entrada"
+
+}

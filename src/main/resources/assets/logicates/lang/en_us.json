@@ -21,6 +21,10 @@
   "tooltip.logicates.xnor_logicate": "Emits a signal if both inputs are equal.",
 
   "block.logicates.timer_logicate": "Timer Logicate",
+  "tooltip.logicates.timer_logicate.1": "Emits a signal every X ticks.",
+  "tooltip.logicates.timer_logicate.2": "Right-click to configure.",
+
+
   "logicates.ticks": "%d ticks (%d seconds)",
   "timer_logicate.increase": "§eClick §7to increase time by §e%d §7ticks.",
   "timer_logicate.shift_increase": "§eShift-Click §7to increase time by §e%d §7ticks.",
