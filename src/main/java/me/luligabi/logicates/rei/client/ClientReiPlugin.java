@@ -1,6 +1,7 @@
 package me.luligabi.logicates.rei.client;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
+import me.luligabi.logicates.common.item.ItemRegistry;
 import me.luligabi.logicates.common.misc.recipe.LogicateFabricationRecipe;
 import me.luligabi.logicates.rei.client.displaycategory.LogicateFabricatorDisplayCategory;
 import me.luligabi.logicates.rei.common.CommonReiPlugin;
@@ -8,6 +9,7 @@ import me.luligabi.logicates.rei.common.display.LogicateFabricatorDisplay;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
+import me.shedaniel.rei.api.client.registry.entry.EntryRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 
 public class ClientReiPlugin implements REIClientPlugin {
@@ -24,4 +26,8 @@ public class ClientReiPlugin implements REIClientPlugin {
         registry.registerFiller(LogicateFabricationRecipe.class, LogicateFabricatorDisplay::new);
     }
 
+    @Override
+    public void registerEntries(EntryRegistry registry) {
+        registry.removeEntry(EntryStacks.of(ItemRegistry.TIMER_LOGICATE_POINTER));
+    }
 }
