@@ -26,6 +26,8 @@
 
 
   "logicates.ticks": "%d ticks (%d segundos)",
+  "logicates.mute": "Silenciar",
+  "logicates.unmute": "Desilenciar",
   "timer_logicate.increase": "§Clique §7para aumentar tempo em §e%d §7ticks.",
   "timer_logicate.shift_increase": "§eShift-Clique §7para aumentar tempo em §e%d §7ticks.",
 
@@ -40,5 +42,4 @@
   "logicateType.logicates.single_input": "Entrada Única",
   "logicateType.logicates.dual_input": "Entrada Dupla",
   "logicateType.logicates.inputless": "Sem Entrada"
-
 }

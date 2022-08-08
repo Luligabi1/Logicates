@@ -26,6 +26,8 @@
 
 
   "logicates.ticks": "%d ticks (%d seconds)",
+  "logicates.mute": "Mute",
+  "logicates.unmute": "Unmute",
   "timer_logicate.increase": "§eClick §7to increase time by §e%d §7ticks.",
   "timer_logicate.shift_increase": "§eShift-Click §7to increase time by §e%d §7ticks.",
 

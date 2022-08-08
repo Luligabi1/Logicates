@@ -1,8 +1,6 @@
 package me.luligabi.logicates.common.block.logicate.inputless.timer;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
-import me.luligabi.logicates.common.block.logicate.LogicateBlock;
-import me.luligabi.logicates.common.block.logicate.LogicateType;
 import me.luligabi.logicates.common.block.logicate.inputless.InputlessLogicateBlock;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;

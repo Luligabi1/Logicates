@@ -4,15 +4,15 @@ import me.luligabi.logicates.common.block.BlockRegistry;
 import me.luligabi.logicates.common.block.ClientSyncedBlockEntity;
 import me.luligabi.logicates.common.block.logicate.LogicateBlock;
 import me.luligabi.logicates.common.misc.screenhandler.TimerLogicateScreenHandler;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -26,17 +26,24 @@ public class TimerLogicateBlockEntity extends ClientSyncedBlockEntity implements
 
             @Override
             public int get(int index) {
-                return TimerLogicateBlockEntity.this.maxTicks;
+                return switch(index) {
+                    case 0 -> TimerLogicateBlockEntity.this.maxTicks;
+                    case 1 -> TimerLogicateBlockEntity.this.mute ? 1 : 0;
+                    default -> throw new IllegalStateException("Unexpected value: " + index);
+                };
             }
 
             @Override
             public void set(int index, int value) {
-                TimerLogicateBlockEntity.this.maxTicks = value;
+                switch(index) {
+                    case 0 -> TimerLogicateBlockEntity.this.maxTicks = value;
+                    case 1 -> TimerLogicateBlockEntity.this.mute = value == 1; // 1 -> true, anything else -> false
+                }
             }
 
             @Override
             public int size() {
-                return 1;
+                return 2;
             }
         };
     }
@@ -51,8 +58,12 @@ public class TimerLogicateBlockEntity extends ClientSyncedBlockEntity implements
         if(blockEntity.ticks <= blockEntity.maxTicks) {
             blockEntity.ticks++;
         } else {
-            world.setBlockState(pos, state.with(LogicateBlock.POWERED, true), Block.NOTIFY_ALL);
-            world.setBlockState(pos, state.with(LogicateBlock.POWERED, false), Block.NOTIFY_ALL);
+            world.setBlockState(pos, state.with(LogicateBlock.POWERED, true), 1);
+            world.setBlockState(pos, state.with(LogicateBlock.POWERED, false), 1);
+            if(!blockEntity.mute) {
+                world.playSound(null, pos, SoundEvents.UI_BUTTON_CLICK,
+                        SoundCategory.BLOCKS, 0.5F, 1F);
+            }
             blockEntity.ticks = 0;
         }
         blockEntity.sync();
@@ -62,22 +73,26 @@ public class TimerLogicateBlockEntity extends ClientSyncedBlockEntity implements
     public void toTag(NbtCompound nbt) {
         nbt.putInt("Ticks", ticks);
         nbt.putInt("MaxTicks", maxTicks);
+        nbt.putBoolean("Mute", mute);
     }
 
     @Override
     public void fromTag(NbtCompound nbt) {
         this.ticks = nbt.getInt("Ticks");
         this.maxTicks = nbt.getInt("MaxTicks");
+        this.mute = nbt.getBoolean("Mute");
     }
 
     @Override
     public void toClientTag(NbtCompound nbt) {
-        toTag(nbt);
+        nbt.putInt("Ticks", ticks);
+        nbt.putInt("MaxTicks", maxTicks);
     }
 
     @Override
     public void fromClientTag(NbtCompound nbt) {
-        fromTag(nbt);
+        this.ticks = nbt.getInt("Ticks");
+        this.maxTicks = nbt.getInt("MaxTicks");
     }
 
     @Override
@@ -87,5 +102,6 @@ public class TimerLogicateBlockEntity extends ClientSyncedBlockEntity implements
 
     public int ticks = 0;
     public int maxTicks = 200;
+    protected boolean mute = false;
     protected final PropertyDelegate propertyDelegate;
 }

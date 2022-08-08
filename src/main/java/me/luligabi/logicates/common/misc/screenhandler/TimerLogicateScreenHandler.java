@@ -11,12 +11,12 @@ public class TimerLogicateScreenHandler extends ScreenHandler {
 
 
     public TimerLogicateScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, new ArrayPropertyDelegate(1));
+        this(syncId, new ArrayPropertyDelegate(2));
     }
 
     public TimerLogicateScreenHandler(int syncId, PropertyDelegate propertyDelegate) {
         super(ScreenHandlingRegistry.TIMER_LOGICATE_SCREEN_HANDLER, syncId);
-        checkDataCount(propertyDelegate, 1);
+        checkDataCount(propertyDelegate, 2);
         this.propertyDelegate = propertyDelegate;
         this.addProperties(propertyDelegate);
     }
@@ -26,41 +26,51 @@ public class TimerLogicateScreenHandler extends ScreenHandler {
         switch(id) {
             // --
             case 0 -> {
-                setProperty(propertyDelegate.get(0) - 4000);
+                setProperty(0, propertyDelegate.get(0) - 4000);
                 return true;
             }
             case 1 -> {
-                setProperty(propertyDelegate.get(0) - 200);
+                setProperty(0, propertyDelegate.get(0) - 200);
                 return true;
             }
 
             // -
             case 2 -> {
-                setProperty(propertyDelegate.get(0) - 20);
+                setProperty(0, propertyDelegate.get(0) - 20);
                 return true;
             }
             case 3 -> {
-                setProperty(propertyDelegate.get(0) - 1);
+                setProperty(0, propertyDelegate.get(0) - 1);
                 return true;
             }
 
             // +
             case 4 -> {
-                setProperty(propertyDelegate.get(0) + 20);
+                setProperty(0, propertyDelegate.get(0) + 20);
                 return true;
             }
             case 5 -> {
-                setProperty(propertyDelegate.get(0) + 1);
+                setProperty(0, propertyDelegate.get(0) + 1);
                 return true;
             }
 
             // ++
             case 6 -> {
-                setProperty(propertyDelegate.get(0) + 4000);
+                setProperty(0, propertyDelegate.get(0) + 4000);
                 return true;
             }
             case 7 -> {
-                setProperty(propertyDelegate.get(0) + 200);
+                setProperty(0, propertyDelegate.get(0) + 200);
+                return true;
+            }
+
+            // Mute button
+            case 8 -> { // Unmute
+                setProperty(1, 0);
+                return true;
+            }
+            case 9 -> { // Mute
+                setProperty(1, 1);
                 return true;
             }
             default -> {
@@ -79,8 +89,8 @@ public class TimerLogicateScreenHandler extends ScreenHandler {
         return ItemStack.EMPTY;
     }
 
-    public void setProperty(int value) {
-        super.setProperty(0, value);
+    public void setProperty(int index, int value) {
+        super.setProperty(index, value);
         this.sendContentUpdates();
     }
 

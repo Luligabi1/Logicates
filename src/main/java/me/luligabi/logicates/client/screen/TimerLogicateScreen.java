@@ -42,6 +42,8 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
         addButton(new ButtonWidget(x + 43, y + 54, -20, Text.literal("-"), 2));
         addButton(new ButtonWidget(x + 101, y + 54, 20, Text.literal("+"), 4));
         addButton(new ButtonWidget(x + 137, y + 54, 4000, Text.literal("++"), 6));
+
+        addButton(new MuteButtonWidget(x + 149, y + 6));
     }
 
     @Override
@@ -174,6 +176,51 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
 
         public void setDisabled(boolean disabled) {
             this.disabled = disabled;
+        }
+
+        @Override
+        public void appendNarrations(NarrationMessageBuilder builder) {
+            this.appendDefaultNarrations(builder);
+        }
+    }
+
+    private class MuteButtonWidget extends PressableWidget implements TimerButtonWidget {
+
+        protected MuteButtonWidget(int x, int y) {
+            super(x, y, 20, 20, Text.empty());
+        }
+
+        @Override
+        public void onPress() {
+            client.interactionManager.clickButton(handler.syncId, TimerLogicateScreen.this.handler.getPropertyDelegate().get(1) == 1 ? 8 : 9);
+        }
+
+        @Override
+        public void tick() {}
+
+        @Override
+        public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShaderTexture(0, TEXTURE);
+            RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+            int u = TimerLogicateScreen.this.handler.getPropertyDelegate().get(1) == 1 ? 196 : 176;
+            int v = isHovered() ? 80 : 60;
+            this.drawTexture(matrices, x, y, u, v, width, height);
+            ClickableWidget.drawCenteredText(matrices, textRenderer, getMessage(), x + width / 2, y + (height - 8) / 2, active ? 0xFFFFFF : 0xA0A0A0 | MathHelper.ceil(alpha * 255.0f) << 24);
+        }
+
+        @Override
+        public void renderTooltip(MatrixStack matrices, int mouseX, int mouseY) {
+            String key = TimerLogicateScreen.this.handler.getPropertyDelegate().get(1) == 1 ? "logicates.unmute" : "logicates.mute";
+            TimerLogicateScreen.this.renderTooltip(matrices,
+                    Text.translatable(key).formatted(Formatting.GRAY),
+            mouseX, mouseY);
+        }
+
+        @Override
+        public boolean shouldRenderTooltip() {
+            return this.hovered;
         }
 
         @Override
