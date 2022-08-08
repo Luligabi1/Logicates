@@ -1,0 +1,9 @@
+{
+  "type": "logicates:logicate_fabrication",
+
+  "logicatePlateAmount": 1,
+  "redstoneAmount": 2,
+  "redstoneTorchAmount": 3,
+
+  "outputItem": "logicates:xnor_logicate"
+}

@@ -2,8 +2,9 @@
   "type": "logicates:logicate_fabrication",
 
   "logicatePlateAmount": 1,
-  "redstoneAmount": 1,
+  "redstoneAmount": 2,
   "redstoneTorchAmount": 1,
+  "quartzAmount": 2,
 
-  "outputItem": "logicates:not_logicate"
+  "outputItem": "logicates:timer_logicate"
 }
