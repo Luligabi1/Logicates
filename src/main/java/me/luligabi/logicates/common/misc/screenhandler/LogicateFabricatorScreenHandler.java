@@ -12,6 +12,8 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.Property;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
@@ -173,52 +175,51 @@ public class LogicateFabricatorScreenHandler extends ScreenHandler {
         return slot.inventory != output && super.canInsertIntoSlot(stack, slot);
     }
 
-    @Override // TODO: Implement shift-click interactions
+    @Override
     public ItemStack transferSlot(PlayerEntity player, int index) {
-        return ItemStack.EMPTY;
-        /*ItemStack itemStack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(index);
-        if (slot != null && slot.hasStack()) {
+        ItemStack itemStack = ItemStack.EMPTY;
+        Slot slot = slots.get(index);
+        if(slot != null && slot.hasStack()) {
             ItemStack itemStack2 = slot.getStack();
-            Item item = itemStack2.getItem();
             itemStack = itemStack2.copy();
-            if (index == 1) {
-                item.onCraft(itemStack2, player.world, player);
-                if (!this.insertItem(itemStack2, 2, 38, true)) {
+            if(index == 6) {
+                this.context.run((world, pos) -> itemStack2.getItem().onCraft(itemStack2, world, player));
+                if (!this.insertItem(itemStack2, 10, 43, true)) {
                     return ItemStack.EMPTY;
                 }
 
                 slot.onQuickTransfer(itemStack2, itemStack);
-            } else if (index == 0) {
-                if (!this.insertItem(itemStack2, 2, 38, false)) {
-                    return ItemStack.EMPTY;
+            } else if(index >= 7 && index < 42) {
+                if(!this.insertItem(itemStack2, 0, 6, false)) {
+                    if(index < 37) {
+                        if(!this.insertItem(itemStack2, 37, 41, false)) {
+                            return ItemStack.EMPTY;
+                        }
+                    } else if(!this.insertItem(itemStack2, 7, 37, false)) {
+                        return ItemStack.EMPTY;
+                    }
                 }
-            } else if (this.world.getRecipeManager().getFirstMatch(RecipeType.STONECUTTING, new SimpleInventory(new ItemStack[]{itemStack2}), this.world).isPresent()) {
-                if (!this.insertItem(itemStack2, 0, 1, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (index >= 2 && index < 29) {
-                if (!this.insertItem(itemStack2, 29, 38, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (index >= 29 && index < 38 && !this.insertItem(itemStack2, 2, 29, false)) {
+            } else if(!this.insertItem(itemStack2, 7, 41, false)) {
                 return ItemStack.EMPTY;
             }
 
-            if (itemStack2.isEmpty()) {
+            if(itemStack2.isEmpty()) {
                 slot.setStack(ItemStack.EMPTY);
+            } else {
+                slot.markDirty();
             }
 
-            slot.markDirty();
             if (itemStack2.getCount() == itemStack.getCount()) {
                 return ItemStack.EMPTY;
             }
 
             slot.onTakeItem(player, itemStack2);
-            this.sendContentUpdates();
+            if (index == 6) {
+                player.dropItem(itemStack2, false);
+            }
         }
 
-        return itemStack;*/
+        return itemStack;
     }
 
     @Override
