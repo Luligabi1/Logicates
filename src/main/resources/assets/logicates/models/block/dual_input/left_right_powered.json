@@ -1,0 +1,9 @@
+{
+  "parent": "logicates:block/dual_input/left_right",
+  "textures": {
+    "slab": "block/smooth_stone",
+    "particle": "logicates:block/dual_input/left_right_powered",
+    "top": "logicates:block/dual_input/left_right_powered",
+    "torch": "block/redstone_torch"
+  }
+}
