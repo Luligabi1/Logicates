@@ -55,7 +55,7 @@ public class LogicateFabricatorScreen extends HandledScreen<LogicateFabricatorSc
 
     protected void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
         super.drawMouseoverTooltip(matrices, x, y);
-        if (canCraft) {
+        if(canCraft) {
             int i = x + 52;
             int j = y + 14;
             int k = scrollOffset + 12;

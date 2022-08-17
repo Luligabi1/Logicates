@@ -17,6 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(RedstoneWireBlock.class)
 public class RedstoneWireBlockMixin {
 
+    /*
+     * Allow Logicates to connect only to their configured inputs and output.
+     */
     @Inject(
             method = "connectsTo(Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/Direction;)Z",
             at = @At("RETURN"),
@@ -35,8 +38,8 @@ public class RedstoneWireBlockMixin {
             Direction outputDirection = state.get(LogicateBlock.FACING);
 
             callbackInfo.setReturnValue(
-                    dir == inputDirection.getLeft().getOpposite() ||
-                    dir == inputDirection.getRight().getOpposite() ||
+                    dir == inputDirection.getLeft() ||
+                    dir == inputDirection.getRight() ||
                     dir == outputDirection
             );
         }

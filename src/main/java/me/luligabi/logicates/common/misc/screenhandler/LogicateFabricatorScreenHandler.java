@@ -116,7 +116,7 @@ public class LogicateFabricatorScreenHandler extends ScreenHandler {
     }
 
 
-    public boolean canCraft() { // TODO: Check if this is working
+    public boolean canCraft() {
         return !input.isEmpty() && !availableRecipes.isEmpty();
     }
 
