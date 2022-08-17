@@ -10,6 +10,10 @@ import java.util.List;
 
 public class NandLogicateBlock extends DualInputLogicateBlock {
 
+    public NandLogicateBlock() {
+        setDefaultState(getStateManager().getDefaultState().with(POWERED, true));
+    }
+
 
     @Override
     protected int getPower(World world, BlockPos pos, BlockState state) {

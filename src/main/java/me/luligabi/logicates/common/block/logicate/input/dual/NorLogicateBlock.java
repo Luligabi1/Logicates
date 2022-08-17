@@ -10,6 +10,10 @@ import java.util.List;
 
 public class NorLogicateBlock extends DualInputLogicateBlock {
 
+    public NorLogicateBlock() {
+        setDefaultState(getStateManager().getDefaultState().with(POWERED, true));
+    }
+
     @Override
     protected int getPower(World world, BlockPos pos, BlockState state) {
         return (getInputA(world, pos, state) <= 0 && getInputB(world, pos, state) <= 0) ? 15 : 0;

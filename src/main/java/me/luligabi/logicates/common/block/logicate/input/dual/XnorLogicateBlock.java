@@ -10,6 +10,10 @@ import java.util.List;
 
 public class XnorLogicateBlock extends DualInputLogicateBlock {
 
+    public XnorLogicateBlock() {
+        setDefaultState(getStateManager().getDefaultState().with(POWERED, true));
+    }
+
     @Override
     protected int getPower(World world, BlockPos pos, BlockState state) {
         return ((getInputA(world, pos, state) > 0 && getInputB(world, pos, state) > 0) ||
