@@ -1,5 +1,5 @@
 {
-  "parent": "logicates:block/not_logicate/back",
+  "parent": "logicates:block/single_input/not_logicate/back",
   "textures": {
     "slab": "block/smooth_stone",
     "particle": "logicates:block/single_input/right",

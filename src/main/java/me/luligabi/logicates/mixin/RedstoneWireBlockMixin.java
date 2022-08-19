@@ -38,8 +38,8 @@ public class RedstoneWireBlockMixin {
             Direction outputDirection = state.get(LogicateBlock.FACING);
 
             callbackInfo.setReturnValue(
-                    dir == inputDirection.getLeft() ||
-                    dir == inputDirection.getRight() ||
+                    dir == inputDirection.getLeft().getOpposite() ||
+                    dir == inputDirection.getRight().getOpposite() ||
                     dir == outputDirection
             );
         }

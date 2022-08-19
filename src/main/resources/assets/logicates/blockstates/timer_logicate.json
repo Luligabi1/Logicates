@@ -1,33 +1,33 @@
 {
   "variants": {
     "facing=north,powered=false": {
-      "model": "logicates:block/timer_logicate/timer_logicate",
+      "model": "logicates:block/inputless/timer_logicate/timer_logicate",
       "y": 180
     },
     "facing=north,powered=true": {
-      "model": "logicates:block/timer_logicate/timer_logicate_powered",
+      "model": "logicates:block/inputless/timer_logicate/timer_logicate_powered",
       "y": 180
     },
     "facing=south,powered=false": {
-      "model": "logicates:block/timer_logicate/timer_logicate"
+      "model": "logicates:block/inputless/timer_logicate/timer_logicate"
     },
     "facing=south,powered=true": {
-      "model": "logicates:block/timer_logicate/timer_logicate_powered"
+      "model": "logicates:block/inputless/timer_logicate/timer_logicate_powered"
     },
     "facing=west,powered=false": {
-      "model": "logicates:block/timer_logicate/timer_logicate",
+      "model": "logicates:block/inputless/timer_logicate/timer_logicate",
       "y": 90
     },
     "facing=west,powered=true": {
-      "model": "logicates:block/timer_logicate/timer_logicate_powered",
+      "model": "logicates:block/inputless/timer_logicate/timer_logicate_powered",
       "y": 90
     },
     "facing=east,powered=false": {
-      "model": "logicates:block/timer_logicate/timer_logicate",
+      "model": "logicates:block/inputless/timer_logicate/timer_logicate",
       "y": 270
     },
     "facing=east,powered=true": {
-      "model": "logicates:block/timer_logicate/timer_logicate_powered",
+      "model": "logicates:block/inputless/timer_logicate/timer_logicate_powered",
       "y": 270
     }
   }

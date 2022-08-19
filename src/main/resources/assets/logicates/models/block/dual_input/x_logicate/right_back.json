@@ -1,0 +1,6 @@
+{
+  "parent": "logicates:block/dual_input/right_back",
+  "textures": {
+    "top": "logicates:block/dual_input/x_logicate/right_back"
+  }
+}
