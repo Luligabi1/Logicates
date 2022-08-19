@@ -1,93 +1,93 @@
 {
   "variants": {
     "facing=north,powered=false,dual_input_side=left_right": {
-      "model": "logicates:block/dual_input/x_logicate/left_right",
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_right",
       "y": 180
     },
     "facing=north,powered=true,dual_input_side=left_right": {
-      "model": "logicates:block/dual_input/x_logicate/left_right_powered",
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_right_powered",
       "y": 180
     },
     "facing=north,powered=false,dual_input_side=left_back": {
-      "model": "logicates:block/dual_input/x_logicate/left_back",
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_back",
       "y": 180
     },
     "facing=north,powered=true,dual_input_side=left_back": {
-      "model": "logicates:block/dual_input/x_logicate/left_back_powered",
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_back_powered",
       "y": 180
     },
     "facing=north,powered=false,dual_input_side=right_back": {
-      "model": "logicates:block/dual_input/x_logicate/right_back",
+      "model": "logicates:block/dual_input/x_logicate/inverted/right_back",
       "y": 180
     },
     "facing=north,powered=true,dual_input_side=right_back": {
-      "model": "logicates:block/dual_input/x_logicate/right_back_powered",
+      "model": "logicates:block/dual_input/x_logicate/inverted/right_back_powered",
       "y": 180
     },
     "facing=south,powered=false,dual_input_side=left_right": {
-      "model": "logicates:block/dual_input/x_logicate/left_right"
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_right"
     },
     "facing=south,powered=true,dual_input_side=left_right": {
-      "model": "logicates:block/dual_input/x_logicate/left_right_powered"
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_right_powered"
     },
     "facing=south,powered=false,dual_input_side=left_back": {
-      "model": "logicates:block/dual_input/x_logicate/left_back"
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_back"
     },
     "facing=south,powered=true,dual_input_side=left_back": {
-      "model": "logicates:block/dual_input/x_logicate/left_back_powered"
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_back_powered"
     },
     "facing=south,powered=false,dual_input_side=right_back": {
-      "model": "logicates:block/dual_input/x_logicate/right_back"
+      "model": "logicates:block/dual_input/x_logicate/inverted/right_back"
     },
     "facing=south,powered=true,dual_input_side=right_back": {
-      "model": "logicates:block/dual_input/x_logicate/right_back_powered"
+      "model": "logicates:block/dual_input/x_logicate/inverted/right_back_powered"
     },
     "facing=west,powered=false,dual_input_side=left_right": {
-      "model": "logicates:block/dual_input/x_logicate/left_right",
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_right",
       "y": 90
     },
     "facing=west,powered=true,dual_input_side=left_right": {
-      "model": "logicates:block/dual_input/x_logicate/left_right_powered",
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_right_powered",
       "y": 90
     },
     "facing=west,powered=false,dual_input_side=left_back": {
-      "model": "logicates:block/dual_input/x_logicate/left_back",
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_back",
       "y": 90
     },
     "facing=west,powered=true,dual_input_side=left_back": {
-      "model": "logicates:block/dual_input/x_logicate/left_back_powered",
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_back_powered",
       "y": 90
     },
     "facing=west,powered=false,dual_input_side=right_back": {
-      "model": "logicates:block/dual_input/x_logicate/right_back",
+      "model": "logicates:block/dual_input/x_logicate/inverted/right_back",
       "y": 90
     },
     "facing=west,powered=true,dual_input_side=right_back": {
-      "model": "logicates:block/dual_input/x_logicate/right_back_powered",
+      "model": "logicates:block/dual_input/x_logicate/inverted/right_back_powered",
       "y": 90
     },
     "facing=east,powered=false,dual_input_side=left_right": {
-      "model": "logicates:block/dual_input/x_logicate/left_right",
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_right",
       "y": 270
     },
     "facing=east,powered=true,dual_input_side=left_right": {
-      "model": "logicates:block/dual_input/x_logicate/left_right_powered",
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_right_powered",
       "y": 270
     },
     "facing=east,powered=false,dual_input_side=left_back": {
-      "model": "logicates:block/dual_input/x_logicate/left_back",
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_back",
       "y": 270
     },
     "facing=east,powered=true,dual_input_side=left_back": {
-      "model": "logicates:block/dual_input/x_logicate/left_back_powered",
+      "model": "logicates:block/dual_input/x_logicate/inverted/left_back_powered",
       "y": 270
     },
     "facing=east,powered=false,dual_input_side=right_back": {
-      "model": "logicates:block/dual_input/x_logicate/right_back",
+      "model": "logicates:block/dual_input/x_logicate/inverted/right_back",
       "y": 270
     },
     "facing=east,powered=true,dual_input_side=right_back": {
-      "model": "logicates:block/dual_input/x_logicate/right_back_powered",
+      "model": "logicates:block/dual_input/x_logicate/inverted/right_back_powered",
       "y": 270
     }
   }

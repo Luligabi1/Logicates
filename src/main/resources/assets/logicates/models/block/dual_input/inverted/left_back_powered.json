@@ -2,8 +2,8 @@
 	"parent": "logicates:block/dual_input/inverted/left_back",
 	"textures": {
 		"slab": "block/smooth_stone",
-		"particle": "logicates:block/dual_input/left_back",
-		"top": "logicates:block/dual_input/left_back",
+		"particle": "logicates:block/dual_input/inverted/left_back",
+		"top": "logicates:block/dual_input/inverted/left_back",
 		"torch": "block/redstone_torch_off",
 		"torch_front": "block/redstone_torch"
 	}

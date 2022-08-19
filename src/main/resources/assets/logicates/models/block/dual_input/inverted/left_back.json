@@ -3,8 +3,8 @@
 	"ambientocclusion": false,
 	"textures": {
 		"slab": "block/smooth_stone",
-		"particle": "logicates:block/dual_input/left_back_powered",
-		"top": "logicates:block/dual_input/left_back_powered",
+		"particle": "logicates:block/dual_input/inverted/left_back_powered",
+		"top": "logicates:block/dual_input/inverted/left_back_powered",
 		"torch": "block/redstone_torch",
 		"torch_front": "block/redstone_torch_off"
 	},

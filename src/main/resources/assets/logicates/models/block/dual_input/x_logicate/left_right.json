@@ -1,6 +1,7 @@
 {
   "parent": "logicates:block/dual_input/left_right",
   "textures": {
-    "top": "logicates:block/dual_input/x_logicate/left_right"
+    "top": "logicates:block/dual_input/x_logicate/left_right",
+    "particle": "logicates:block/dual_input/x_logicate/left_right"
   }
 }
