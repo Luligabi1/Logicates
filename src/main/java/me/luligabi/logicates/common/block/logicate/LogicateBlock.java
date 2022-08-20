@@ -13,13 +13,14 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public abstract class LogicateBlock extends AbstractRedstoneGateBlock { // TODO: Add redstone particles
+public abstract class LogicateBlock extends AbstractRedstoneGateBlock {
 
     protected LogicateBlock() {
         super(FabricBlockSettings.copyOf(Blocks.REPEATER));
