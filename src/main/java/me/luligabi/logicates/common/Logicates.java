@@ -8,6 +8,7 @@ import me.luligabi.logicates.common.misc.screenhandler.ScreenHandlingRegistry;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
 public class Logicates implements ModInitializer {
@@ -31,7 +32,7 @@ public class Logicates implements ModInitializer {
 
     public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(
                     new Identifier(MOD_ID, "item_group"))
-            //.icon(() -> new ItemStack(BlockRegistry._LOGICATE))
+            .icon(() -> new ItemStack(BlockRegistry.XNOR_LOGICATE))
             .build();
 
 }
