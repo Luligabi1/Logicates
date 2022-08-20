@@ -1,7 +1,7 @@
 {
-  "parent": "logicates:block/dual_input/x_logicate/right_back_powered",
+  "parent": "logicates:block/dual_input/inverted/right_back_powered",
   "textures": {
-    "top": "logicates:block/dual_input/x_logicate/inverted/right_back_powered",
-    "particle": "logicates:block/dual_input/x_logicate/inverted/right_back_powered"
+    "top": "logicates:block/dual_input/x_logicate/inverted/right_back",
+    "particle": "logicates:block/dual_input/x_logicate/inverted/right_back"
   }
 }

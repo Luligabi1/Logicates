@@ -1,0 +1,7 @@
+{
+  "parent": "logicates:block/dual_input/right_back_powered",
+  "textures": {
+    "top": "logicates:block/dual_input/or_logicate/right_back_powered",
+    "particle": "logicates:block/dual_input/or_logicate/right_back_powered"
+  }
+}
