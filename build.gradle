@@ -1,10 +1,23 @@
 plugins {
     id 'fabric-loom' version '0.12-SNAPSHOT'
+    id "com.matthewprenger.cursegradle" version '1.4.0'
+    id "com.modrinth.minotaur" version '2.3.1'
     id 'maven-publish'
 }
 
 version = project.mod_version
 group = project.maven_group
+
+def ENV = System.getenv()
+
+def RELEASE_NAME = "[${project.minecraft_version}] ${version}"
+def RELEASE_FILE = "${buildDir}/libs/${archivesBaseName}-${version}.jar"
+
+@SuppressWarnings('GrMethodMayBeStatic')
+def getChangeLog() {
+    return ""
+}
+
 
 repositories {
     maven { url "https://maven.shedaniel.me/" }
@@ -52,5 +65,52 @@ java {
 jar {
     from("LICENSE") {
         rename { "${it}_${project.archivesBaseName}" }
+    }
+}
+
+curseforge {
+    if (ENV.CURSEFORGE_API_KEY) {
+        apiKey = ENV.CURSEFORGE_API_KEY
+    }
+
+    project {
+        id = project.curseforge_id
+        changelog = getChangeLog()
+        releaseType = "release"
+        addGameVersion project.minecraft_version
+        addGameVersion "Fabric"
+
+        mainArtifact(file(RELEASE_FILE)) {
+            displayName = RELEASE_NAME
+            relations {
+                requiredDependency 'fabric-api'
+                optionalDependency 'roughly-enough-items'
+            }
+        }
+
+        afterEvaluate {
+            uploadTask.dependsOn("remapJar")
+        }
+    }
+
+    options {
+        forgeGradleIntegration = false
+    }
+}
+
+modrinth {
+    if (ENV.MODRINTH_TOKEN) {
+        token = ENV.MODRINTH_TOKEN
+    }
+    projectId = project.modrinth_id
+    versionNumber = project.mod_version
+    uploadFile = remapJar
+    gameVersions = [project.minecraft_version]
+    loaders = ['fabric']
+    versionType = "release"
+    changelog = getChangeLog()
+    dependencies {
+        required.project("fabric-api")
+        optional.project("roughly-enough-items")
     }
 }
