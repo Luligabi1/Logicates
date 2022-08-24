@@ -1,0 +1,94 @@
+{
+  "variants": {
+    "facing=north,powered=false,weather_type=sunny": {
+      "model": "logicates:block/inputless/weather_logicate/sunny",
+      "y": 180
+    },
+    "facing=north,powered=true,weather_type=sunny": {
+      "model": "logicates:block/inputless/weather_logicate/sunny_powered",
+      "y": 180
+    },
+    "facing=north,powered=false,weather_type=rainy": {
+      "model": "logicates:block/inputless/weather_logicate/rainy",
+      "y": 180
+    },
+    "facing=north,powered=true,weather_type=rainy": {
+      "model": "logicates:block/inputless/weather_logicate/rainy_powered",
+      "y": 180
+    },
+    "facing=north,powered=false,weather_type=stormy": {
+      "model": "logicates:block/inputless/weather_logicate/stormy",
+      "y": 180
+    },
+    "facing=north,powered=true,weather_type=stormy": {
+      "model": "logicates:block/inputless/weather_logicate/stormy_powered",
+      "y": 180
+    },
+    "facing=south,powered=false,weather_type=sunny": {
+      "model": "logicates:block/inputless/weather_logicate/sunny"
+    },
+    "facing=south,powered=true,weather_type=sunny": {
+      "model": "logicates:block/inputless/weather_logicate/sunny_powered"
+    },
+    "facing=south,powered=false,weather_type=rainy": {
+      "model": "logicates:block/inputless/weather_logicate/rainy"
+    },
+    "facing=south,powered=true,weather_type=rainy": {
+      "model": "logicates:block/inputless/weather_logicate/rainy_powered"
+    },
+    "facing=south,powered=false,weather_type=stormy": {
+      "model": "logicates:block/inputless/weather_logicate/stormy"
+    },
+    "facing=south,powered=true,weather_type=stormy": {
+      "model": "logicates:block/inputless/weather_logicate/stormy_powered"
+    },
+    "facing=west,powered=false,weather_type=sunny": {
+      "model": "logicates:block/inputless/weather_logicate/sunny",
+      "y": 90
+    },
+    "facing=west,powered=true,weather_type=sunny": {
+      "model": "logicates:block/inputless/weather_logicate/sunny_powered",
+      "y": 90
+    },
+    "facing=west,powered=false,weather_type=rainy": {
+      "model": "logicates:block/inputless/weather_logicate/rainy",
+      "y": 90
+    },
+    "facing=west,powered=true,weather_type=rainy": {
+      "model": "logicates:block/inputless/weather_logicate/rainy_powered",
+      "y": 90
+    },
+    "facing=west,powered=false,weather_type=stormy": {
+      "model": "logicates:block/inputless/weather_logicate/stormy",
+      "y": 90
+    },
+    "facing=west,powered=true,weather_type=stormy": {
+      "model": "logicates:block/inputless/weather_logicate/stormy_powered",
+      "y": 90
+    },
+    "facing=east,powered=false,weather_type=sunny": {
+      "model": "logicates:block/inputless/weather_logicate/sunny",
+      "y": 270
+    },
+    "facing=east,powered=true,weather_type=sunny": {
+      "model": "logicates:block/inputless/weather_logicate/sunny_powered",
+      "y": 270
+    },
+    "facing=east,powered=false,weather_type=rainy": {
+      "model": "logicates:block/inputless/weather_logicate/rainy",
+      "y": 270
+    },
+    "facing=east,powered=true,weather_type=rainy": {
+      "model": "logicates:block/inputless/weather_logicate/sunny_powered",
+      "y": 270
+    },
+    "facing=east,powered=false,weather_type=stormy": {
+      "model": "logicates:block/inputless/weather_logicate/stormy",
+      "y": 270
+    },
+    "facing=east,powered=true,weather_type=stormy": {
+      "model": "logicates:block/inputless/weather_logicate/stormy_powered",
+      "y": 270
+    }
+  }
+}

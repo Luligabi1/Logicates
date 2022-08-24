@@ -6,6 +6,8 @@ import me.luligabi.logicates.common.block.logicate.input.dual.*;
 import me.luligabi.logicates.common.block.logicate.input.single.NotLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.inputless.timer.TimerLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.inputless.timer.TimerLogicateBlockEntity;
+import me.luligabi.logicates.common.block.logicate.inputless.weather.WeatherLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.inputless.weather.WeatherLogicateBlockEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -29,6 +31,10 @@ public class BlockRegistry {
         initBlock("timer_logicate", TIMER_LOGICATE);
         TIMER_LOGICATE_BLOCK_ENTITY_TYPE = Registry.register(Registry.BLOCK_ENTITY_TYPE, Logicates.id("timer_logicate"), FabricBlockEntityTypeBuilder.create(TimerLogicateBlockEntity::new, TIMER_LOGICATE).build());
 
+        initBlock("weather_logicate", WEATHER_LOGICATE);
+        WEATHER_LOGICATE_BLOCK_ENTITY_TYPE = Registry.register(Registry.BLOCK_ENTITY_TYPE, Logicates.id("weather_logicate"), FabricBlockEntityTypeBuilder.create(WeatherLogicateBlockEntity::new, WEATHER_LOGICATE).build());
+
+
         initBlock("logicate_fabricator", LOGICATE_FABRICATOR);
     }
 
@@ -43,6 +49,9 @@ public class BlockRegistry {
 
     public static final Block TIMER_LOGICATE = new TimerLogicateBlock();
     public static BlockEntityType<TimerLogicateBlockEntity> TIMER_LOGICATE_BLOCK_ENTITY_TYPE;
+
+    public static final Block WEATHER_LOGICATE = new WeatherLogicateBlock();
+    public static BlockEntityType<WeatherLogicateBlockEntity> WEATHER_LOGICATE_BLOCK_ENTITY_TYPE;
 
     public static final Block LOGICATE_FABRICATOR = new LogicateFabricatorBlock(FabricBlockSettings.copy(Blocks.SMITHING_TABLE));
 

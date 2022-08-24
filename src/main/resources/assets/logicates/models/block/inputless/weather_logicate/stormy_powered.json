@@ -1,0 +1,8 @@
+{
+  "parent": "logicates:block/single_input/not_logicate/back_powered",
+  "textures": {
+    "slab": "block/smooth_stone",
+    "particle": "logicates:block/inputless/weather/stormy",
+    "top": "logicates:block/inputless/weather/stormy"
+  }
+}
