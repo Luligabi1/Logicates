@@ -24,6 +24,10 @@
   "tooltip.logicates.timer_logicate.1": "Emite um sinal a cada X ticks.",
   "tooltip.logicates.timer_logicate.2": "Right-clique para configurar.",
 
+  "block.logicates.weather_logicate": "Lógicado Climático",
+  "tooltip.logicates.weather_logicate.1": "Emite um sinal se uma condição",
+  "tooltip.logicates.weather_logicate.2": "climática específica é atendida.",
+
 
   "logicates.ticks": "%d ticks (%d segundos)",
   "logicates.mute": "Silenciar",

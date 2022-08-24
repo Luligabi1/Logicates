@@ -1,0 +1,10 @@
+{
+  "type": "logicates:logicate_fabrication",
+
+  "logicatePlateAmount": 1,
+  "redstoneAmount": 2,
+  "redstoneTorchAmount": 1,
+  "tripwireAmount": 1,
+
+  "outputItem": "logicates:weather_logicate"
+}

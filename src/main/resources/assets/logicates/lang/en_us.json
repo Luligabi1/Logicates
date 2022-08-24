@@ -24,6 +24,9 @@
   "tooltip.logicates.timer_logicate.1": "Emits a signal every X ticks.",
   "tooltip.logicates.timer_logicate.2": "Right-click to configure.",
 
+  "block.logicates.weather_logicate": "Weather Logicate",
+  "tooltip.logicates.weather_logicate.1": "Emits a signal if a specific",
+  "tooltip.logicates.weather_logicate.2": "weather condition is met.",
 
   "logicates.ticks": "%d ticks (%d seconds)",
   "logicates.mute": "Mute",
