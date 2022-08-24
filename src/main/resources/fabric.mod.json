@@ -3,16 +3,17 @@
   "id": "logicates",
   "version": "${version}",
   "name": "Logicates",
-  "description": "dummy",
+  "description": "Logicates are special redstone components of diverse nature, including Logic Gates, sensors and other useful gadgets for your redstone circuits.",
   "authors": [
     "Luligabi"
   ],
   "contact": {
-    "website": "dummy",
-    "repo": "dummy"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/logicates",
+    "repo": "https://github.com/Luligabi1/MagicFungi",
+    "issues": "https://github.com/Luligabi1/MagicFungi/issues"
   },
   "license": "Apache-2.0",
-  "icon": "assets/logicates/icon.png",
+  "icon": "assets/logicates/textures/item/logicate/xnor_logicate.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -34,6 +35,6 @@
   "depends": {
     "fabricloader": ">=0.14.8",
     "fabric": "*",
-    "minecraft": "1.19.1"
+    "minecraft": "1.19.x"
   }
 }
