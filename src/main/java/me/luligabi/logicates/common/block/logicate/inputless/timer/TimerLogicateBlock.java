@@ -10,6 +10,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -60,8 +61,8 @@ public class TimerLogicateBlock extends InputlessLogicateBlock implements BlockE
     @Override
     protected List<MutableText> getLogicateTooltip() {
         return List.of(
-                Text.translatable("tooltip.logicates.timer_logicate.1"),
-                Text.translatable("tooltip.logicates.timer_logicate.2")
+                new TranslatableText("tooltip.logicates.timer_logicate.1"),
+                new TranslatableText("tooltip.logicates.timer_logicate.2")
         );
     }
 

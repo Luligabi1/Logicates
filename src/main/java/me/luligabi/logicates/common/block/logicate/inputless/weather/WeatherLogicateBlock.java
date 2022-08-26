@@ -14,17 +14,16 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Random;
 
 public class WeatherLogicateBlock extends InputlessLogicateBlock implements BlockEntityProvider {
 
@@ -74,8 +73,8 @@ public class WeatherLogicateBlock extends InputlessLogicateBlock implements Bloc
     @Override
     protected List<MutableText> getLogicateTooltip() {
         return List.of(
-                Text.translatable("tooltip.logicates.weather_logicate.1"),
-                Text.translatable("tooltip.logicates.weather_logicate.2")
+                new TranslatableText("tooltip.logicates.weather_logicate.1"),
+                new TranslatableText("tooltip.logicates.weather_logicate.2")
         );
     }
 

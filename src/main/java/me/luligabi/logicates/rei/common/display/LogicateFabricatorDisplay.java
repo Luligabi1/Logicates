@@ -85,11 +85,11 @@ public class LogicateFabricatorDisplay implements Display {
         @Override
         public NbtCompound save(NbtCompound tag, LogicateFabricatorDisplay display) {
             NbtList input = new NbtList();
-            display.input.forEach(entryStacks -> input.add(entryStacks.saveIngredient()));
+            display.input.forEach(entryStacks -> input.add(entryStacks.save()));
             tag.put("input", input);
 
             NbtList output = new NbtList();
-            display.output.forEach(entryStacks -> output.add(entryStacks.saveIngredient()));
+            display.output.forEach(entryStacks -> output.add(entryStacks.save()));
             tag.put("output", output);
 
             return tag;

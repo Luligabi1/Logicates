@@ -8,12 +8,12 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -79,7 +79,7 @@ public abstract class LogicateBlock extends AbstractRedstoneGateBlock {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         tooltip.add(getLogicateType().getText().formatted(Formatting.BLUE));
-        tooltip.add(Text.empty());
+        tooltip.add(new LiteralText(""));
         for(MutableText text : getLogicateTooltip()) {
             tooltip.add(text.formatted(Formatting.GRAY));
         }

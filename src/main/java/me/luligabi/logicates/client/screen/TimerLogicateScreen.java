@@ -13,8 +13,10 @@ import net.minecraft.client.gui.widget.PressableWidget;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -38,10 +40,10 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
         y = height / 2 - backgroundHeight / 2;
 
         buttons.clear();
-        addButton(new ButtonWidget(x + 7, y + 54, -4000, Text.literal("--"), 0));
-        addButton(new ButtonWidget(x + 43, y + 54, -20, Text.literal("-"), 2));
-        addButton(new ButtonWidget(x + 101, y + 54, 20, Text.literal("+"), 4));
-        addButton(new ButtonWidget(x + 137, y + 54, 4000, Text.literal("++"), 6));
+        addButton(new ButtonWidget(x + 7, y + 54, -4000, new LiteralText("--"), 0));
+        addButton(new ButtonWidget(x + 43, y + 54, -20, new LiteralText("-"), 2));
+        addButton(new ButtonWidget(x + 101, y + 54, 20, new LiteralText("+"), 4));
+        addButton(new ButtonWidget(x + 137, y + 54, 4000, new LiteralText("++"), 6));
 
         addButton(new MuteButtonWidget(x + 149, y + 6));
     }
@@ -62,7 +64,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
         drawCenteredShadowless(matrices,
-                Text.translatable("logicates.ticks", handler.getPropertyDelegate().get(0), df.format((float) handler.getPropertyDelegate().get(0) / 20)),
+                new TranslatableText("logicates.ticks", handler.getPropertyDelegate().get(0), df.format((float) handler.getPropertyDelegate().get(0) / 20)),
                 width / 2, y + 32, Formatting.DARK_GRAY.getColorValue());
     }
 
@@ -156,8 +158,8 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
             String firstLineKey = timerOffset > 0 ? "timer_logicate.increase" : "timer_logicate.decrease";
             String secondLineKey = timerOffset > 0 ? "timer_logicate.shift_increase" : "timer_logicate.shift_decrease";
             TimerLogicateScreen.this.renderTooltip(matrices, List.of(
-                    Text.translatable(firstLineKey, timerOffset > 0 ? timerOffset : Math.abs(timerOffset)),
-                    Text.translatable(secondLineKey, timerOffset > 0 ? timerOffset/20 : Math.abs(timerOffset/20))
+                    new TranslatableText(firstLineKey, timerOffset > 0 ? timerOffset : Math.abs(timerOffset)),
+                    new TranslatableText(secondLineKey, timerOffset > 0 ? timerOffset/20 : Math.abs(timerOffset/20))
             ), mouseX, mouseY);
         }
 
@@ -187,7 +189,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
     private class MuteButtonWidget extends PressableWidget implements TimerButtonWidget {
 
         protected MuteButtonWidget(int x, int y) {
-            super(x, y, 20, 20, Text.empty());
+            super(x, y, 20, 20, new LiteralText(""));
         }
 
         @Override
@@ -214,7 +216,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
         public void renderTooltip(MatrixStack matrices, int mouseX, int mouseY) {
             String key = TimerLogicateScreen.this.handler.getPropertyDelegate().get(1) == 1 ? "logicates.unmute" : "logicates.mute";
             TimerLogicateScreen.this.renderTooltip(matrices,
-                    Text.translatable(key).formatted(Formatting.GRAY),
+                    new TranslatableText(key).formatted(Formatting.GRAY),
             mouseX, mouseY);
         }
 

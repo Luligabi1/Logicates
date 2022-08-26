@@ -22,10 +22,8 @@
     "client": [
       "me.luligabi.logicates.client.LogicatesClient"
     ],
-    "rei_common": [
-      "me.luligabi.logicates.rei.common.CommonReiPlugin"
-    ],
-    "rei_client": [
+    "rei_plugins": [
+      "me.luligabi.logicates.rei.common.CommonReiPlugin",
       "me.luligabi.logicates.rei.client.ClientReiPlugin"
     ]
   },
@@ -35,6 +33,6 @@
   "depends": {
     "fabricloader": ">=0.14.8",
     "fabric": "*",
-    "minecraft": "1.19.x"
+    "minecraft": "1.18.2"
   }
 }

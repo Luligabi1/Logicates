@@ -14,6 +14,7 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -97,7 +98,7 @@ public class TimerLogicateBlockEntity extends ClientSyncedBlockEntity implements
 
     @Override
     public Text getDisplayName() {
-        return Text.translatable("block.logicates.timer_logicate");
+        return new TranslatableText("block.logicates.timer_logicate");
     }
 
     public int ticks = 0;

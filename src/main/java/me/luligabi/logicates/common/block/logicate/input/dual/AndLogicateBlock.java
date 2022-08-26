@@ -3,6 +3,7 @@ package me.luligabi.logicates.common.block.logicate.input.dual;
 import net.minecraft.block.BlockState;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -18,7 +19,7 @@ public class AndLogicateBlock extends DualInputLogicateBlock {
     @Override
     protected List<MutableText> getLogicateTooltip() {
         return List.of(
-                Text.translatable("tooltip.logicates.and_logicate")
+                new TranslatableText("tooltip.logicates.and_logicate")
         );
     }
 
