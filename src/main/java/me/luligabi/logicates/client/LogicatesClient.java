@@ -1,16 +1,15 @@
 package me.luligabi.logicates.client;
 
-import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import me.luligabi.logicates.client.renderer.TimerLogicateBlockEntityRenderer;
 import me.luligabi.logicates.client.screen.LogicateFabricatorScreen;
 import me.luligabi.logicates.client.screen.TimerLogicateScreen;
 import me.luligabi.logicates.common.block.BlockRegistry;
-import me.luligabi.logicates.common.misc.screenhandler.LogicateFabricatorScreenHandler;
 import me.luligabi.logicates.common.misc.screenhandler.ScreenHandlingRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 
