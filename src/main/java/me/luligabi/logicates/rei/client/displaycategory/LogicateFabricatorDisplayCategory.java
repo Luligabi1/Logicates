@@ -56,7 +56,7 @@ public class LogicateFabricatorDisplayCategory implements DisplayCategory<Logica
 
     @Override
     public int getDisplayHeight() {
-        return 72;
+        return 66;
     }
 
     @Override
