@@ -38,6 +38,7 @@ public class LogicateFabricationRecipeSerializer implements RecipeSerializer<Log
     @Override // Turns Recipe into PacketByteBuf
     public void write(PacketByteBuf packetData, LogicateFabricationRecipe recipe) {
         packetData.writeItemStack(new ItemStack(recipe.getOutput().getItem(), recipe.getOutputAmount()));
+        packetData.writeInt(recipe.getOutputAmount());
         packetData.writeInt(recipe.getLogicatePlateAmount());
         packetData.writeInt(recipe.getRedstoneAmount());
         packetData.writeInt(recipe.getRedstoneTorchAmount());
