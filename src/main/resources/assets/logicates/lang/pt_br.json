@@ -29,7 +29,8 @@
   "tooltip.logicates.weather_logicate.2": "climática específica é atendida.",
 
 
-  "logicates.ticks": "%d ticks (%d segundos)",
+  "logicates.ticks": "%d ticks (%d segundo)",
+  "logicates.ticks_plural": "%d ticks (%d segundos)",
   "logicates.mute": "Silenciar",
   "logicates.unmute": "Desilenciar",
   "timer_logicate.increase": "§Clique §7para aumentar tempo em §e%d §7ticks.",

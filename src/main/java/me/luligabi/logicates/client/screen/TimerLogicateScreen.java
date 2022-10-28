@@ -61,8 +61,9 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
         RenderSystem.setShaderTexture(0, TEXTURE);
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
+        int ticks = handler.getPropertyDelegate().get(0);
         drawCenteredShadowless(matrices,
-                Text.translatable("logicates.ticks", handler.getPropertyDelegate().get(0), df.format((float) handler.getPropertyDelegate().get(0) / 20)),
+                Text.translatable(ticks >= 39 ? "logicates.ticks_plural" : "logicates.ticks", ticks, df.format((float) ticks / 20)), // >= 39 since values are changed only every two ticks, so 39 ticks is considered 2 seconds
                 width / 2, y + 32, Formatting.DARK_GRAY.getColorValue());
     }
 
