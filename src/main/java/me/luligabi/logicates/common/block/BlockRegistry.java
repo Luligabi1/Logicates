@@ -4,6 +4,7 @@ import me.luligabi.logicates.common.Logicates;
 import me.luligabi.logicates.common.block.fabricator.LogicateFabricatorBlock;
 import me.luligabi.logicates.common.block.logicate.input.dual.*;
 import me.luligabi.logicates.common.block.logicate.input.single.NotLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.input.single.ToggleLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.inputless.timer.TimerLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.inputless.timer.TimerLogicateBlockEntity;
 import me.luligabi.logicates.common.block.logicate.inputless.weather.WeatherLogicateBlock;
@@ -30,6 +31,8 @@ public class BlockRegistry {
         initBlock("nor_logicate", NOR_LOGICATE);
         initBlock("xnor_logicate", XNOR_LOGICATE);
 
+        initBlock("toggle_logicate", TOGGLE_LOGICATE);
+
         initBlock("timer_logicate", TIMER_LOGICATE);
         TIMER_LOGICATE_BLOCK_ENTITY_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, Logicates.id("timer_logicate"), FabricBlockEntityTypeBuilder.create(TimerLogicateBlockEntity::new, TIMER_LOGICATE).build());
 
@@ -48,6 +51,8 @@ public class BlockRegistry {
     public static final Block NAND_LOGICATE = new NandLogicateBlock();
     public static final Block NOR_LOGICATE = new NorLogicateBlock();
     public static final Block XNOR_LOGICATE = new XnorLogicateBlock();
+
+    public static final Block TOGGLE_LOGICATE = new ToggleLogicateBlock();
 
     public static final Block TIMER_LOGICATE = new TimerLogicateBlock();
     public static BlockEntityType<TimerLogicateBlockEntity> TIMER_LOGICATE_BLOCK_ENTITY_TYPE;
