@@ -1,0 +1,10 @@
+{
+  "parent": "logicates:block/single_input/toggle_logicate/right",
+  "textures": {
+    "slab": "block/smooth_stone",
+    "particle": "logicates:block/single_input/toggle_logicate/right_input",
+    "top": "logicates:block/single_input/toggle_logicate/right_input",
+    "torch": "block/redstone_torch_off",
+    "torch_back": "block/redstone_torch"
+  }
+}
