@@ -1,0 +1,184 @@
+{
+  "variants": {
+    "facing=north,powered=false,single_input_side=back,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/back",
+      "y": 180
+    },
+    "facing=north,powered=true,single_input_side=back,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/back_powered_no_input",
+      "y": 180
+    },
+    "facing=north,powered=false,single_input_side=back,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/back_input",
+      "y": 180
+    },
+    "facing=north,powered=true,single_input_side=back,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/back_powered",
+      "y": 180
+    },
+    "facing=north,powered=false,single_input_side=left,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/left",
+      "y": 180
+    },
+    "facing=north,powered=true,single_input_side=left,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/left_powered_no_input",
+      "y": 180
+    },
+    "facing=north,powered=false,single_input_side=left,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/left_input",
+      "y": 180
+    },
+    "facing=north,powered=true,single_input_side=left,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/left_powered",
+      "y": 180
+    },
+    "facing=north,powered=false,single_input_side=right,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/right",
+      "y": 180
+    },
+    "facing=north,powered=true,single_input_side=right,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/right_powered_no_input",
+      "y": 180
+    },
+    "facing=north,powered=false,single_input_side=right,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/right_input",
+      "y": 180
+    },
+    "facing=north,powered=true,single_input_side=right,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/right_powered",
+      "y": 180
+    },
+    "facing=south,powered=false,single_input_side=back,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/back"
+    },
+    "facing=south,powered=true,single_input_side=back,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/back_powered_no_input"
+    },
+    "facing=south,powered=false,single_input_side=back,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/back_input"
+    },
+    "facing=south,powered=true,single_input_side=back,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/back_powered"
+    },
+    "facing=south,powered=false,single_input_side=left,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/left"
+    },
+    "facing=south,powered=true,single_input_side=left,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/left_powered_no_input"
+    },
+    "facing=south,powered=false,single_input_side=left,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/left_input"
+    },
+    "facing=south,powered=true,single_input_side=left,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/left_powered"
+    },
+    "facing=south,powered=false,single_input_side=right,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/right"
+    },
+    "facing=south,powered=true,single_input_side=right,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/right_powered_no_input"
+    },
+    "facing=south,powered=false,single_input_side=right,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/right_input"
+    },
+    "facing=south,powered=true,single_input_side=right,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/right_powered"
+    },
+    "facing=west,powered=false,single_input_side=back,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/back",
+      "y": 90
+    },
+    "facing=west,powered=true,single_input_side=back,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/back_powered_no_input",
+      "y": 90
+    },
+    "facing=west,powered=false,single_input_side=back,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/back_input",
+      "y": 90
+    },
+    "facing=west,powered=true,single_input_side=back,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/back_powered",
+      "y": 90
+    },
+    "facing=west,powered=false,single_input_side=left,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/left",
+      "y": 90
+    },
+    "facing=west,powered=true,single_input_side=left,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/left_powered_no_input",
+      "y": 90
+    },
+    "facing=west,powered=false,single_input_side=left,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/left_input",
+      "y": 90
+    },
+    "facing=west,powered=true,single_input_side=left,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/left_powered",
+      "y": 90
+    },
+    "facing=west,powered=false,single_input_side=right,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/right",
+      "y": 90
+    },
+    "facing=west,powered=true,single_input_side=right,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/right_powered_no_input",
+      "y": 90
+    },
+    "facing=west,powered=false,single_input_side=right,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/right_input",
+      "y": 90
+    },
+    "facing=west,powered=true,single_input_side=right,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/right_powered",
+      "y": 90
+    },
+    "facing=east,powered=false,single_input_side=back,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/back",
+      "y": 270
+    },
+    "facing=east,powered=true,single_input_side=back,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/back_powered_no_input",
+      "y": 270
+    },
+    "facing=east,powered=false,single_input_side=back,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/back_input",
+      "y": 270
+    },
+    "facing=east,powered=true,single_input_side=back,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/back_powered",
+      "y": 270
+    },
+    "facing=east,powered=false,single_input_side=left,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/left",
+      "y": 270
+    },
+    "facing=east,powered=true,single_input_side=left,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/left_powered_no_input",
+      "y": 270
+    },
+    "facing=east,powered=false,single_input_side=left,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/left_input",
+      "y": 270
+    },
+    "facing=east,powered=true,single_input_side=left,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/left_powered",
+      "y": 270
+    },
+    "facing=east,powered=false,single_input_side=right,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/right",
+      "y": 270
+    },
+    "facing=east,powered=true,single_input_side=right,input_power=false": {
+      "model": "logicates:block/single_input/toggle_logicate/right_powered_no_input",
+      "y": 270
+    },
+    "facing=east,powered=false,single_input_side=right,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/right_input",
+      "y": 270
+    },
+    "facing=east,powered=true,single_input_side=right,input_power=true": {
+      "model": "logicates:block/single_input/toggle_logicate/right_powered",
+      "y": 270
+    }
+  }
+}

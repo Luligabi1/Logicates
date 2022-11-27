@@ -32,7 +32,9 @@ public class LogicatesClient implements ClientModInitializer {
                 BlockRegistry.NOR_LOGICATE,
                 BlockRegistry.XNOR_LOGICATE,
 
+                BlockRegistry.TOGGLE_LOGICATE,
                 BlockRegistry.TIMER_LOGICATE,
+
                 BlockRegistry.WEATHER_LOGICATE
         );
     }
