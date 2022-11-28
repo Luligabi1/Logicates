@@ -21,7 +21,7 @@ public abstract class DualInputLogicateBlock extends InputtableLogicateBlock {
     }
 
     @Override
-    protected LogicateType getLogicateType() {
+    public LogicateType getLogicateType() {
         return LogicateType.DUAL_INPUT;
     }
 

@@ -8,26 +8,21 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public abstract class LogicateBlock extends AbstractRedstoneGateBlock {
+public abstract class LogicateBlock extends AbstractRedstoneGateBlock implements Logicatable {
 
     protected LogicateBlock() {
         super(FabricBlockSettings.copyOf(Blocks.REPEATER));
         setDefaultState(getStateManager().getDefaultState().with(FACING, Direction.NORTH).with(POWERED, false));
     }
-
-    protected abstract LogicateType getLogicateType();
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
@@ -74,14 +69,8 @@ public abstract class LogicateBlock extends AbstractRedstoneGateBlock {
         return direction;
     }
 
-    protected abstract List<MutableText> getLogicateTooltip();
-
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add(getLogicateType().getText().formatted(Formatting.BLUE));
-        tooltip.add(Text.empty());
-        for(MutableText text : getLogicateTooltip()) {
-            tooltip.add(text.formatted(Formatting.GRAY));
-        }
+        appendLogicateTooltip(tooltip);
     }
 }

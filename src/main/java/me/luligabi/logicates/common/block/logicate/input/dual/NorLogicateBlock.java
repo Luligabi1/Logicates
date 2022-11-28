@@ -20,7 +20,7 @@ public class NorLogicateBlock extends DualInputLogicateBlock {
     }
 
     @Override
-    protected List<MutableText> getLogicateTooltip() {
+    public List<MutableText> getLogicateTooltip() {
         return List.of(
                 Text.translatable("tooltip.logicates.nor_logicate")
         );
