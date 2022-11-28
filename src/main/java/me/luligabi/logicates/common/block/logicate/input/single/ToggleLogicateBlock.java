@@ -74,7 +74,7 @@ public class ToggleLogicateBlock extends SingleInputLogicateBlock {
     }
 
     @Override
-    protected List<MutableText> getLogicateTooltip() {
+    public List<MutableText> getLogicateTooltip() {
         return List.of(
                 Text.translatable("tooltip.logicates.toggle_logicate")
         );

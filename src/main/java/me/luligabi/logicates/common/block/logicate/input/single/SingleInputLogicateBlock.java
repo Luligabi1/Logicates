@@ -20,7 +20,7 @@ public abstract class SingleInputLogicateBlock extends InputtableLogicateBlock {
     }
 
     @Override
-    protected LogicateType getLogicateType() {
+    public LogicateType getLogicateType() {
         return LogicateType.SINGLE_INPUT;
     }
 

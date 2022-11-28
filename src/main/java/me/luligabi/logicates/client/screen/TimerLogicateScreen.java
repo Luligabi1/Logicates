@@ -70,7 +70,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
     @Override
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
         this.textRenderer.draw(matrices, title, (float) titleX, (float) titleY, 0x404040);
-        for(TimerButtonWidget buttonWidget : this.buttons) {
+        for(LogicateButtonWidget buttonWidget : this.buttons) {
             if(!buttonWidget.shouldRenderTooltip()) continue;
             buttonWidget.renderTooltip(matrices, mouseX - x, mouseY - y);
             break;
@@ -80,13 +80,13 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
     @Override
     public void handledScreenTick() {
         super.handledScreenTick();
-        buttons.forEach(TimerButtonWidget::tick);
+        buttons.forEach(LogicateButtonWidget::tick);
     }
 
 
     private <T extends ClickableWidget> void addButton(T button) {
         this.addDrawableChild(button);
-        this.buttons.add((TimerButtonWidget) button);
+        this.buttons.add((LogicateButtonWidget) button);
     }
 
     private void drawCenteredShadowless(MatrixStack matrices, Text text, int centerX, int y, int color) {
@@ -95,20 +95,11 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
     }
 
     DecimalFormat df = new DecimalFormat("##.#");
-    private final List<TimerButtonWidget> buttons = Lists.newArrayList();
+    private final List<LogicateButtonWidget> buttons = Lists.newArrayList();
     private static final Identifier TEXTURE = Logicates.id("textures/gui/timer_logicate.png");
 
 
-    interface TimerButtonWidget {
-
-        boolean shouldRenderTooltip();
-
-        void renderTooltip(MatrixStack var1, int var2, int var3);
-
-        void tick();
-    }
-
-    private class ButtonWidget extends PressableWidget implements TimerButtonWidget {
+    private class ButtonWidget extends PressableWidget implements LogicateButtonWidget {
 
         private final int id;
         private final int timerOffset;
@@ -185,7 +176,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
         }
     }
 
-    private class MuteButtonWidget extends PressableWidget implements TimerButtonWidget {
+    private class MuteButtonWidget extends PressableWidget implements LogicateButtonWidget {
 
         protected MuteButtonWidget(int x, int y) {
             super(x, y, 20, 20, Text.empty());

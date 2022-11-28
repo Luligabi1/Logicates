@@ -6,7 +6,7 @@ import me.luligabi.logicates.common.block.logicate.LogicateType;
 public abstract class InputlessLogicateBlock extends LogicateBlock {
 
     @Override
-    protected LogicateType getLogicateType() {
+    public LogicateType getLogicateType() {
         return LogicateType.INPUTLESS;
     }
 

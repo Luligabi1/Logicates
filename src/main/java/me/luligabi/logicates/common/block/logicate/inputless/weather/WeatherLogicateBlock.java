@@ -72,7 +72,7 @@ public class WeatherLogicateBlock extends InputlessLogicateBlock implements Bloc
     }
 
     @Override
-    protected List<MutableText> getLogicateTooltip() {
+    public List<MutableText> getLogicateTooltip() {
         return List.of(
                 Text.translatable("tooltip.logicates.weather_logicate.1"),
                 Text.translatable("tooltip.logicates.weather_logicate.2")

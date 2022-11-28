@@ -17,7 +17,7 @@ public class OrLogicateBlock extends DualInputLogicateBlock {
     }
 
     @Override
-    protected List<MutableText> getLogicateTooltip() {
+    public List<MutableText> getLogicateTooltip() {
         return List.of(
                 Text.translatable("tooltip.logicates.or_logicate")
         );

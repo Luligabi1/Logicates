@@ -58,7 +58,7 @@ public class TimerLogicateBlock extends InputlessLogicateBlock implements BlockE
     }
 
     @Override
-    protected List<MutableText> getLogicateTooltip() {
+    public List<MutableText> getLogicateTooltip() {
         return List.of(
                 Text.translatable("tooltip.logicates.timer_logicate.1"),
                 Text.translatable("tooltip.logicates.timer_logicate.2")

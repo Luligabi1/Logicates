@@ -21,7 +21,7 @@ public class NotLogicateBlock extends SingleInputLogicateBlock {
     }
 
     @Override
-    protected List<MutableText> getLogicateTooltip() {
+    public List<MutableText> getLogicateTooltip() {
         return List.of(
                 Text.translatable("tooltip.logicates.not_logicate")
         );

@@ -21,7 +21,7 @@ public class NandLogicateBlock extends DualInputLogicateBlock {
     }
 
     @Override
-    protected List<MutableText> getLogicateTooltip() {
+    public List<MutableText> getLogicateTooltip() {
         return List.of(
                 Text.translatable("tooltip.logicates.nand_logicate")
         );
