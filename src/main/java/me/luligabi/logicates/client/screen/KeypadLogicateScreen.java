@@ -12,7 +12,11 @@ import net.minecraft.client.gui.widget.PressableWidget;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
@@ -48,6 +52,8 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
 
         addButton(new DeleteButtonWidget(x + 8, y + 102));
         addButton(new ConfirmButtonWidget(x + 52, y + 102));
+
+        addButton(new ResetPasswordButtonWidget(x - 16, y + 36));
     }
 
     @Override
@@ -211,6 +217,90 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         @Override
         public boolean shouldRenderTooltip() {
             return false;
+        }
+
+        public boolean isDisabled() {
+            return this.disabled;
+        }
+
+        public void setDisabled(boolean disabled) {
+            this.disabled = disabled;
+        }
+
+        @Override
+        public void appendNarrations(NarrationMessageBuilder builder) {
+            this.appendDefaultNarrations(builder);
+        }
+    }
+
+    private class ResetPasswordButtonWidget extends ItemButtonWidget {
+
+        protected ResetPasswordButtonWidget(int x, int y) {
+            super(
+                    x, y,
+                    Items.BARRIER,
+                    Text.translatable(
+                            "text.logicates.keypad_logicate.reset_password.title"
+                    ).formatted(Formatting.GRAY),
+                    12
+            );
+        }
+
+        @Override
+        public void tick() {
+            setDisabled(!handler.hasPassword());
+        }
+    }
+
+    private abstract class ItemButtonWidget extends PressableWidget implements LogicateButtonWidget {
+
+        private final ItemStack icon;
+        private final int id;
+        private boolean disabled = false;
+
+        protected ItemButtonWidget(int x, int y, ItemConvertible icon, Text text, int id) {
+            super(x, y, 20, 20, text);
+            this.icon = new ItemStack(icon);
+            this.id = id;
+        }
+
+        @Override
+        public void onPress() {
+            if(isDisabled()) return;
+            MinecraftClient.getInstance().interactionManager.clickButton(handler.syncId, id);
+        }
+
+        @Override
+        public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShaderTexture(0, TEXTURE);
+            RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+            int v = 20;
+            if(isDisabled()) {
+                v = 0;
+            } else if(isHovered()) {
+                v = 40;
+            }
+            drawTexture(matrices, x, y, 176, v, width, height);
+
+            setZOffset(100);
+            itemRenderer.zOffset = 100F;
+            RenderSystem.enableDepthTest();
+            itemRenderer.renderInGuiWithOverrides(icon, x + 2, y + 2, x + y * backgroundWidth);
+            itemRenderer.renderGuiItemOverlay(textRenderer, icon, x + 2, y + 2);
+            itemRenderer.zOffset = 0F;
+            setZOffset(0);
+        }
+
+        @Override
+        public boolean shouldRenderTooltip() {
+            return !isDisabled();
+        }
+
+        @Override
+        public void renderTooltip(MatrixStack matrices, int mouseX, int mouseY) {
+            KeypadLogicateScreen.this.renderTooltip(matrices, title, mouseX, mouseY);
         }
 
         public boolean isDisabled() {
