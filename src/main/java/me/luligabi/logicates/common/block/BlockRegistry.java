@@ -5,6 +5,8 @@ import me.luligabi.logicates.common.block.fabricator.LogicateFabricatorBlock;
 import me.luligabi.logicates.common.block.logicate.input.dual.*;
 import me.luligabi.logicates.common.block.logicate.input.single.NotLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.input.single.ToggleLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.inputless.keypad.KeypadLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.inputless.keypad.KeypadLogicateBlockEntity;
 import me.luligabi.logicates.common.block.logicate.inputless.timer.TimerLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.inputless.timer.TimerLogicateBlockEntity;
 import me.luligabi.logicates.common.block.logicate.inputless.weather.WeatherLogicateBlock;
@@ -37,6 +39,8 @@ public class BlockRegistry {
         initBlock("weather_logicate", WEATHER_LOGICATE);
         WEATHER_LOGICATE_BLOCK_ENTITY_TYPE = Registry.register(Registry.BLOCK_ENTITY_TYPE, Logicates.id("weather_logicate"), FabricBlockEntityTypeBuilder.create(WeatherLogicateBlockEntity::new, WEATHER_LOGICATE).build());
 
+        initBlock("keypad_logicate", KEYPAD_LOGICATE);
+        KEYPAD_LOGICATE_BLOCK_ENTITY_TYPE = Registry.register(Registry.BLOCK_ENTITY_TYPE, Logicates.id("keypad_logicate"), FabricBlockEntityTypeBuilder.create(KeypadLogicateBlockEntity::new, KEYPAD_LOGICATE).build());
 
         initBlock("logicate_fabricator", LOGICATE_FABRICATOR);
     }
@@ -57,6 +61,10 @@ public class BlockRegistry {
 
     public static final Block WEATHER_LOGICATE = new WeatherLogicateBlock();
     public static BlockEntityType<WeatherLogicateBlockEntity> WEATHER_LOGICATE_BLOCK_ENTITY_TYPE;
+
+    public static final Block KEYPAD_LOGICATE = new KeypadLogicateBlock();
+    public static BlockEntityType<KeypadLogicateBlockEntity> KEYPAD_LOGICATE_BLOCK_ENTITY_TYPE;
+
 
     public static final Block LOGICATE_FABRICATOR = new LogicateFabricatorBlock(FabricBlockSettings.copy(Blocks.SMITHING_TABLE));
 

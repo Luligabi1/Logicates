@@ -1,6 +1,7 @@
 package me.luligabi.logicates.client;
 
 import me.luligabi.logicates.client.renderer.TimerLogicateBlockEntityRenderer;
+import me.luligabi.logicates.client.screen.KeypadLogicateScreen;
 import me.luligabi.logicates.client.screen.LogicateFabricatorScreen;
 import me.luligabi.logicates.client.screen.TimerLogicateScreen;
 import me.luligabi.logicates.common.block.BlockRegistry;
@@ -20,6 +21,8 @@ public class LogicatesClient implements ClientModInitializer {
     public void onInitializeClient() {
         HandledScreens.register(ScreenHandlingRegistry.LOGICATE_FABRICATOR_SCREEN_HANDLER, LogicateFabricatorScreen::new);
         HandledScreens.register(ScreenHandlingRegistry.TIMER_LOGICATE_SCREEN_HANDLER, TimerLogicateScreen::new);
+        HandledScreens.register(ScreenHandlingRegistry.KEYPAD_LOGICATE_SCREEN_HANDLER, KeypadLogicateScreen::new);
+
 
         BlockEntityRendererRegistry.register(BlockRegistry.TIMER_LOGICATE_BLOCK_ENTITY_TYPE, TimerLogicateBlockEntityRenderer::new);
 
