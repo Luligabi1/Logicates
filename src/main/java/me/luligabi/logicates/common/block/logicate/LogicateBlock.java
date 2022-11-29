@@ -38,16 +38,11 @@ public abstract class LogicateBlock extends AbstractRedstoneGateBlock implements
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if(!moved && !state.isOf(newState.getBlock())) {
             if(state.get(POWERED)) {
-                updateNeighbors(state, world, pos);
+                updateNeighbors(state, world, pos, FACING);
             }
 
             super.onStateReplaced(state, world, pos, newState, false);
         }
-    }
-
-    protected void updateNeighbors(BlockState state, World world, BlockPos pos) {
-        world.updateNeighborsAlways(pos, this);
-        world.updateNeighborsAlways(pos.offset(state.get(FACING).getOpposite()), this);
     }
 
     protected Direction getInputSideDirection(BlockState state, boolean leftSide) {

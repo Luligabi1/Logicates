@@ -22,7 +22,7 @@ public abstract class InputtableLogicateBlock extends LogicateBlock {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if(!player.getAbilities().allowModifyWorld) return ActionResult.PASS;
         world.setBlockState(pos, state.cycle(getInputSideProperty()));
-        updateNeighbors(state, world, pos);
+        updateNeighbors(state, world, pos, FACING);
         return ActionResult.success(world.isClient);
     }
 
