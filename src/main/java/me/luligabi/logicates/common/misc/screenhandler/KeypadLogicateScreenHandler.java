@@ -16,12 +16,12 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
 
 
     public KeypadLogicateScreenHandler(int syncId, PlayerInventory inventory) {
-        this(syncId, new ArrayPropertyDelegate(3), BlockPos.ORIGIN, null);
+        this(syncId, new ArrayPropertyDelegate(4), BlockPos.ORIGIN, null);
     }
 
     public KeypadLogicateScreenHandler(int syncId, PropertyDelegate propertyDelegate, BlockPos pos, BlockState state) {
         super(ScreenHandlingRegistry.KEYPAD_LOGICATE_SCREEN_HANDLER, syncId);
-        checkDataCount(propertyDelegate, 3);
+        checkDataCount(propertyDelegate, 4);
         this.propertyDelegate = propertyDelegate;
         this.addProperties(propertyDelegate);
         this.pos = pos;
@@ -35,19 +35,29 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
                 insertNumber(id);
                 return true;
             }
-            case 10 -> { // Confirm
+            case 10 -> { // Confirm (also used on password reset)
                 if(hasPassword()) { // Check password
                     if(getCurrentPassword() == getPassword()) {
                         player.sendMessage(
                                 Text.translatable(
+                                        onPasswordReset() ?
+                                        "message.logicates.keypad_logicate.reset_password" :
                                         "message.logicates.keypad_logicate.correct_password"
                                 ).formatted(Formatting.GREEN),
                                 true
                         );
-                        ((KeypadLogicateBlock) player.world.getBlockState(pos).getBlock()).powerOn(state, player.world, pos);
+                        if(!onPasswordReset()) {
+                            ((KeypadLogicateBlock) player.world.getBlockState(pos).getBlock()).powerOn(state, player.world, pos);
+                        } else {
+                            for(int i = 0; i < 4; i++) {
+                                setProperty(i, 0);
+                            }
+                        }
                     } else {
                         player.sendMessage(
                                 Text.translatable(
+                                        onPasswordReset() ?
+                                        "message.logicates.keypad_logicate.reset_password.fail" :
                                         "message.logicates.keypad_logicate.incorrect_password"
                                 ).formatted(Formatting.RED),
                                 true
@@ -69,6 +79,10 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
             case 11 -> { // Delete
                 if(getActivePassword() <= 0) return false;
                 setProperty(hasPassword() ? 1 : 0, getActivePassword() / 10);
+                return true;
+            }
+            case 12 -> { // Reset Password
+                setProperty(3, onPasswordReset() ? 0 : 1);
                 return true;
             }
             default -> {
@@ -112,6 +126,10 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
 
     public boolean hasPassword() {
         return propertyDelegate.get(2) == 1;
+    }
+
+    public boolean onPasswordReset() {
+        return propertyDelegate.get(3) == 1;
     }
 
     private BlockPos pos;

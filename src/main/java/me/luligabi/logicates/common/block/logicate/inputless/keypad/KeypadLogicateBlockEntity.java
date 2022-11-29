@@ -28,6 +28,7 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
                     case 0 -> KeypadLogicateBlockEntity.this.password;
                     case 1 -> KeypadLogicateBlockEntity.this.currentPassword;
                     case 2 -> KeypadLogicateBlockEntity.this.hasPassword ? 1 : 0;
+                    case 3 -> KeypadLogicateBlockEntity.this.passwordReset ? 1 : 0;
                     default -> throw new IllegalStateException("Unexpected value: " + index);
                 };
             }
@@ -38,13 +39,14 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
                     case 0 -> KeypadLogicateBlockEntity.this.password = value;
                     case 1 -> KeypadLogicateBlockEntity.this.currentPassword = value;
                     case 2 -> KeypadLogicateBlockEntity.this.hasPassword = value == 1; // 1 -> true, anything else -> false
+                    case 3 -> KeypadLogicateBlockEntity.this.passwordReset = value == 1;
                     default -> throw new IllegalStateException("Unexpected value: " + index);
                 }
             }
 
             @Override
             public int size() {
-                return 3;
+                return 4;
             }
         };
     }
@@ -63,6 +65,7 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
         nbt.putInt("Password", password);
         nbt.putInt("CurrentPassword", currentPassword);
         nbt.putBoolean("HasPassword", hasPassword);
+        nbt.putBoolean("PasswordReset", passwordReset);
     }
 
     @Override
@@ -70,6 +73,7 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
         password = nbt.getInt("Password");
         currentPassword = nbt.getInt("CurrentPassword");
         hasPassword = nbt.getBoolean("HasPassword");
+        passwordReset = nbt.getBoolean("PasswordReset");
     }
 
     @Override
@@ -91,6 +95,7 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
 
     public int password, currentPassword;
     public boolean hasPassword = false;
+    public boolean passwordReset = false;
     public BlockState state;
     public PropertyDelegate propertyDelegate;
 
