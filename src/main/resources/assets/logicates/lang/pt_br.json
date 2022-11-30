@@ -20,6 +20,9 @@
   "block.logicates.xnor_logicate": "Lógicado XNOR",
   "tooltip.logicates.xnor_logicate": "Emite um sinal se ambas entradas forem iguais.",
 
+  "block.logicates.toggle_logicate": "Lógicado Interruptor",
+  "tooltip.logicates.toggle_logicate": "Emite um sinal enquanto o interruptor está ligado por um sinal de entrada",
+
   "block.logicates.timer_logicate": "Lógicado Timer",
   "tooltip.logicates.timer_logicate.1": "Emite um sinal a cada X ticks.",
   "tooltip.logicates.timer_logicate.2": "Right-clique para configurar.",
@@ -28,16 +31,7 @@
   "tooltip.logicates.weather_logicate.1": "Emite um sinal se uma condição",
   "tooltip.logicates.weather_logicate.2": "climática específica é atendida.",
 
-
-  "logicates.ticks": "%d ticks (%d segundo)",
-  "logicates.ticks_plural": "%d ticks (%d segundos)",
-  "logicates.mute": "Silenciar",
-  "logicates.unmute": "Desilenciar",
-  "timer_logicate.increase": "§Clique §7para aumentar tempo em §e%d §7ticks.",
-  "timer_logicate.shift_increase": "§eShift-Clique §7para aumentar tempo em §e%d §7ticks.",
-
-  "timer_logicate.decrease": "§eClique §7para diminuir tempo em §e%d §7ticks.",
-  "timer_logicate.shift_decrease": "§eShift-Clique §7para diminuir tempo em §e%d §7ticks.",
+  "block.logicates.keypad_logicate": "Lógicado de Senha",
 
   "block.logicates.logicate_fabricator": "Fabricador de Lógicados",
   "container.logicates.logicate_fabricator": "Fabricação de Lógicados",
@@ -46,5 +40,28 @@
 
   "logicateType.logicates.single_input": "Entrada Única",
   "logicateType.logicates.dual_input": "Entrada Dupla",
-  "logicateType.logicates.inputless": "Sem Entrada"
+  "logicateType.logicates.inputless": "Sem Entrada",
+
+
+  "text.logicates.timer_logicate.ticks": "%d ticks (%d segundo)",
+  "text.logicates.timer_logicate.ticks_plural": "%d ticks (%d segundos)",
+  "text.logicates.timer_logicate.mute": "Silenciar",
+  "text.logicates.timer_logicate.unmute": "Desilenciar",
+  "text.logicates.timer_logicate.increase": "§Clique §7para aumentar tempo em §e%d §7ticks.",
+  "text.logicates.timer_logicate.shift_increase": "§eShift-Clique §7para aumentar tempo em §e%d §7ticks.",
+
+  "text.logicates.timer_logicate.decrease": "§eClique §7para diminuir tempo em §e%d §7ticks.",
+  "text.logicates.timer_logicate.shift_decrease": "§eShift-Clique §7para diminuir tempo em §e%d §7ticks.",
+
+  "container.logicates.keypad_logicate": "Insira a senha:",
+  "container.logicates.keypad_logicate.2": "Defina a senha:",
+
+  "text.logicates.keypad_logicate.closing_delay.title": "Delay de Fechadura",
+  "text.logicates.keypad_logicate.closing_delay.title.2": "§7Delay atual: §e%d §7segundo(s)",
+  "text.logicates.keypad_logicate.closing_delay.title.3": "§eClique §7para aumentar o delay em §e1 §7segundo.",
+  "text.logicates.keypad_logicate.closing_delay.title.4": "§eShift-Clique §7para diminuir o delay em §e1 §7segundo.",
+
+  "text.logicates.keypad_logicate.reset_password.title": "Redefinir Senha",
+  "text.logicates.keypad_logicate.reset_password.title.2": "§eClique §7e insira a senha para redefinir",
+  "text.logicates.keypad_logicate.reset_password.enabled": "Reset de senha ativo"
 }

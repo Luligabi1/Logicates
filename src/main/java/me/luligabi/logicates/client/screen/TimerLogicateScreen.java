@@ -63,7 +63,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
 
         int ticks = handler.getPropertyDelegate().get(0);
         drawCenteredShadowless(matrices,
-                Text.translatable(ticks >= 39 ? "logicates.ticks_plural" : "logicates.ticks", ticks, df.format((float) ticks / 20)), // >= 39 since values are changed only every two ticks, so 39 ticks is considered 2 seconds
+                Text.translatable(ticks >= 39 ? "text.logicates.timer_logicate.ticks_plural" : "text.logicates.timer_logicate.ticks", ticks, df.format((float) ticks / 20)), // >= 39 since values are changed only every two ticks, so 39 ticks is considered 2 seconds
                 width / 2, y + 32, Formatting.DARK_GRAY.getColorValue());
     }
 
@@ -145,8 +145,8 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
 
         @Override
         public void renderTooltip(MatrixStack matrices, int mouseX, int mouseY) {
-            String firstLineKey = timerOffset > 0 ? "timer_logicate.increase" : "timer_logicate.decrease";
-            String secondLineKey = timerOffset > 0 ? "timer_logicate.shift_increase" : "timer_logicate.shift_decrease";
+            String firstLineKey = timerOffset > 0 ? "text.logicates.timer_logicate.increase" : "text.logicates.timer_logicate.decrease";
+            String secondLineKey = timerOffset > 0 ? "text.logicates.timer_logicate.shift_increase" : "text.logicates.timer_logicate.shift_decrease";
             TimerLogicateScreen.this.renderTooltip(matrices, List.of(
                     Text.translatable(firstLineKey, timerOffset > 0 ? timerOffset : Math.abs(timerOffset)),
                     Text.translatable(secondLineKey, timerOffset > 0 ? timerOffset/20 : Math.abs(timerOffset/20))
@@ -204,7 +204,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
 
         @Override
         public void renderTooltip(MatrixStack matrices, int mouseX, int mouseY) {
-            String key = TimerLogicateScreen.this.handler.getPropertyDelegate().get(1) == 1 ? "logicates.unmute" : "logicates.mute";
+            String key = TimerLogicateScreen.this.handler.getPropertyDelegate().get(1) == 1 ? "text.logicates.timer_logicate.unmute" : "text.logicates.timer_logicate.mute";
             TimerLogicateScreen.this.renderTooltip(matrices,
                     Text.translatable(key).formatted(Formatting.GRAY),
             mouseX, mouseY);
