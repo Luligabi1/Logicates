@@ -93,7 +93,11 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
 
     @Override
     public Text getDisplayName() {
-        return Text.translatable(hasPassword ? "title.logicates.keypad_logicate" : "title.logicates.keypad_logicate.2");
+        return Text.translatable(
+                (!hasPassword || passwordReset) ?
+                "container.logicates.keypad_logicate.2" :
+                "container.logicates.keypad_logicate"
+        );
     }
 
 

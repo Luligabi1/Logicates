@@ -21,6 +21,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHandler> {
@@ -242,9 +243,7 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
             super(
                     x, y,
                     Items.BARRIER,
-                    Text.translatable(
-                            "text.logicates.keypad_logicate.reset_password.title"
-                    ).formatted(Formatting.GRAY),
+                    Text.translatable("text.logicates.keypad_logicate.reset_password.title").formatted(Formatting.GRAY),
                     12
             );
         }
@@ -252,6 +251,18 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         @Override
         public void tick() {
             setDisabled(!handler.hasPassword());
+        }
+
+        @Override
+        List<Text> getTooltipText() {
+            return List.of(
+                    Text.translatable("text.logicates.keypad_logicate.reset_password.title.2").formatted(Formatting.GRAY),
+                    Text.translatable(
+                            KeypadLogicateScreen.this.handler.onPasswordReset() ?
+                                    "text.logicates.keypad_logicate.reset_password.enabled":
+                                    ""
+                    ).formatted(Formatting.GREEN)
+            );
         }
     }
 
@@ -261,22 +272,10 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
             super(
                     x, y,
                     Items.CLOCK,
-                    Text.translatable(
-                            "text.logicates.keypad_logicate.closing_delay.title"
-                    ).formatted(Formatting.GRAY),
+                    Text.translatable("text.logicates.keypad_logicate.closing_delay.title").formatted(Formatting.GRAY),
                     id
             );
         }
-
-        /*@SuppressWarnings("ConstantConditions")
-        @Override
-        public void onPress() {
-            if(isDisabled()) return;
-            int newOffset = KeypadLogicateScreen.this.handler.getClosingDelay() + KeypadLogicateScreen.this.handler.getClosingDelayOffset();
-            if(newOffset >= TimerLogicateBlock.MIN_VALUE && newOffset <= TimerLogicateBlock.MAX_VALUE) {
-                client.interactionManager.clickButton(handler.syncId, id);
-            }
-        }*/
 
         @Override
         public void tick() {
@@ -284,6 +283,18 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
             setDisabled((newOffset < KeypadLogicateBlock.MIN_CLOSING_DELAY) || (newOffset > KeypadLogicateBlock.MAX_CLOSING_DELAY));
         }
 
+        @Override
+        List<Text> getTooltipText() {
+            return List.of(
+                    Text.translatable(
+                            "text.logicates.keypad_logicate.closing_delay.title.2",
+                            KeypadLogicateScreen.this.handler.getClosingDelay()
+                    ),
+                    Text.empty(),
+                    Text.translatable("text.logicates.keypad_logicate.closing_delay.title.3"),
+                    Text.translatable("text.logicates.keypad_logicate.closing_delay.title.4")
+            );
+        }
     }
 
     private abstract class ItemButtonWidget extends PressableWidget implements LogicateButtonWidget {
@@ -327,18 +338,25 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
             setZOffset(0);
         }
 
-        @Override
-        public boolean shouldRenderTooltip() {
-            return isHovered() && !isDisabled();
-        }
+        abstract List<Text> getTooltipText();
 
         @Override
         public void renderTooltip(MatrixStack matrices, int mouseX, int mouseY) {
+            ArrayList<Text> text = new ArrayList<>();
+            text.add(getMessage());
+            text.add(Text.empty());
+            text.addAll(getTooltipText());
+
             KeypadLogicateScreen.this.renderTooltip(
                     matrices,
-                    getMessage(),
+                    text,
                     mouseX, mouseY
             );
+        }
+
+        @Override
+        public boolean shouldRenderTooltip() {
+            return isHovered() && !isDisabled();
         }
 
         public boolean isDisabled() {
