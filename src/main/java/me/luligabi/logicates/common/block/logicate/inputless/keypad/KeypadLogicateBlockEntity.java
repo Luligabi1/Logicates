@@ -29,6 +29,7 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
                     case 1 -> KeypadLogicateBlockEntity.this.currentPassword;
                     case 2 -> KeypadLogicateBlockEntity.this.hasPassword ? 1 : 0;
                     case 3 -> KeypadLogicateBlockEntity.this.passwordReset ? 1 : 0;
+                    case 4 -> KeypadLogicateBlockEntity.this.closingDelay;
                     default -> throw new IllegalStateException("Unexpected value: " + index);
                 };
             }
@@ -40,13 +41,14 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
                     case 1 -> KeypadLogicateBlockEntity.this.currentPassword = value;
                     case 2 -> KeypadLogicateBlockEntity.this.hasPassword = value == 1; // 1 -> true, anything else -> false
                     case 3 -> KeypadLogicateBlockEntity.this.passwordReset = value == 1;
+                    case 4 -> KeypadLogicateBlockEntity.this.closingDelay = value;
                     default -> throw new IllegalStateException("Unexpected value: " + index);
                 }
             }
 
             @Override
             public int size() {
-                return 4;
+                return 5;
             }
         };
     }
@@ -66,6 +68,7 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
         nbt.putInt("CurrentPassword", currentPassword);
         nbt.putBoolean("HasPassword", hasPassword);
         nbt.putBoolean("PasswordReset", passwordReset);
+        nbt.putInt("ClosingDelay", (byte) closingDelay);
     }
 
     @Override
@@ -74,6 +77,7 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
         currentPassword = nbt.getInt("CurrentPassword");
         hasPassword = nbt.getBoolean("HasPassword");
         passwordReset = nbt.getBoolean("PasswordReset");
+        closingDelay = nbt.getInt("ClosingDelay");
     }
 
     @Override
@@ -96,6 +100,7 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
     public int password, currentPassword;
     public boolean hasPassword = false;
     public boolean passwordReset = false;
+    public int closingDelay = 4;
     public BlockState state;
     public PropertyDelegate propertyDelegate;
 

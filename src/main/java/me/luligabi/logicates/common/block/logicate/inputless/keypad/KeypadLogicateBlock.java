@@ -44,10 +44,17 @@ public class KeypadLogicateBlock extends AbstractRedstoneGateBlock implements Lo
         return ActionResult.CONSUME;
     }
 
+    @SuppressWarnings("ConstantConditions")
     public void powerOn(BlockState state, World world, BlockPos pos) {
+        KeypadLogicateBlockEntity blockEntity = ((KeypadLogicateBlockEntity) world.getBlockEntity(pos));
+
         world.setBlockState(pos, state.with(POWERED, true), 3);
         world.updateNeighborsAlways(pos, state.getBlock());
-        world.createAndScheduleBlockTick(pos, this, 7*20);
+        world.createAndScheduleBlockTick(
+                pos,
+                this,
+                blockEntity.closingDelay *20
+        );
     }
 
     @Override
@@ -118,4 +125,7 @@ public class KeypadLogicateBlock extends AbstractRedstoneGateBlock implements Lo
                 Text.translatable("tooltip.logicates.keypad_logicate")
         );
     }
+
+    public static final int MIN_CLOSING_DELAY = 1;
+    public static final int MAX_CLOSING_DELAY = 30;
 }
