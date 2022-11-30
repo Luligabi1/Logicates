@@ -2,6 +2,7 @@ package me.luligabi.logicates.common.misc.screenhandler;
 
 import me.luligabi.logicates.common.block.logicate.inputless.keypad.KeypadLogicateBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -16,12 +17,12 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
 
 
     public KeypadLogicateScreenHandler(int syncId, PlayerInventory inventory) {
-        this(syncId, new ArrayPropertyDelegate(4), BlockPos.ORIGIN, null);
+        this(syncId, new ArrayPropertyDelegate(5), BlockPos.ORIGIN, null);
     }
 
     public KeypadLogicateScreenHandler(int syncId, PropertyDelegate propertyDelegate, BlockPos pos, BlockState state) {
         super(ScreenHandlingRegistry.KEYPAD_LOGICATE_SCREEN_HANDLER, syncId);
-        checkDataCount(propertyDelegate, 4);
+        checkDataCount(propertyDelegate, 5);
         this.propertyDelegate = propertyDelegate;
         this.addProperties(propertyDelegate);
         this.pos = pos;
@@ -81,6 +82,19 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
                 setProperty(hasPassword() ? 1 : 0, getActivePassword() / 10);
                 return true;
             }
+
+
+            /*
+             * SIDE BUTTONS
+             */
+            case 13 -> { // Change closing Delay
+                int newOffset = getClosingDelay() + getClosingDelayOffset();
+                if(newOffset >= KeypadLogicateBlock.MIN_CLOSING_DELAY && newOffset <= KeypadLogicateBlock.MAX_CLOSING_DELAY) {
+                    setProperty(4, getClosingDelay() + getClosingDelayOffset());
+                    return true;
+                }
+                return false;
+            }
             case 12 -> { // Reset Password
                 setProperty(3, onPasswordReset() ? 0 : 1);
                 return true;
@@ -130,6 +144,14 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
 
     public boolean onPasswordReset() {
         return propertyDelegate.get(3) == 1;
+    }
+
+    public int getClosingDelay() {
+        return propertyDelegate.get(4);
+    }
+
+    public int getClosingDelayOffset() {
+        return Screen.hasShiftDown() ? -1 : 1;
     }
 
     private BlockPos pos;

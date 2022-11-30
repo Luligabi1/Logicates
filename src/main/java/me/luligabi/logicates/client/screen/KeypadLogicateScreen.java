@@ -3,6 +3,7 @@ package me.luligabi.logicates.client.screen;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.luligabi.logicates.common.Logicates;
+import me.luligabi.logicates.common.block.logicate.inputless.keypad.KeypadLogicateBlock;
 import me.luligabi.logicates.common.misc.screenhandler.KeypadLogicateScreenHandler;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -53,7 +54,8 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         addButton(new DeleteButtonWidget(x + 8, y + 102));
         addButton(new ConfirmButtonWidget(x + 52, y + 102));
 
-        addButton(new ResetPasswordButtonWidget(x - 16, y + 36));
+        addButton(new ClosingDelayButtonWidget(x - 29, y + 44, 13));
+        addButton(new ResetPasswordButtonWidget(x - 29, y + 66));
     }
 
     @Override
@@ -69,6 +71,7 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+        drawTexture(matrices, x - 35, y + 16, 196, 0, 32, 76);
 
         if((handler.hasPassword() && handler.getCurrentPassword() > 0) || (!handler.hasPassword() && handler.getPassword() > 0)) {
             drawCenteredShadowless(matrices,
@@ -252,10 +255,41 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         }
     }
 
+    private class ClosingDelayButtonWidget extends ItemButtonWidget {
+
+        protected ClosingDelayButtonWidget(int x, int y, int id) {
+            super(
+                    x, y,
+                    Items.CLOCK,
+                    Text.translatable(
+                            "text.logicates.keypad_logicate.closing_delay.title"
+                    ).formatted(Formatting.GRAY),
+                    id
+            );
+        }
+
+        /*@SuppressWarnings("ConstantConditions")
+        @Override
+        public void onPress() {
+            if(isDisabled()) return;
+            int newOffset = KeypadLogicateScreen.this.handler.getClosingDelay() + KeypadLogicateScreen.this.handler.getClosingDelayOffset();
+            if(newOffset >= TimerLogicateBlock.MIN_VALUE && newOffset <= TimerLogicateBlock.MAX_VALUE) {
+                client.interactionManager.clickButton(handler.syncId, id);
+            }
+        }*/
+
+        @Override
+        public void tick() {
+            int newOffset = KeypadLogicateScreen.this.handler.getClosingDelay() + KeypadLogicateScreen.this.handler.getClosingDelayOffset();
+            setDisabled((newOffset < KeypadLogicateBlock.MIN_CLOSING_DELAY) || (newOffset > KeypadLogicateBlock.MAX_CLOSING_DELAY));
+        }
+
+    }
+
     private abstract class ItemButtonWidget extends PressableWidget implements LogicateButtonWidget {
 
         private final ItemStack icon;
-        private final int id;
+        protected final int id;
         private boolean disabled = false;
 
         protected ItemButtonWidget(int x, int y, ItemConvertible icon, Text text, int id) {
@@ -295,12 +329,16 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
 
         @Override
         public boolean shouldRenderTooltip() {
-            return !isDisabled();
+            return isHovered() && !isDisabled();
         }
 
         @Override
         public void renderTooltip(MatrixStack matrices, int mouseX, int mouseY) {
-            KeypadLogicateScreen.this.renderTooltip(matrices, title, mouseX, mouseY);
+            KeypadLogicateScreen.this.renderTooltip(
+                    matrices,
+                    getMessage(),
+                    mouseX, mouseY
+            );
         }
 
         public boolean isDisabled() {
