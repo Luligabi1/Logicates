@@ -24,6 +24,7 @@ import net.minecraft.util.math.MathHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ConstantConditions")
 public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHandler> {
 
 
@@ -84,7 +85,21 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
 
     @Override
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
-        this.textRenderer.draw(matrices, title, (float) titleX, (float) titleY, 0x404040);
+        Text title = Text.translatable("container.logicates.keypad_logicate");
+
+        if(!handler.hasPassword()) {
+            title = Text.translatable("container.logicates.keypad_logicate.2");
+        } else if(handler.onPasswordReset()) {
+            title = Text.translatable("container.logicates.keypad_logicate.3");
+        }
+
+        ScreenUtil.drawCenteredShadowless(
+                matrices,
+                title,
+                titleX,
+                titleY,
+                Formatting.DARK_GRAY.getColorValue()
+        );
         for(LogicateButtonWidget buttonWidget : this.buttons) {
             if(!buttonWidget.shouldRenderTooltip()) continue;
             buttonWidget.renderTooltip(matrices, mouseX - x, mouseY - y);

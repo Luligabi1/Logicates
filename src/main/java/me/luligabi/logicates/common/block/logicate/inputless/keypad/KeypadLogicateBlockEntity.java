@@ -91,13 +91,9 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
     }
 
 
-    @Override
+    @Override // Ignored, title is rendered in real time since this only updates when opening the screen
     public Text getDisplayName() {
-        return Text.translatable(
-                (!hasPassword || passwordReset) ?
-                "container.logicates.keypad_logicate.2" :
-                "container.logicates.keypad_logicate"
-        );
+        return Text.empty();
     }
 
 

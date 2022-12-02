@@ -53,15 +53,16 @@
   "text.logicates.timer_logicate.decrease": "§eClique §7para diminuir tempo em §e%d §7ticks.",
   "text.logicates.timer_logicate.shift_decrease": "§eShift-Clique §7para diminuir tempo em §e%d §7ticks.",
 
-  "container.logicates.keypad_logicate": "Insira a senha:",
-  "container.logicates.keypad_logicate.2": "Defina a senha:",
+  "container.logicates.keypad_logicate": "Senha: Inserir",
+  "container.logicates.keypad_logicate.2": "Senha: Definir",
+  "container.logicates.keypad_logicate.3": "Senha: Reset",
 
   "text.logicates.keypad_logicate.closing_delay.title": "Delay de Fechadura",
   "text.logicates.keypad_logicate.closing_delay.title.2": "§7Delay atual: §e%d §7segundo(s)",
   "text.logicates.keypad_logicate.closing_delay.title.3": "§eClique §7para aumentar o delay em §e1 §7segundo.",
   "text.logicates.keypad_logicate.closing_delay.title.4": "§eShift-Clique §7para diminuir o delay em §e1 §7segundo.",
 
-  "text.logicates.keypad_logicate.reset_password.title": "Redefinir Senha",
-  "text.logicates.keypad_logicate.reset_password.title.2": "§eClique §7e insira a senha para redefinir",
+  "text.logicates.keypad_logicate.reset_password.title": "Resetar Senha",
+  "text.logicates.keypad_logicate.reset_password.title.2": "§eClique §7e insira a senha para resetar",
   "text.logicates.keypad_logicate.reset_password.enabled": "Reset de senha ativo"
 }

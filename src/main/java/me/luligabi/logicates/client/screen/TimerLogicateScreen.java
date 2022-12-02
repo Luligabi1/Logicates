@@ -13,7 +13,6 @@ import net.minecraft.client.gui.widget.PressableWidget;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -62,7 +61,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
         int ticks = handler.getPropertyDelegate().get(0);
-        drawCenteredShadowless(matrices,
+        ScreenUtil.drawCenteredShadowless(matrices,
                 Text.translatable(ticks >= 39 ? "text.logicates.timer_logicate.ticks_plural" : "text.logicates.timer_logicate.ticks", ticks, df.format((float) ticks / 20)), // >= 39 since values are changed only every two ticks, so 39 ticks is considered 2 seconds
                 width / 2, y + 32, Formatting.DARK_GRAY.getColorValue());
     }
@@ -89,10 +88,6 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
         this.buttons.add((LogicateButtonWidget) button);
     }
 
-    private void drawCenteredShadowless(MatrixStack matrices, Text text, int centerX, int y, int color) {
-        OrderedText orderedText = text.asOrderedText();
-        textRenderer.draw(matrices, orderedText, (float)(centerX - textRenderer.getWidth(orderedText) / 2), (float) y, color);
-    }
 
     DecimalFormat df = new DecimalFormat("##.#");
     private final List<LogicateButtonWidget> buttons = Lists.newArrayList();
