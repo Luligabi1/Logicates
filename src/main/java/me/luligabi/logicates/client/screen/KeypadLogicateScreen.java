@@ -56,8 +56,8 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         addButton(new DeleteButtonWidget(x + 8, y + 102));
         addButton(new ConfirmButtonWidget(x + 52, y + 102));
 
-        addButton(new ClosingDelayButtonWidget(x - 29, y + 44, 13));
-        addButton(new ResetPasswordButtonWidget(x - 29, y + 66));
+        addButton(new ClosingDelayButtonWidget(x - 29, y + 22, 13));
+        addButton(new ResetPasswordButtonWidget(x - 29, y + 44));
     }
 
     @Override
@@ -73,7 +73,7 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
-        drawTexture(matrices, x - 35, y + 16, 196, 0, 32, 76);
+        drawTexture(matrices, x - 35, y + 16, 196, 0, 32, 54);
 
         if((handler.hasPassword() && handler.getCurrentPassword() > 0) || (!handler.hasPassword() && handler.getPassword() > 0)) {
             drawCenteredShadowless(matrices,
