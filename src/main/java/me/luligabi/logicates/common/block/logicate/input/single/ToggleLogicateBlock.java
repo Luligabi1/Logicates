@@ -11,8 +11,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.TickPriority;
 import net.minecraft.world.World;
+import net.minecraft.world.tick.TickPriority;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class ToggleLogicateBlock extends SingleInputLogicateBlock {
             tickPriority = TickPriority.VERY_HIGH;
         }
 
-        world.createAndScheduleBlockTick(pos, this, getUpdateDelayInternal(state), tickPriority);
+        world.scheduleBlockTick(pos, this, getUpdateDelayInternal(state), tickPriority);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class ToggleLogicateBlock extends SingleInputLogicateBlock {
         } else if(!hasInputPower) {
             world.setBlockState(pos, state.with(INPUT_POWER, true).with(POWERED, !state.get(POWERED)), 2);
             if(!hasBlockPower) {
-                world.createAndScheduleBlockTick(pos, this, getUpdateDelayInternal(state), TickPriority.VERY_HIGH);
+                world.scheduleBlockTick(pos, this, getUpdateDelayInternal(state), TickPriority.VERY_HIGH);
             }
         }
     }

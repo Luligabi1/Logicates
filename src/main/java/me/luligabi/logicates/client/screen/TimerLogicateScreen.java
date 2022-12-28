@@ -89,7 +89,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
     private <T extends ClickableWidget> void addButton(T button) {
         addDrawableChild(button);
         addSelectableChild(button);
-        buttons.add((TimerButtonWidget) button);
+        buttons.add((LogicateButtonWidget) button);
     }
 
     private void drawCenteredShadowless(MatrixStack matrices, Text text, int centerX, int y, int color) {
