@@ -44,6 +44,8 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
         addButton(new ButtonWidget(x + 137, y + 54, 4000, Text.literal("++"), 6));
 
         addButton(new MuteButtonWidget(x + 149, y + 6));
+
+
     }
 
     @Override
@@ -56,7 +58,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
         this.renderBackground(matrices);
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
@@ -84,8 +86,9 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
 
 
     private <T extends ClickableWidget> void addButton(T button) {
-        this.addDrawableChild(button);
-        this.buttons.add((TimerButtonWidget) button);
+        addDrawableChild(button);
+        addSelectableChild(button);
+        buttons.add((TimerButtonWidget) button);
     }
 
     private void drawCenteredShadowless(MatrixStack matrices, Text text, int centerX, int y, int color) {
@@ -124,7 +127,6 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
             if(isDisabled()) return;
             int newOffset = TimerLogicateScreen.this.handler.getPropertyDelegate().get(0) + getTimerOffset();
             if(newOffset >= TimerLogicateBlock.MIN_VALUE && newOffset <= TimerLogicateBlock.MAX_VALUE) {
-                //TimerLogicateScreen.this.handler.getPropertyDelegate().set(0, newOffset);
                 client.interactionManager.clickButton(handler.syncId, Screen.hasShiftDown() ? id + 1 : id);
             }
         }
@@ -137,7 +139,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
 
         @Override
         public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShader(GameRenderer::getPositionTexProgram);
             RenderSystem.setShaderTexture(0, TEXTURE);
             RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -171,7 +173,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
         }
 
         public boolean isDisabled() {
-            return this.disabled;
+            return disabled;
         }
 
         public void setDisabled(boolean disabled) {
@@ -179,9 +181,10 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
         }
 
         @Override
-        public void appendNarrations(NarrationMessageBuilder builder) {
-            this.appendDefaultNarrations(builder);
+        protected void appendClickableNarrations(NarrationMessageBuilder builder) {
+            appendDefaultNarrations(builder);
         }
+
     }
 
     private class MuteButtonWidget extends PressableWidget implements TimerButtonWidget {
@@ -200,7 +203,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
 
         @Override
         public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShader(GameRenderer::getPositionTexProgram);
             RenderSystem.setShaderTexture(0, TEXTURE);
             RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -215,18 +218,19 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
             String key = TimerLogicateScreen.this.handler.getPropertyDelegate().get(1) == 1 ? "logicates.unmute" : "logicates.mute";
             TimerLogicateScreen.this.renderTooltip(matrices,
                     Text.translatable(key).formatted(Formatting.GRAY),
-            mouseX, mouseY);
+                    mouseX, mouseY);
         }
 
         @Override
         public boolean shouldRenderTooltip() {
-            return this.hovered;
+            return hovered;
         }
 
         @Override
-        public void appendNarrations(NarrationMessageBuilder builder) {
-            this.appendDefaultNarrations(builder);
+        protected void appendClickableNarrations(NarrationMessageBuilder builder) {
+            appendDefaultNarrations(builder);
         }
+
     }
 
 }

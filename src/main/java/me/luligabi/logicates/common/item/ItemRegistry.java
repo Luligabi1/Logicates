@@ -3,23 +3,32 @@ package me.luligabi.logicates.common.item;
 import me.luligabi.logicates.common.Logicates;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 public class ItemRegistry {
 
     public static void init() {
         initItem("logicate_plate", LOGICATE_PLATE);
-        initItem("timer_logicate_pointer", TIMER_LOGICATE_POINTER);
+        initItem("timer_logicate_pointer", TIMER_LOGICATE_POINTER, true);
     }
 
-    public static final Item LOGICATE_PLATE = new Item(new FabricItemSettings().group(Logicates.ITEM_GROUP));
+    public static final Item LOGICATE_PLATE = new Item(new FabricItemSettings());
 
     public static final Item TIMER_LOGICATE_POINTER = new Item(new FabricItemSettings());
 
 
 
     private static void initItem(String id, Item item) {
-        Registry.register(Registry.ITEM, Logicates.id(id), item);
+        initItem(id, item, false);
+    }
+
+    private static void initItem(String id, Item item, boolean isHidden) {
+        Registry.register(Registries.ITEM, Logicates.id(id), item);
+        if(!isHidden) {
+            Logicates.ITEMS.add(new ItemStack(item));
+        }
     }
 
 }

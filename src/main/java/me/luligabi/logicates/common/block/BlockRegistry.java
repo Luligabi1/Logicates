@@ -15,7 +15,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 public class BlockRegistry {
 
@@ -29,10 +31,10 @@ public class BlockRegistry {
         initBlock("xnor_logicate", XNOR_LOGICATE);
 
         initBlock("timer_logicate", TIMER_LOGICATE);
-        TIMER_LOGICATE_BLOCK_ENTITY_TYPE = Registry.register(Registry.BLOCK_ENTITY_TYPE, Logicates.id("timer_logicate"), FabricBlockEntityTypeBuilder.create(TimerLogicateBlockEntity::new, TIMER_LOGICATE).build());
+        TIMER_LOGICATE_BLOCK_ENTITY_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, Logicates.id("timer_logicate"), FabricBlockEntityTypeBuilder.create(TimerLogicateBlockEntity::new, TIMER_LOGICATE).build());
 
         initBlock("weather_logicate", WEATHER_LOGICATE);
-        WEATHER_LOGICATE_BLOCK_ENTITY_TYPE = Registry.register(Registry.BLOCK_ENTITY_TYPE, Logicates.id("weather_logicate"), FabricBlockEntityTypeBuilder.create(WeatherLogicateBlockEntity::new, WEATHER_LOGICATE).build());
+        WEATHER_LOGICATE_BLOCK_ENTITY_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, Logicates.id("weather_logicate"), FabricBlockEntityTypeBuilder.create(WeatherLogicateBlockEntity::new, WEATHER_LOGICATE).build());
 
 
         initBlock("logicate_fabricator", LOGICATE_FABRICATOR);
@@ -55,10 +57,17 @@ public class BlockRegistry {
 
     public static final Block LOGICATE_FABRICATOR = new LogicateFabricatorBlock(FabricBlockSettings.copy(Blocks.SMITHING_TABLE));
 
-
     private static void initBlock(String identifier, Block block) {
-        Registry.register(Registry.BLOCK, Logicates.id(identifier), block);
-        Registry.register(Registry.ITEM, Logicates.id(identifier), new BlockItem(block, new FabricItemSettings().group(Logicates.ITEM_GROUP)));
+        initBlock(identifier, block, false);
+    }
+
+
+    private static void initBlock(String identifier, Block block, boolean isHidden) {
+        Registry.register(Registries.BLOCK, Logicates.id(identifier), block);
+        Registry.register(Registries.ITEM, Logicates.id(identifier), new BlockItem(block, new FabricItemSettings()));
+        if(!isHidden) {
+            Logicates.ITEMS.add(new ItemStack(block));
+        }
     }
 
 }

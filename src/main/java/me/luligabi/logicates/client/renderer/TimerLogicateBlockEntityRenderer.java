@@ -13,7 +13,7 @@ import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
 
 public class TimerLogicateBlockEntityRenderer implements BlockEntityRenderer<TimerLogicateBlockEntity> {
 
@@ -27,9 +27,10 @@ public class TimerLogicateBlockEntityRenderer implements BlockEntityRenderer<Tim
         ms.push();
         ms.translate(0.5D, 0.2D, 0.5D);
 
-        ms.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90F));
+
+        ms.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90F));
         Direction direction = entity.getWorld().getBlockState(entity.getPos()).get(LogicateBlock.FACING);
-        ms.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(((float) entity.ticks * 360.0F / entity.maxTicks) + getItemAngle(direction))); // TODO: Interpolate this
+        ms.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(((float) entity.ticks * 360.0F / entity.maxTicks) + getItemAngle(direction))); // TODO: Interpolate this
 
         MinecraftClient.getInstance().getItemRenderer().renderItem(new ItemStack(ItemRegistry.TIMER_LOGICATE_POINTER), ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, ms, vcp, (int) entity.getPos().asLong());
         ms.pop();

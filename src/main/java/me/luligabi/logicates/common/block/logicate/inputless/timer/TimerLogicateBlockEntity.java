@@ -54,15 +54,19 @@ public class TimerLogicateBlockEntity extends ClientSyncedBlockEntity implements
         return new TimerLogicateScreenHandler(syncId, propertyDelegate);
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, TimerLogicateBlockEntity blockEntity) { // TODO: Add way to stop timer
+    public static void tick(World world, BlockPos pos, BlockState state, TimerLogicateBlockEntity blockEntity) {
+        if(blockEntity.maxTicks < TimerLogicateBlock.MIN_VALUE) { // Failsafe if screen-validation/nbt corruption causes maxTicks to be too low/negative
+            blockEntity.maxTicks = TimerLogicateBlock.MIN_VALUE;
+        }
+
         if(blockEntity.ticks <= blockEntity.maxTicks) {
             blockEntity.ticks++;
         } else {
             world.setBlockState(pos, state.with(LogicateBlock.POWERED, true), 1);
             world.setBlockState(pos, state.with(LogicateBlock.POWERED, false), 1);
             if(!blockEntity.mute) {
-                world.playSound(null, pos, SoundEvents.UI_BUTTON_CLICK,
-                        SoundCategory.BLOCKS, 0.5F, 1F);
+                world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.UI_BUTTON_CLICK,
+                        SoundCategory.BLOCKS, 0.5F, 1F, pos.asLong());
             }
             blockEntity.ticks = 0;
         }
