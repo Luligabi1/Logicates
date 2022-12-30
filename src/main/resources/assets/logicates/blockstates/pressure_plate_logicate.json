@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "plate_type=player,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/player"
+    },
+    "plate_type=player,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/player_down"
+    },
+    "plate_type=item,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/item"
+    },
+    "plate_type=item,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/item_down"
+    },
+    "plate_type=aggressive,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/aggressive"
+    },
+    "plate_type=aggressive,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/aggressive_down"
+    },
+    "plate_type=passive,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/passive"
+    },
+    "plate_type=passive,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/passive_down"
+    },
+    "plate_type=villager,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/villager"
+    },
+    "plate_type=villager,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/villager_down"
+    },
+    "plate_type=pet,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/pet"
+    },
+    "plate_type=pet,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/pet_down"
+    }
+  }
+}

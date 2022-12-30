@@ -1,24 +1,12 @@
 package me.luligabi.logicates.common.block.logicate.inputless.weather;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
-import me.luligabi.logicates.common.block.ClientSyncedBlockEntity;
 import me.luligabi.logicates.common.block.logicate.LogicateBlock;
-import me.luligabi.logicates.common.block.property.PropertyRegistry;
-import me.luligabi.logicates.common.misc.screenhandler.TimerLogicateScreenHandler;
+import me.luligabi.logicates.common.block.logicate.inputless.weather.property.PropertyRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 public class WeatherLogicateBlockEntity extends BlockEntity {
 

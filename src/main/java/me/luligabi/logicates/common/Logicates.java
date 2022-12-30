@@ -1,7 +1,7 @@
 package me.luligabi.logicates.common;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
-import me.luligabi.logicates.common.block.property.PropertyRegistry;
+import me.luligabi.logicates.common.block.logicate.inputless.weather.property.PropertyRegistry;
 import me.luligabi.logicates.common.item.ItemRegistry;
 import me.luligabi.logicates.common.misc.recipe.RecipeRegistry;
 import me.luligabi.logicates.common.misc.screenhandler.ScreenHandlingRegistry;

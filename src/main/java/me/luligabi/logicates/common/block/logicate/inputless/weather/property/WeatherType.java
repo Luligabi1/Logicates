@@ -1,4 +1,4 @@
-package me.luligabi.logicates.common.block.property;
+package me.luligabi.logicates.common.block.logicate.inputless.weather.property;
 
 import net.minecraft.util.StringIdentifiable;
 

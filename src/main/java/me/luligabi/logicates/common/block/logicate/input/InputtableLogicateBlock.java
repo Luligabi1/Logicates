@@ -1,7 +1,7 @@
 package me.luligabi.logicates.common.block.logicate.input;
 
 import me.luligabi.logicates.common.block.logicate.LogicateBlock;
-import me.luligabi.logicates.common.block.property.InputSides;
+import me.luligabi.logicates.common.block.logicate.inputless.weather.property.InputSides;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
