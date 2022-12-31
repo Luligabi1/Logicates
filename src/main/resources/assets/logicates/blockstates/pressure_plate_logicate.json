@@ -1,40 +1,184 @@
 {
   "variants": {
-    "plate_type=player,powered=false": {
+    "facing=north,plate_type=player,powered=false": {
       "model": "logicates:block/inputless/pressure_plate_logicate/player"
     },
-    "plate_type=player,powered=true": {
+    "facing=north,plate_type=player,powered=true": {
       "model": "logicates:block/inputless/pressure_plate_logicate/player_down"
     },
-    "plate_type=item,powered=false": {
+    "facing=south,plate_type=player,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/player",
+      "y": 180
+    },
+    "facing=south,plate_type=player,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/player_down",
+      "y": 180
+    },
+    "facing=west,plate_type=player,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/player",
+      "y": 270
+    },
+    "facing=west,plate_type=player,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/player_down",
+      "y": 270
+    },
+    "facing=east,plate_type=player,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/player",
+      "y": 90
+    },
+    "facing=east,plate_type=player,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/player_down",
+      "y": 90
+    },
+    "facing=north,plate_type=item,powered=false": {
       "model": "logicates:block/inputless/pressure_plate_logicate/item"
     },
-    "plate_type=item,powered=true": {
+    "facing=north,plate_type=item,powered=true": {
       "model": "logicates:block/inputless/pressure_plate_logicate/item_down"
     },
-    "plate_type=aggressive,powered=false": {
+    "facing=south,plate_type=item,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/item",
+      "y": 180
+    },
+    "facing=south,plate_type=item,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/item_down",
+      "y": 180
+    },
+    "facing=west,plate_type=item,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/item",
+      "y": 270
+    },
+    "facing=west,plate_type=item,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/item_down",
+      "y": 270
+    },
+    "facing=east,plate_type=item,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/item",
+      "y": 90
+    },
+    "facing=east,plate_type=item,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/item_down",
+      "y": 90
+    },
+    "facing=north,plate_type=aggressive,powered=false": {
       "model": "logicates:block/inputless/pressure_plate_logicate/aggressive"
     },
-    "plate_type=aggressive,powered=true": {
+    "facing=north,plate_type=aggressive,powered=true": {
       "model": "logicates:block/inputless/pressure_plate_logicate/aggressive_down"
     },
-    "plate_type=passive,powered=false": {
+    "facing=south,plate_type=aggressive,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/aggressive",
+      "y": 180
+    },
+    "facing=south,plate_type=aggressive,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/aggressive_down",
+      "y": 180
+    },
+    "facing=west,plate_type=aggressive,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/aggressive",
+      "y": 270
+    },
+    "facing=west,plate_type=aggressive,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/aggressive_down",
+      "y": 270
+    },
+    "facing=east,plate_type=aggressive,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/aggressive",
+      "y": 90
+    },
+    "facing=east,plate_type=aggressive,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/aggressive_down",
+      "y": 90
+    },
+    "facing=north,plate_type=passive,powered=false": {
       "model": "logicates:block/inputless/pressure_plate_logicate/passive"
     },
-    "plate_type=passive,powered=true": {
+    "facing=north,plate_type=passive,powered=true": {
       "model": "logicates:block/inputless/pressure_plate_logicate/passive_down"
     },
-    "plate_type=villager,powered=false": {
+    "facing=south,plate_type=passive,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/passive",
+      "y": 180
+    },
+    "facing=south,plate_type=passive,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/passive_down",
+      "y": 180
+    },
+    "facing=west,plate_type=passive,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/passive",
+      "y": 270
+    },
+    "facing=west,plate_type=passive,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/passive_down",
+      "y": 270
+    },
+    "facing=east,plate_type=passive,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/passive",
+      "y": 90
+    },
+    "facing=east,plate_type=passive,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/passive_down",
+      "y": 90
+    },
+    "facing=north,plate_type=villager,powered=false": {
       "model": "logicates:block/inputless/pressure_plate_logicate/villager"
     },
-    "plate_type=villager,powered=true": {
+    "facing=north,plate_type=villager,powered=true": {
       "model": "logicates:block/inputless/pressure_plate_logicate/villager_down"
     },
-    "plate_type=pet,powered=false": {
+    "facing=south,plate_type=villager,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/villager",
+      "y": 180
+    },
+    "facing=south,plate_type=villager,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/villager_down",
+      "y": 180
+    },
+    "facing=west,plate_type=villager,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/villager",
+      "y": 270
+    },
+    "facing=west,plate_type=villager,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/villager_down",
+      "y": 270
+    },
+    "facing=east,plate_type=villager,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/villager",
+      "y": 90
+    },
+    "facing=east,plate_type=villager,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/villager_down",
+      "y": 90
+    },
+    "facing=north,plate_type=pet,powered=false": {
       "model": "logicates:block/inputless/pressure_plate_logicate/pet"
     },
-    "plate_type=pet,powered=true": {
+    "facing=north,plate_type=pet,powered=true": {
       "model": "logicates:block/inputless/pressure_plate_logicate/pet_down"
+    },
+    "facing=south,plate_type=pet,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/pet",
+      "y": 180
+    },
+    "facing=south,plate_type=pet,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/pet_down",
+      "y": 180
+    },
+    "facing=west,plate_type=pet,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/pet",
+      "y": 270
+    },
+    "facing=west,plate_type=pet,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/pet_down",
+      "y": 270
+    },
+    "facing=east,plate_type=pet,powered=false": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/pet",
+      "y": 90
+    },
+    "facing=east,plate_type=pet,powered=true": {
+      "model": "logicates:block/inputless/pressure_plate_logicate/pet_down",
+      "y": 90
     }
   }
 }

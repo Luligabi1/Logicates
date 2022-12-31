@@ -23,19 +23,19 @@ public enum PlateType implements StringIdentifiable {
 
     private final String name;
     private final Class<Entity> filterEntity;
-    private final Predicate<Entity> predicate;
+    private final Predicate<Entity> entityPredicate;
 
     // i hate every single pixel of my screen that has ever been disgraced with the duty to display this shitty ass code
     <T extends Entity> PlateType(String name, Class<T> filterEntity) {
         this.name = name;
         this.filterEntity = (Class<Entity>) filterEntity;
-        this.predicate = e -> true;
+        this.entityPredicate = e -> true;
     }
 
-    <T extends Entity> PlateType(String name, Class<T> filterEntity, Predicate<T> predicate) {
+    <T extends Entity> PlateType(String name, Class<T> filterEntity, Predicate<T> entityPredicate) {
         this.name = name;
         this.filterEntity = (Class<Entity>) filterEntity;
-        this.predicate = (Predicate<Entity>) predicate;
+        this.entityPredicate = (Predicate<Entity>) entityPredicate;
     }
 
     public String toString() {
@@ -50,8 +50,8 @@ public enum PlateType implements StringIdentifiable {
         return filterEntity;
     }
 
-    public Predicate<Entity> getPredicate() {
-        return predicate;
+    public Predicate<Entity> getEntityPredicate() {
+        return entityPredicate;
     }
 
 }
