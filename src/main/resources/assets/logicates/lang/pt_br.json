@@ -2,7 +2,7 @@
   "block.logicates.and_logicate": "Lógicado AND",
   "tooltip.logicates.and_logicate": "Emite um sinal se ambas as entradas estão energizadas.",
 
-  "block.logicates.or_logicate": "Lógicado OR Logicate",
+  "block.logicates.or_logicate": "Lógicado OR",
   "tooltip.logicates.or_logicate": "Emite um sinal se qualquer entrada está energizada.",
 
   "block.logicates.xor_logicate": "Lógicado XOR",
@@ -20,6 +20,9 @@
   "block.logicates.xnor_logicate": "Lógicado XNOR",
   "tooltip.logicates.xnor_logicate": "Emite um sinal se ambas entradas forem iguais.",
 
+  "block.logicates.toggle_logicate": "Lógicado Interruptor",
+  "tooltip.logicates.toggle_logicate": "Age como uma alavanca, porém ativado por sinais de Redstone.",
+
   "block.logicates.timer_logicate": "Lógicado Timer",
   "tooltip.logicates.timer_logicate.1": "Emite um sinal a cada X ticks.",
   "tooltip.logicates.timer_logicate.2": "Right-clique para configurar.",
@@ -28,6 +31,16 @@
   "tooltip.logicates.weather_logicate.1": "Emite um sinal se uma condição",
   "tooltip.logicates.weather_logicate.2": "climática específica é atendida.",
 
+  "block.logicates.pressure_plate_logicate": "Lógicado Placa de Pressão",
+  "tooltip.logicates.pressure_plate_logicate.1": "Ativado apenas por um grupo de Mobs específico.",
+  "tooltip.logicates.pressure_plate_logicate.2": "Clique-Direito para alternar entre: ",
+  "tooltip.logicates.pressure_plate_logicate.3": "• Jogadores;",
+  "tooltip.logicates.pressure_plate_logicate.4": "• Itens;",
+  "tooltip.logicates.pressure_plate_logicate.5": "• Mobs Agressivos;",
+  "tooltip.logicates.pressure_plate_logicate.6": "• Mobs Passivos;",
+  "tooltip.logicates.pressure_plate_logicate.7": "• Aldeões;",
+  "tooltip.logicates.pressure_plate_logicate.8": "• Pets Domesticados.",
+  "tooltip.logicates.pressure_plate_logicate.9": "Segure SHIFT para ver os grupos de Mobs.",
 
   "logicates.ticks": "%d ticks (%d segundo)",
   "logicates.ticks_plural": "%d ticks (%d segundos)",

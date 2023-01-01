@@ -9,8 +9,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.PressurePlateBlock;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
@@ -18,15 +21,15 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PressurePlateLogicateBlock extends PressurePlateBlock implements Logicatable {
@@ -66,9 +69,27 @@ public class PressurePlateLogicateBlock extends PressurePlateBlock implements Lo
 
     @Override
     public List<MutableText> getLogicateTooltip() {
-        return List.of(
-                Text.literal("placeholder")
-        );
+        ArrayList<MutableText> tooltip = new ArrayList<>();
+
+        tooltip.add(Text.translatable("tooltip.logicates.pressure_plate_logicate.1"));
+        if(Screen.hasShiftDown()) {
+            tooltip.add(Text.translatable("tooltip.logicates.pressure_plate_logicate.2"));
+            tooltip.add(Text.empty());
+            for (int i = 3; i < 9; i++) {
+                tooltip.add(Text.translatable(
+                        String.format("tooltip.logicates.pressure_plate_logicate.%d", i)
+                ));
+            }
+        } else {
+            tooltip.add(Text.translatable("tooltip.logicates.pressure_plate_logicate.9").formatted(Formatting.ITALIC));
+        }
+
+        return tooltip;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+        appendLogicateTooltip(tooltip);
     }
 
     @Override

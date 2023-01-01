@@ -8,10 +8,9 @@ import me.shedaniel.rei.api.common.display.Display;
 import me.shedaniel.rei.api.common.display.DisplaySerializer;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
-import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class LogicateFabricatorDisplay implements Display {
 
         this.logicatePlate = List.of(EntryIngredients.ofItems(List.of(ItemRegistry.LOGICATE_PLATE), recipe.getLogicatePlateAmount()));
         this.redstone = List.of(EntryIngredients.ofItems(List.of(Items.REDSTONE), recipe.getRedstoneAmount()));
-        this.redstoneTorch = List.of(EntryIngredients.ofItems(List.of(Items.REDSTONE_TORCH), recipe.getRedstoneAmount()));
+        this.redstoneTorch = List.of(EntryIngredients.ofItems(List.of(Items.REDSTONE_TORCH), recipe.getRedstoneTorchAmount()));
         this.quartz = List.of(EntryIngredients.ofItems(List.of(Items.QUARTZ), recipe.getQuartzAmount()));
         this.lever = List.of(EntryIngredients.ofItems(List.of(Items.LEVER), recipe.getLeverAmount()));
         this.tripwireHook = List.of(EntryIngredients.ofItems(List.of(Items.TRIPWIRE_HOOK), recipe.getTripwireAmount()));
@@ -98,10 +97,10 @@ public class LogicateFabricatorDisplay implements Display {
         @Override
         public LogicateFabricatorDisplay read(NbtCompound tag) {
             List<EntryIngredient> input = new ArrayList<>();
-            tag.getList("input", NbtType.LIST).forEach(nbtElement -> input.add(EntryIngredient.read((NbtList) nbtElement)));
+            tag.getList("input", NbtElement.LIST_TYPE).forEach(nbtElement -> input.add(EntryIngredient.read((NbtList) nbtElement)));
 
             List<EntryIngredient> output = new ArrayList<>();
-            tag.getList("output", NbtType.LIST).forEach(nbtElement -> output.add(EntryIngredient.read((NbtList) nbtElement)));
+            tag.getList("output", NbtElement.LIST_TYPE).forEach(nbtElement -> output.add(EntryIngredient.read((NbtList) nbtElement)));
 
             return new LogicateFabricatorDisplay(input, output);
         }

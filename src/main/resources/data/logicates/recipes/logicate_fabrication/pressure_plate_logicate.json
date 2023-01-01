@@ -1,0 +1,8 @@
+{
+  "type": "logicates:logicate_fabrication",
+
+  "logicatePlateAmount": 1,
+  "redstoneAmount": 1,
+
+  "outputItem": "logicates:pressure_plate_logicate"
+}

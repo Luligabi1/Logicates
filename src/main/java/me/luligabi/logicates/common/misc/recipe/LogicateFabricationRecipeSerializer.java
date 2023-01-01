@@ -33,7 +33,17 @@ public class LogicateFabricationRecipeSerializer implements RecipeSerializer<Log
                 .orElseThrow(() -> new JsonSyntaxException("No such item " + recipeJson.outputItem));
         ItemStack output = new ItemStack(outputItem, recipeJson.outputAmount);
 
-        return new LogicateFabricationRecipe(output, recipeJson.outputAmount, recipeJson.logicatePlateAmount, recipeJson.redstoneAmount, recipeJson.redstoneTorchAmount, recipeJson.quartzAmount, recipeJson.leverAmount, recipeJson.tripwireAmount, recipeId);
+        return new LogicateFabricationRecipe(
+                output,
+                recipeJson.outputAmount,
+                recipeJson.logicatePlateAmount,
+                recipeJson.redstoneAmount,
+                recipeJson.redstoneTorchAmount,
+                recipeJson.quartzAmount,
+                recipeJson.leverAmount,
+                recipeJson.tripwireAmount,
+                recipeId
+        );
     }
 
     @Override // Turns Recipe into PacketByteBuf
@@ -58,7 +68,17 @@ public class LogicateFabricationRecipeSerializer implements RecipeSerializer<Log
         int quartzAmount = packetData.readInt();
         int leverAmount = packetData.readInt();
         int tripwireAmount = packetData.readInt();
-        return new LogicateFabricationRecipe(output, outputAmount, logicatePlateAmount, redstoneAmount, redstoneTorchAmount, quartzAmount, leverAmount, tripwireAmount, recipeId);
+        return new LogicateFabricationRecipe(
+                output,
+                outputAmount,
+                logicatePlateAmount,
+                redstoneAmount,
+                redstoneTorchAmount,
+                quartzAmount,
+                leverAmount,
+                tripwireAmount,
+                recipeId
+        );
     }
 
 }

@@ -20,6 +20,9 @@
   "block.logicates.xnor_logicate": "XNOR Logicate",
   "tooltip.logicates.xnor_logicate": "Emits a signal if both inputs are equal.",
 
+  "block.logicates.toggle_logicate": "Toggle Logicate",
+  "tooltip.logicates.toggle_logicate": "Acts like a lever, but activated via redstone signals.",
+
   "block.logicates.timer_logicate": "Timer Logicate",
   "tooltip.logicates.timer_logicate.1": "Emits a signal every X ticks.",
   "tooltip.logicates.timer_logicate.2": "Right-click to configure.",
@@ -27,6 +30,17 @@
   "block.logicates.weather_logicate": "Weather Logicate",
   "tooltip.logicates.weather_logicate.1": "Emits a signal if a specific",
   "tooltip.logicates.weather_logicate.2": "weather condition is met.",
+
+  "block.logicates.pressure_plate_logicate": "Pressure Plate Logicate",
+  "tooltip.logicates.pressure_plate_logicate.1": "Activated only by a specific mob group.",
+  "tooltip.logicates.pressure_plate_logicate.2": "Right-Click to cycle between: ",
+  "tooltip.logicates.pressure_plate_logicate.3": "• Players;",
+  "tooltip.logicates.pressure_plate_logicate.4": "• Items;",
+  "tooltip.logicates.pressure_plate_logicate.5": "• Aggressive Mobs;",
+  "tooltip.logicates.pressure_plate_logicate.6": "• Passive Mobs;",
+  "tooltip.logicates.pressure_plate_logicate.7": "• Villagers;",
+  "tooltip.logicates.pressure_plate_logicate.8": "• Tamed Pets.",
+  "tooltip.logicates.pressure_plate_logicate.9": "Hold SHIFT to see all mob groups.",
 
   "logicates.ticks": "%d ticks (%d second)",
   "logicates.ticks_plural": "%d ticks (%d seconds)",
