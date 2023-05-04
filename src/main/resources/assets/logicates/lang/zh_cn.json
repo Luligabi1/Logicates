@@ -1,0 +1,50 @@
+{
+  "block.logicates.and_logicate": "与逻辑通路",
+  "tooltip.logicates.and_logicate": "如果两个输入端都被激活，则发射信号。",
+
+  "block.logicates.or_logicate": "或逻辑通路",
+  "tooltip.logicates.or_logicate": "如果其中至少一个输入端被激活，则发射信号。",
+
+  "block.logicates.xor_logicate": "异或逻辑通路",
+  "tooltip.logicates.xor_logicate": "如果只有一个输入端被激活，则发射信号。",
+
+  "block.logicates.not_logicate": "非逻辑通路",
+  "tooltip.logicates.not_logicate": "反转输入信号。",
+
+  "block.logicates.nand_logicate": "非与逻辑通路",
+  "tooltip.logicates.nand_logicate": "除非两个输入端都被激活，否则发射信号。",
+
+  "block.logicates.nor_logicate": "非或逻辑通路",
+  "tooltip.logicates.nor_logicate": "如果没有任何输入端被激活，则发射信号。",
+
+  "block.logicates.xnor_logicate": "异非或逻辑通路",
+  "tooltip.logicates.xnor_logicate": "如果两个输入端相等，则发射信号。",
+
+  "block.logicates.timer_logicate": "计时逻辑通路",
+  "tooltip.logicates.timer_logicate.1": "每X刻发射一次信号。",
+  "tooltip.logicates.timer_logicate.2": "右击来配置。",
+
+  "block.logicates.weather_logicate": "天气逻辑通路",
+  "tooltip.logicates.weather_logicate.1": "如果遇上特定的天气，",
+  "tooltip.logicates.weather_logicate.2": "则发射信号。",
+
+  "logicates.ticks": "%d刻（%d秒）",
+  "logicates.mute": "沉默",
+  "logicates.unmute": "非沉默",
+  "timer_logicate.increase": "§e点击§7以增加§e%d §7刻时间。",
+  "timer_logicate.shift_increase": "§e按住Shift点击§7以增加§e%d §7刻时间。",
+
+  "timer_logicate.decrease": "§e点击§7以减少§e%d §7刻时间。",
+  "timer_logicate.shift_decrease": "§e按住Shift点击§7以减少§e%d §7刻时间。",
+
+  "block.logicates.logicate_fabricator": "逻辑通路制作器",
+  "container.logicates.logicate_fabricator": "逻辑通路制作",
+
+  "item.logicates.logicate_plate": "逻辑板",
+
+  "logicateType.logicates.single_input": "单输入",
+  "logicateType.logicates.dual_input": "多输入",
+  "logicateType.logicates.inputless": "无输入",
+
+  "itemGroup.logicates.item_group": "逻辑通路"
+}
