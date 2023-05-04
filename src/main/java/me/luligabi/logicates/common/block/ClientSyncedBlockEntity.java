@@ -6,8 +6,8 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -83,13 +83,6 @@ public abstract class ClientSyncedBlockEntity extends BlockEntity {
             throw new IllegalStateException("Cannot call remesh() on the server!");
 
         world.updateListeners(pos, null, null, 0);
-    }
-
-    protected final boolean isClientSide() {
-        if (world == null) {
-            throw new IllegalStateException("Cannot determine if the BE is client-side if it has no level yet");
-        }
-        return world.isClient();
     }
 
     private boolean shouldClientRemesh = true;

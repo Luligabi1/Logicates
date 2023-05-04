@@ -131,9 +131,7 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
 
         @Override
         public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            RenderSystem.setShader(GameRenderer::getPositionTexProgram);
             RenderSystem.setShaderTexture(0, TEXTURE);
-            RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
 
             int v = 20;
             if(isDisabled()) {
@@ -141,8 +139,8 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
             } else if(isHovered()) {
                 v = 40;
             }
-            this.drawTexture(matrices, x, y, 176, v, width, height);
-            ClickableWidget.drawCenteredText(matrices, textRenderer, getMessage(), x + width / 2, y + (height - 8) / 2, active ? 0xFFFFFF : 0xA0A0A0 | MathHelper.ceil(alpha * 255.0f) << 24);
+            drawTexture(matrices, x, y, 176, v, width, height);
+            drawCenteredTextWithShadow(matrices, textRenderer, getMessage(), x + width / 2, y + (height - 8) / 2, active ? 0xFFFFFF : 0xA0A0A0 | MathHelper.ceil(alpha * 255.0f) << 24);
         }
 
         @Override
@@ -195,14 +193,12 @@ public class TimerLogicateScreen extends HandledScreen<TimerLogicateScreenHandle
 
         @Override
         public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            RenderSystem.setShader(GameRenderer::getPositionTexProgram);
             RenderSystem.setShaderTexture(0, TEXTURE);
-            RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
 
             int u = TimerLogicateScreen.this.handler.getPropertyDelegate().get(1) == 1 ? 196 : 176;
             int v = isHovered() ? 80 : 60;
-            this.drawTexture(matrices, x, y, u, v, width, height);
-            ClickableWidget.drawCenteredText(matrices, textRenderer, getMessage(), x + width / 2, y + (height - 8) / 2, active ? 0xFFFFFF : 0xA0A0A0 | MathHelper.ceil(alpha * 255.0f) << 24);
+            drawTexture(matrices, x, y, u, v, width, height);
+            drawCenteredTextWithShadow(matrices, textRenderer, getMessage(), x + width / 2, y + (height - 8) / 2, active ? 0xFFFFFF : 0xA0A0A0 | MathHelper.ceil(alpha * 255.0f) << 24);
         }
 
         @Override

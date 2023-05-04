@@ -9,7 +9,7 @@ import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Direction;
@@ -17,10 +17,12 @@ import net.minecraft.util.math.RotationAxis;
 
 public class TimerLogicateBlockEntityRenderer implements BlockEntityRenderer<TimerLogicateBlockEntity> {
 
+    @SuppressWarnings("unused")
     public TimerLogicateBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
     }
 
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void render(TimerLogicateBlockEntity entity, float tickDelta, MatrixStack ms, VertexConsumerProvider vcp, int light, int overlay) {
         if(!entity.getWorld().getBlockState(entity.getPos()).isOf(BlockRegistry.TIMER_LOGICATE)) return;
@@ -32,7 +34,7 @@ public class TimerLogicateBlockEntityRenderer implements BlockEntityRenderer<Tim
         Direction direction = entity.getWorld().getBlockState(entity.getPos()).get(LogicateBlock.FACING);
         ms.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(((float) entity.ticks * 360.0F / entity.maxTicks) + getItemAngle(direction))); // TODO: Interpolate this
 
-        MinecraftClient.getInstance().getItemRenderer().renderItem(new ItemStack(ItemRegistry.TIMER_LOGICATE_POINTER), ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, ms, vcp, (int) entity.getPos().asLong());
+        MinecraftClient.getInstance().getItemRenderer().renderItem(new ItemStack(ItemRegistry.TIMER_LOGICATE_POINTER), ModelTransformationMode.FIXED, light, OverlayTexture.DEFAULT_UV, ms, vcp, entity.getWorld(), (int) entity.getPos().asLong());
         ms.pop();
     }
 

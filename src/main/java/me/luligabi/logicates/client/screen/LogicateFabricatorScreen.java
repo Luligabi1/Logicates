@@ -50,7 +50,7 @@ public class LogicateFabricatorScreen extends HandledScreen<LogicateFabricatorSc
         int m = y + 14;
         int n = scrollOffset + 12;
         renderRecipeBackground(matrices, mouseX, mouseY, l, m, n);
-        renderRecipeIcons(l, m, n);
+        renderRecipeIcons(matrices, l, m, n);
     }
 
     protected void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
@@ -86,12 +86,12 @@ public class LogicateFabricatorScreen extends HandledScreen<LogicateFabricatorSc
                 n += 36;
             }
 
-            this.drawTexture(matrices, k, m - 1, 0, n, 16, 18);
+            drawTexture(matrices, k, m - 1, 0, n, 16, 18);
         }
 
     }
 
-    private void renderRecipeIcons(int x, int y, int scrollOffset) {
+    private void renderRecipeIcons(MatrixStack matrices, int x, int y, int scrollOffset) {
         List<LogicateFabricationRecipe> list = this.handler.getAvailableRecipes();
 
         for(int i = this.scrollOffset; i < scrollOffset && i < this.handler.getAvailableRecipeCount(); ++i) {
@@ -99,7 +99,7 @@ public class LogicateFabricatorScreen extends HandledScreen<LogicateFabricatorSc
             int k = x + j % 4 * 16;
             int l = j / 4;
             int m = y + l * 18 + 2;
-            client.getItemRenderer().renderInGuiWithOverrides(list.get(i).getOutput(), k, m);
+            client.getItemRenderer().renderInGuiWithOverrides(matrices, list.get(i).getOutput(), k, m);
         }
 
     }

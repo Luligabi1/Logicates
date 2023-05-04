@@ -156,7 +156,7 @@ public class LogicateFabricatorScreenHandler extends ScreenHandler {
         if (!availableRecipes.isEmpty() && isInBounds(selectedRecipe.get())) {
             LogicateFabricationRecipe logicateFabricationRecipe = availableRecipes.get(getSelectedRecipe());
             output.setLastRecipe(logicateFabricationRecipe);
-            outputSlot.setStack(logicateFabricationRecipe.craft(input));
+            outputSlot.setStack(logicateFabricationRecipe.craft(input, world.getRegistryManager()));
         } else {
             outputSlot.setStack(ItemStack.EMPTY);
         }
@@ -221,10 +221,10 @@ public class LogicateFabricatorScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public void close(PlayerEntity player) {
-        super.close(player);
+    public void onClosed(PlayerEntity player) {
+        super.onClosed(player);
         output.removeStack(6);
-       context.run((world, pos) -> dropInventory(player, input));
+        context.run((world, pos) -> dropInventory(player, input));
     }
 
 

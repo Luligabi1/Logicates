@@ -29,6 +29,7 @@ public class Logicates implements ModInitializer {
         RecipeRegistry.init();
         ScreenHandlingRegistry.init();
 
+        //noinspection UnstableApiUsage
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries ->
                 entries.addAfter(new ItemStack(Items.COMPARATOR), ITEMS)
         );
@@ -41,10 +42,11 @@ public class Logicates implements ModInitializer {
 
     public static final String MOD_ID = "logicates";
 
-    public static final ItemGroup ITEM_GROUP = FabricItemGroup.builder(id("test_group"))
+    @SuppressWarnings("unused")
+    public static final ItemGroup ITEM_GROUP = FabricItemGroup.builder(id("item_group"))
             .displayName(Text.translatable("itemGroup.logicates.item_group"))
             .icon(() -> new ItemStack(BlockRegistry.XNOR_LOGICATE))
-            .entries((enabledFeatures, entries, operatorEnabled) ->
+            .entries((context, entries) ->
                     entries.addAll(Logicates.ITEMS)
             )
             .build();

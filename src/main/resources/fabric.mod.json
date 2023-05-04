@@ -33,8 +33,18 @@
     "logicates.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.8",
+    "fabricloader": "*",
     "fabric": "*",
-    "minecraft": "1.19.x"
+    "minecraft": ">=1.19.4"
+  },
+  "custom": {
+    "modmenu": {
+      "parent": {
+        "id": "red-logic-series",
+        "name": "Red Logic Series",
+        "description": "A series of mods bringing beloved RedPower 2 & Project Red features onto Modern Fabric",
+        "icon": "assets/red_logic_series/icon.png"
+      }
+    }
   }
 }

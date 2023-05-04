@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -36,6 +37,10 @@ public class LogicateFabricationRecipe implements Recipe<Inventory> {
     }
 
     @Override
+    public ItemStack getOutput(DynamicRegistryManager registryManager) {
+        return getOutput();
+    }
+
     public ItemStack getOutput() {
         return outputStack.copy();
     }
@@ -91,8 +96,8 @@ public class LogicateFabricationRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public ItemStack craft(Inventory inventory) {
-        return outputStack.copy();
+    public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
+        return getOutput();
     }
 
     @Override

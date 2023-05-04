@@ -5,16 +5,12 @@ import me.luligabi.logicates.common.block.logicate.LogicateType;
 import me.luligabi.logicates.common.block.logicate.inputless.weather.property.PlateType;
 import me.luligabi.logicates.common.block.logicate.inputless.weather.property.PropertyRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
-import net.minecraft.block.PressurePlateBlock;
+import net.minecraft.block.*;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -32,14 +28,14 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class PressurePlateLogicateBlock extends PressurePlateBlock implements Logicatable {
 
     public PressurePlateLogicateBlock() {
         super(
                 null,
                 FabricBlockSettings.of(Material.STONE).requiresTool().noCollision().strength(0.5F),
-                SoundEvents.BLOCK_STONE_PRESSURE_PLATE_CLICK_OFF,
-                SoundEvents.BLOCK_STONE_PRESSURE_PLATE_CLICK_ON
+                BlockSetType.STONE
         );
         setDefaultState(stateManager.getDefaultState().with(POWERED, false).with(FACING, Direction.NORTH));
     }
@@ -100,7 +96,7 @@ public class PressurePlateLogicateBlock extends PressurePlateBlock implements Lo
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return getDefaultState().with(FACING, ctx.getPlayerFacing());
+        return getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing());
     }
 
     @Override
