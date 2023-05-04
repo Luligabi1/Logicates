@@ -46,7 +46,7 @@
   "logicates.ticks_plural": "%d ticks (%d segundos)",
   "logicates.mute": "Silenciar",
   "logicates.unmute": "Desilenciar",
-  "timer_logicate.increase": "§Clique §7para aumentar tempo em §e%d §7ticks.",
+  "timer_logicate.increase": "§eClique §7para aumentar tempo em §e%d §7ticks.",
   "timer_logicate.shift_increase": "§eShift-Clique §7para aumentar tempo em §e%d §7ticks.",
 
   "timer_logicate.decrease": "§eClique §7para diminuir tempo em §e%d §7ticks.",
