@@ -2,8 +2,8 @@ package me.luligabi.logicates.common.block.logicate.input.dual;
 
 import me.luligabi.logicates.common.block.logicate.LogicateType;
 import me.luligabi.logicates.common.block.logicate.input.InputtableLogicateBlock;
-import me.luligabi.logicates.common.block.logicate.inputless.weather.property.InputSides;
-import me.luligabi.logicates.common.block.logicate.inputless.weather.property.PropertyRegistry;
+import me.luligabi.logicates.common.block.logicate.property.InputSides;
+import me.luligabi.logicates.common.block.logicate.property.PropertyRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.state.property.EnumProperty;

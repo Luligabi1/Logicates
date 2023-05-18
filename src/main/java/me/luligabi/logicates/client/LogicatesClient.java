@@ -10,9 +10,9 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 
 @Environment(EnvType.CLIENT)
 public class LogicatesClient implements ClientModInitializer {
@@ -23,8 +23,7 @@ public class LogicatesClient implements ClientModInitializer {
         HandledScreens.register(ScreenHandlingRegistry.TIMER_LOGICATE_SCREEN_HANDLER, TimerLogicateScreen::new);
         HandledScreens.register(ScreenHandlingRegistry.KEYPAD_LOGICATE_SCREEN_HANDLER, KeypadLogicateScreen::new);
 
-
-        BlockEntityRendererRegistry.register(BlockRegistry.TIMER_LOGICATE_BLOCK_ENTITY_TYPE, TimerLogicateBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(BlockRegistry.TIMER_LOGICATE_BLOCK_ENTITY_TYPE, TimerLogicateBlockEntityRenderer::new);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
                 BlockRegistry.AND_LOGICATE,
@@ -41,5 +40,4 @@ public class LogicatesClient implements ClientModInitializer {
                 BlockRegistry.WEATHER_LOGICATE
         );
     }
-
 }

@@ -46,7 +46,7 @@ public class BlockRegistry {
         initBlock("pressure_plate_logicate", PRESSURE_PLATE_LOGICATE);
 
         initBlock("keypad_logicate", KEYPAD_LOGICATE);
-        KEYPAD_LOGICATE_BLOCK_ENTITY_TYPE = Registry.register(Registry.BLOCK_ENTITY_TYPE, Logicates.id("keypad_logicate"), FabricBlockEntityTypeBuilder.create(KeypadLogicateBlockEntity::new, KEYPAD_LOGICATE).build());
+        KEYPAD_LOGICATE_BLOCK_ENTITY_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, Logicates.id("keypad_logicate"), FabricBlockEntityTypeBuilder.create(KeypadLogicateBlockEntity::new, KEYPAD_LOGICATE).build());
 
         initBlock("logicate_fabricator", LOGICATE_FABRICATOR);
     }

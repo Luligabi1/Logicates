@@ -4,22 +4,27 @@ import com.google.common.collect.Lists;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.luligabi.logicates.common.Logicates;
 import me.luligabi.logicates.common.block.logicate.inputless.keypad.KeypadLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.inputless.keypad.KeypadLogicateBlockEntity;
 import me.luligabi.logicates.common.misc.screenhandler.KeypadLogicateScreenHandler;
-import net.minecraft.client.MinecraftClient;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.PressableWidget;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +34,14 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
 
     public KeypadLogicateScreen(KeypadLogicateScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
+        blockEntity = (KeypadLogicateBlockEntity) inventory.player.world.getBlockEntity(handler.clientPos);
     }
 
     @Override
     protected void init() {
         super.init();
-        this.backgroundWidth = 80;
-        this.backgroundHeight = 132;
+        backgroundWidth = 80;
+        backgroundHeight = 132;
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
         x = width / 2 - backgroundWidth / 2;
         y = height / 2 - backgroundHeight / 2;
@@ -55,8 +61,8 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         addButton(new DeleteButtonWidget(x + 8, y + 102));
         addButton(new ConfirmButtonWidget(x + 52, y + 102));
 
-        addButton(new ClosingDelayButtonWidget(x - 29, y + 44, 13));
-        addButton(new ResetPasswordButtonWidget(x - 29, y + 66));
+        addButton(new ClosingDelayButtonWidget(x - 29, y + 22));
+        addButton(new ResetPasswordButtonWidget(x - 29, y + 44));
     }
 
     @Override
@@ -67,24 +73,26 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
 
     @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        this.renderBackground(matrices);
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        renderBackground(matrices);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
-        drawTexture(matrices, x - 35, y + 16, 196, 0, 32, 76);
+        drawTexture(matrices, x - 35, y + 16, 196, 0, 32, 54);
 
-        if((handler.hasPassword() && handler.getCurrentPassword() > 0) || (!handler.hasPassword() && handler.getPassword() > 0)) {
-            drawCenteredShadowless(matrices,
-                    String.valueOf(handler.getActivePassword()),
-                    width / 2, y + 22, 0x143021
-            );
+        if((blockEntity.hasPassword && !StringUtils.isEmpty(blockEntity.currentPassword)) || (!blockEntity.hasPassword && !StringUtils.isEmpty(blockEntity.password))) {
+            String input = blockEntity.getActivePassword();
+            textRenderer.draw(matrices, input, (float) (width / 2 - textRenderer.getWidth(input) / 2), (float) y + 22, 0);
         }
     }
 
     @Override
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
-        this.textRenderer.draw(matrices, title, (float) titleX, (float) titleY, 0x404040);
+        Text title = Text.translatable(
+                (!blockEntity.hasPassword || blockEntity.passwordReset) ?
+                        "container.logicates.keypad_logicate.2" :
+                        "container.logicates.keypad_logicate"
+        ).formatted(Formatting.DARK_GRAY);
+        textRenderer.draw(matrices, title, (float) (titleX - textRenderer.getWidth(title) / 2), 6F, 0);
         for(LogicateButtonWidget buttonWidget : this.buttons) {
             if(!buttonWidget.shouldRenderTooltip()) continue;
             buttonWidget.renderTooltip(matrices, mouseX - x, mouseY - y);
@@ -98,17 +106,23 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         buttons.forEach(LogicateButtonWidget::tick);
     }
 
-
     private <T extends ClickableWidget> void addButton(T button) {
         this.addDrawableChild(button);
         this.buttons.add((LogicateButtonWidget) button);
     }
 
-    private void drawCenteredShadowless(MatrixStack matrices, String text, int centerX, int y, int color) {
-        textRenderer.draw(matrices, text, (float)(centerX - textRenderer.getWidth(text) / 2), (float) y, color);
+    private PacketByteBuf blockPosBuf() {
+        PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeBlockPos(handler.clientPos);
+
+        return buf;
     }
 
+
+    @NotNull
+    private final KeypadLogicateBlockEntity blockEntity;
     private final List<LogicateButtonWidget> buttons = Lists.newArrayList();
+
     private static final Identifier TEXTURE = Logicates.id("textures/gui/keypad_logicate.png");
 
 
@@ -125,21 +139,20 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         @Override
         public void onPress() {
             if(isDisabled()) return;
-            MinecraftClient.getInstance().interactionManager.clickButton(handler.syncId, id);
+            PacketByteBuf buf = blockPosBuf();
+            buf.writeString(Integer.toString(id));
+
+            ClientPlayNetworking.send(KeypadLogicateBlock.KEYPAD_PASSWORD, buf);
         }
 
         @Override
         public void tick() {
-            int length = (int) (Math.log10(handler.getActivePassword()) + 1);
+            int length = blockEntity.getActivePassword().length();
             setDisabled(length >= 9);
-            if(id == 0) { // Don't allow 0 as the first digit on the password
-                setDisabled(handler.getActivePassword() <= 0 || length >= 9);
-            }
         }
 
         @Override
         public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderTexture(0, TEXTURE);
             RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -149,13 +162,17 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
             } else if(isHovered()) {
                 v = 40;
             }
-            this.drawTexture(matrices, x, y, 176, v, width, height);
-            ClickableWidget.drawCenteredText(matrices, textRenderer, getMessage(), x + width / 2, y + (height - 8) / 2, active ? 0xFFFFFF : 0xA0A0A0 | MathHelper.ceil(alpha * 255.0f) << 24);
+            drawTexture(matrices, getX(), getY(), 176, v, width, height);
+            drawCenteredTextWithShadow(matrices, textRenderer, getMessage(), getX() + width / 2, getY() + (height - 8) / 2, active ? 0xFFFFFF : 0xA0A0A0 | MathHelper.ceil(alpha * 255.0F) << 24);
         }
 
         @Override
         public boolean shouldRenderTooltip() {
             return false;
+        }
+
+        @Override
+        public void renderTooltip(MatrixStack var1, int mouseX, int mouseY) {
         }
 
         public boolean isDisabled() {
@@ -167,9 +184,10 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         }
 
         @Override
-        public void appendNarrations(NarrationMessageBuilder builder) {
-            this.appendDefaultNarrations(builder);
+        protected void appendClickableNarrations(NarrationMessageBuilder builder) {
+            appendDefaultNarrations(builder);
         }
+
     }
 
 
@@ -178,17 +196,19 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         private boolean disabled = false;
 
         protected DeleteButtonWidget(int x, int y) {
-            super(x, y, Text.of("x"), 11);
+            super(x, y, Text.of("x"), 10);
+        }
+
+
+        @Override
+        public void onPress() {
+            if(isDisabled()) return;
+            ClientPlayNetworking.send(KeypadLogicateBlock.KEYPAD_DELETE, blockPosBuf());
         }
 
         @Override
         public void tick() {
-            setDisabled(handler.getActivePassword() <= 0);
-        }
-
-        @Override
-        public boolean shouldRenderTooltip() {
-            return false;
+            setDisabled(StringUtils.isEmpty(blockEntity.getActivePassword()));
         }
 
         public boolean isDisabled() {
@@ -199,10 +219,6 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
             this.disabled = disabled;
         }
 
-        @Override
-        public void appendNarrations(NarrationMessageBuilder builder) {
-            this.appendDefaultNarrations(builder);
-        }
     }
 
     private class ConfirmButtonWidget extends NumberButtonWidget {
@@ -210,17 +226,18 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         private boolean disabled = false;
 
         protected ConfirmButtonWidget(int x, int y) {
-            super(x, y, Text.of("→"), 10);
+            super(x, y, Text.of("→"), 11);
+        }
+
+        @Override
+        public void onPress() {
+            if(isDisabled()) return;
+            ClientPlayNetworking.send(KeypadLogicateBlock.KEYPAD_CONFIRM, blockPosBuf());
         }
 
         @Override
         public void tick() {
-            setDisabled(handler.getActivePassword() <= 0);
-        }
-
-        @Override
-        public boolean shouldRenderTooltip() {
-            return false;
+            setDisabled(StringUtils.isEmpty(blockEntity.getActivePassword()));
         }
 
         public boolean isDisabled() {
@@ -231,10 +248,6 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
             this.disabled = disabled;
         }
 
-        @Override
-        public void appendNarrations(NarrationMessageBuilder builder) {
-            this.appendDefaultNarrations(builder);
-        }
     }
 
     private class ResetPasswordButtonWidget extends ItemButtonWidget {
@@ -244,21 +257,27 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
                     x, y,
                     Items.BARRIER,
                     Text.translatable("text.logicates.keypad_logicate.reset_password.title").formatted(Formatting.GRAY),
-                    12
+                    13
             );
         }
 
         @Override
-        public void tick() {
-            setDisabled(!handler.hasPassword());
+        public void onPress() {
+            if(isDisabled()) return;
+            ClientPlayNetworking.send(KeypadLogicateBlock.KEYPAD_TOGGLE_PASSWORD_RESET, blockPosBuf());
         }
 
         @Override
+        public void tick() {
+            setDisabled(!blockEntity.hasPassword);
+        }
+
+        @Override // FIXME add password reset dynamically
         List<Text> getTooltipText() {
             return List.of(
                     Text.translatable("text.logicates.keypad_logicate.reset_password.title.2").formatted(Formatting.GRAY),
                     Text.translatable(
-                            KeypadLogicateScreen.this.handler.onPasswordReset() ?
+                            blockEntity.passwordReset ?
                                     "text.logicates.keypad_logicate.reset_password.enabled":
                                     ""
                     ).formatted(Formatting.GREEN)
@@ -268,18 +287,28 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
 
     private class ClosingDelayButtonWidget extends ItemButtonWidget {
 
-        protected ClosingDelayButtonWidget(int x, int y, int id) {
+        protected ClosingDelayButtonWidget(int x, int y) {
             super(
                     x, y,
                     Items.CLOCK,
                     Text.translatable("text.logicates.keypad_logicate.closing_delay.title").formatted(Formatting.GRAY),
-                    id
+                    12
             );
+        }
+
+
+        @Override
+        public void onPress() {
+            if(isDisabled()) return;
+            PacketByteBuf buf = blockPosBuf();
+            buf.writeBoolean(Screen.hasShiftDown());
+
+            ClientPlayNetworking.send(KeypadLogicateBlock.KEYPAD_CLOSING_DELAY, buf);
         }
 
         @Override
         public void tick() {
-            int newOffset = KeypadLogicateScreen.this.handler.getClosingDelay() + KeypadLogicateScreen.this.handler.getClosingDelayOffset();
+            int newOffset = blockEntity.closingDelay + (Screen.hasShiftDown() ? -1 : 1);
             setDisabled((newOffset < KeypadLogicateBlock.MIN_CLOSING_DELAY) || (newOffset > KeypadLogicateBlock.MAX_CLOSING_DELAY));
         }
 
@@ -288,12 +317,17 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
             return List.of(
                     Text.translatable(
                             "text.logicates.keypad_logicate.closing_delay.title.2",
-                            KeypadLogicateScreen.this.handler.getClosingDelay()
+                            blockEntity.closingDelay
                     ),
                     Text.empty(),
                     Text.translatable("text.logicates.keypad_logicate.closing_delay.title.3"),
                     Text.translatable("text.logicates.keypad_logicate.closing_delay.title.4")
             );
+        }
+
+        @Override
+        public boolean shouldRenderTooltip() {
+            return isHovered();
         }
     }
 
@@ -309,15 +343,9 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
             this.id = id;
         }
 
-        @Override
-        public void onPress() {
-            if(isDisabled()) return;
-            MinecraftClient.getInstance().interactionManager.clickButton(handler.syncId, id);
-        }
 
         @Override
         public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderTexture(0, TEXTURE);
             RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -327,15 +355,12 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
             } else if(isHovered()) {
                 v = 40;
             }
-            drawTexture(matrices, x, y, 176, v, width, height);
+            drawTexture(matrices, getX(), getY(), 176, v, width, height);
 
-            setZOffset(100);
-            itemRenderer.zOffset = 100F;
             RenderSystem.enableDepthTest();
-            itemRenderer.renderInGuiWithOverrides(icon, x + 2, y + 2, x + y * backgroundWidth);
-            itemRenderer.renderGuiItemOverlay(textRenderer, icon, x + 2, y + 2);
-            itemRenderer.zOffset = 0F;
-            setZOffset(0);
+            itemRenderer.renderInGuiWithOverrides(matrices, icon, getX() + 2, getY() + 2, getX() + getY() * backgroundWidth);
+            itemRenderer.renderGuiItemOverlay(matrices, textRenderer, icon, getX() + 2, getY() + 2);
+            RenderSystem.disableDepthTest();
         }
 
         abstract List<Text> getTooltipText();
@@ -368,9 +393,10 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
         }
 
         @Override
-        public void appendNarrations(NarrationMessageBuilder builder) {
-            this.appendDefaultNarrations(builder);
+        protected void appendClickableNarrations(NarrationMessageBuilder builder) {
+            appendDefaultNarrations(builder);
         }
+
     }
 
 }

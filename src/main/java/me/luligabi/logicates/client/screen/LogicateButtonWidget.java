@@ -6,7 +6,7 @@ public interface LogicateButtonWidget {
 
     boolean shouldRenderTooltip();
 
-    void renderTooltip(MatrixStack var1, int var2, int var3);
+    void renderTooltip(MatrixStack var1, int mouseX, int mouseY);
 
     void tick();
 }

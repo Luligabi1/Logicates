@@ -1,8 +1,9 @@
 package me.luligabi.logicates.common;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
-import me.luligabi.logicates.common.block.logicate.inputless.weather.property.PropertyRegistry;
+import me.luligabi.logicates.common.block.logicate.property.PropertyRegistry;
 import me.luligabi.logicates.common.item.ItemRegistry;
+import me.luligabi.logicates.common.misc.packet.ServerPlayReceiverRegistry;
 import me.luligabi.logicates.common.misc.recipe.RecipeRegistry;
 import me.luligabi.logicates.common.misc.screenhandler.ScreenHandlingRegistry;
 import net.fabricmc.api.ModInitializer;
@@ -28,6 +29,7 @@ public class Logicates implements ModInitializer {
 
         RecipeRegistry.init();
         ScreenHandlingRegistry.init();
+        ServerPlayReceiverRegistry.init();
 
         //noinspection UnstableApiUsage
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries ->

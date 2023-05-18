@@ -2,7 +2,7 @@ package me.luligabi.logicates.common.block.logicate.inputless.weather;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
 import me.luligabi.logicates.common.block.logicate.inputless.InputlessLogicateBlock;
-import me.luligabi.logicates.common.block.logicate.inputless.weather.property.PropertyRegistry;
+import me.luligabi.logicates.common.block.logicate.property.PropertyRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;

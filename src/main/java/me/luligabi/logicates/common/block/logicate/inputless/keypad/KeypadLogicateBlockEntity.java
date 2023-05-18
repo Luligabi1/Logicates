@@ -3,69 +3,82 @@ package me.luligabi.logicates.common.block.logicate.inputless.keypad;
 import me.luligabi.logicates.common.block.BlockRegistry;
 import me.luligabi.logicates.common.block.ClientSyncedBlockEntity;
 import me.luligabi.logicates.common.misc.screenhandler.KeypadLogicateScreenHandler;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.PropertyDelegate;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implements NamedScreenHandlerFactory {
+public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implements ExtendedScreenHandlerFactory {
 
     public KeypadLogicateBlockEntity(BlockPos pos, BlockState state) {
         super(BlockRegistry.KEYPAD_LOGICATE_BLOCK_ENTITY_TYPE, pos, state);
         this.state = state;
-        this.propertyDelegate = new PropertyDelegate() {
+    }
 
-            @Override
-            public int get(int index) {
-                return switch(index) {
-                    case 0 -> KeypadLogicateBlockEntity.this.password;
-                    case 1 -> KeypadLogicateBlockEntity.this.currentPassword;
-                    case 2 -> KeypadLogicateBlockEntity.this.hasPassword ? 1 : 0;
-                    case 3 -> KeypadLogicateBlockEntity.this.passwordReset ? 1 : 0;
-                    case 4 -> KeypadLogicateBlockEntity.this.closingDelay;
-                    default -> throw new IllegalStateException("Unexpected value: " + index);
-                };
-            }
 
-            @Override
-            public void set(int index, int value) {
-                switch(index) {
-                    case 0 -> KeypadLogicateBlockEntity.this.password = value;
-                    case 1 -> KeypadLogicateBlockEntity.this.currentPassword = value;
-                    case 2 -> KeypadLogicateBlockEntity.this.hasPassword = value == 1; // 1 -> true, anything else -> false
-                    case 3 -> KeypadLogicateBlockEntity.this.passwordReset = value == 1;
-                    case 4 -> KeypadLogicateBlockEntity.this.closingDelay = value;
-                    default -> throw new IllegalStateException("Unexpected value: " + index);
-                }
-            }
+    public void insertNumber(String input) {
+        setActivePassword(getActivePassword().concat(input));
+    }
 
-            @Override
-            public int size() {
-                return 5;
-            }
-        };
+    public void removeNumber() {
+        setActivePassword(getActivePassword().substring(0, getActivePassword().length() - 1));
+    }
+
+    public void enableHasPassword() {
+        hasPassword = true;
+    }
+
+    public void resetCurrentPassword() {
+        currentPassword = "";
+    }
+
+    public void reset() {
+        password = "";
+        currentPassword = "";
+        hasPassword = false;
+        passwordReset = false;
+    }
+
+    public void togglePasswordReset() {
+        passwordReset = !passwordReset;
+    }
+
+    public void changeClosingDelay(boolean decrease) {
+        int offset = closingDelay + (decrease ? -1 : 1);
+        if((offset >= KeypadLogicateBlock.MIN_CLOSING_DELAY) && (offset <= KeypadLogicateBlock.MAX_CLOSING_DELAY)) {
+            closingDelay = offset;
+        }
+    }
+
+    public String getActivePassword() {
+        return hasPassword ? currentPassword : password;
+    }
+
+    public void setActivePassword(String value) {
+        if(hasPassword) {
+            currentPassword = value;
+        } else {
+            password = value;
+        }
     }
 
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new KeypadLogicateScreenHandler(syncId, propertyDelegate, pos, state);
-    }
-
-    public static void tick(World world, BlockPos pos, BlockState state, KeypadLogicateBlockEntity blockEntity) {
+        return new KeypadLogicateScreenHandler(syncId);
     }
 
     @Override
     public void toTag(NbtCompound nbt) {
-        nbt.putInt("Password", password);
-        nbt.putInt("CurrentPassword", currentPassword);
+        nbt.putString("Password", password);
+        nbt.putString("CurrentPassword", currentPassword);
         nbt.putBoolean("HasPassword", hasPassword);
         nbt.putBoolean("PasswordReset", passwordReset);
         nbt.putInt("ClosingDelay", (byte) closingDelay);
@@ -73,8 +86,8 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
 
     @Override
     public void fromTag(NbtCompound nbt) {
-        password = nbt.getInt("Password");
-        currentPassword = nbt.getInt("CurrentPassword");
+        password = nbt.getString("Password");
+        currentPassword = nbt.getString("CurrentPassword");
         hasPassword = nbt.getBoolean("HasPassword");
         passwordReset = nbt.getBoolean("PasswordReset");
         closingDelay = nbt.getInt("ClosingDelay");
@@ -90,22 +103,21 @@ public class KeypadLogicateBlockEntity extends ClientSyncedBlockEntity implement
         fromTag(nbt);
     }
 
+    @Override
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(pos);
+    }
 
     @Override
     public Text getDisplayName() {
-        return Text.translatable(
-                (!hasPassword || passwordReset) ?
-                "container.logicates.keypad_logicate.2" :
-                "container.logicates.keypad_logicate"
-        );
+        return Text.empty();
     }
 
-
-    public int password, currentPassword;
+    public String password = "";
+    public String currentPassword = "";
     public boolean hasPassword = false;
     public boolean passwordReset = false;
     public int closingDelay = 4;
     public BlockState state;
-    public PropertyDelegate propertyDelegate;
 
 }

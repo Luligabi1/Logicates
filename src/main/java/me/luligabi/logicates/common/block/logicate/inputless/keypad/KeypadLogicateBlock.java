@@ -1,6 +1,6 @@
 package me.luligabi.logicates.common.block.logicate.inputless.keypad;
 
-import me.luligabi.logicates.common.block.BlockRegistry;
+import me.luligabi.logicates.common.Logicates;
 import me.luligabi.logicates.common.block.logicate.Logicatable;
 import me.luligabi.logicates.common.block.logicate.LogicateType;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -15,6 +15,7 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -35,11 +36,12 @@ public class KeypadLogicateBlock extends AbstractRedstoneGateBlock implements Lo
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(world.isClient) return ActionResult.SUCCESS;
+        if(world.isClient()) return ActionResult.SUCCESS;
 
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if(blockEntity instanceof KeypadLogicateBlockEntity) {
-            player.openHandledScreen((KeypadLogicateBlockEntity) blockEntity);
+        if(blockEntity instanceof KeypadLogicateBlockEntity keypadLogicateBlockEntity) {
+            player.openHandledScreen(keypadLogicateBlockEntity);
+            keypadLogicateBlockEntity.sync();
         }
         return ActionResult.CONSUME;
     }
@@ -50,16 +52,12 @@ public class KeypadLogicateBlock extends AbstractRedstoneGateBlock implements Lo
 
         world.setBlockState(pos, state.with(POWERED, true), 3);
         world.updateNeighborsAlways(pos, state.getBlock());
-        world.createAndScheduleBlockTick(
-                pos,
-                this,
-                blockEntity.closingDelay *20
-        );
+        world.scheduleBlockTick(pos, this, blockEntity.closingDelay*20);
     }
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (state.get(POWERED)) {
+        if(state.get(POWERED)) {
             world.setBlockState(pos, state.with(POWERED, false), 3);
             world.updateNeighborsAlways(pos, state.getBlock());
         }
@@ -86,11 +84,6 @@ public class KeypadLogicateBlock extends AbstractRedstoneGateBlock implements Lo
         return new KeypadLogicateBlockEntity(pos, state);
     }
 
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : checkType(type, BlockRegistry.KEYPAD_LOGICATE_BLOCK_ENTITY_TYPE, KeypadLogicateBlockEntity::tick);
-    }
 
     @Override
     public boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
@@ -128,4 +121,11 @@ public class KeypadLogicateBlock extends AbstractRedstoneGateBlock implements Lo
 
     public static final int MIN_CLOSING_DELAY = 1;
     public static final int MAX_CLOSING_DELAY = 30;
+
+    public static final Identifier KEYPAD_PASSWORD = Logicates.id("keypad_password");
+    public static final Identifier KEYPAD_DELETE = Logicates.id("keypad_delete");
+    public static final Identifier KEYPAD_CONFIRM = Logicates.id("keypad_confirm");
+    public static final Identifier KEYPAD_TOGGLE_PASSWORD_RESET = Logicates.id("keypad_toggle_password_reset");
+    public static final Identifier KEYPAD_CLOSING_DELAY = Logicates.id("keypad_closing_delay");
+
 }

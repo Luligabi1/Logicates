@@ -2,8 +2,8 @@ package me.luligabi.logicates.common.block.logicate.inputless;
 
 import me.luligabi.logicates.common.block.logicate.Logicatable;
 import me.luligabi.logicates.common.block.logicate.LogicateType;
-import me.luligabi.logicates.common.block.logicate.inputless.weather.property.PlateType;
-import me.luligabi.logicates.common.block.logicate.inputless.weather.property.PropertyRegistry;
+import me.luligabi.logicates.common.block.logicate.property.PlateType;
+import me.luligabi.logicates.common.block.logicate.property.PropertyRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.client.gui.screen.Screen;
