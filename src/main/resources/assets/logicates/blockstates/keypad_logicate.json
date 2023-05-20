@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "logicates:block/inputless/keypad_logicate",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "logicates:block/inputless/keypad_logicate"
+    },
+    "facing=west": {
+      "model": "logicates:block/inputless/keypad_logicate",
+      "y": 90
+    },
+    "facing=east": {
+      "model": "logicates:block/inputless/keypad_logicate",
+      "y": 270
+    }
+  }
+}
