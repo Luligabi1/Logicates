@@ -11,6 +11,7 @@ import java.util.List;
 public class XnorLogicateBlock extends DualInputLogicateBlock {
 
     public XnorLogicateBlock() {
+        super();
         setDefaultState(getStateManager().getDefaultState().with(POWERED, true));
     }
 

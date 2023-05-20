@@ -11,6 +11,7 @@ import java.util.List;
 public class NorLogicateBlock extends DualInputLogicateBlock {
 
     public NorLogicateBlock() {
+        super();
         setDefaultState(getStateManager().getDefaultState().with(POWERED, true));
     }
 

@@ -11,6 +11,7 @@ import java.util.List;
 public class NandLogicateBlock extends DualInputLogicateBlock {
 
     public NandLogicateBlock() {
+        super();
         setDefaultState(getStateManager().getDefaultState().with(POWERED, true));
     }
 

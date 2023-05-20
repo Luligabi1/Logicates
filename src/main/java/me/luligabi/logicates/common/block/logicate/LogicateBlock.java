@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.AbstractRedstoneGateBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
@@ -19,8 +18,8 @@ import java.util.List;
 
 public abstract class LogicateBlock extends AbstractRedstoneGateBlock implements Logicatable {
 
-    protected LogicateBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.REPEATER));
+    protected LogicateBlock(FabricBlockSettings settings) {
+        super(settings);
         setDefaultState(getStateManager().getDefaultState().with(FACING, Direction.NORTH).with(POWERED, false));
     }
 

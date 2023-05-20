@@ -1,11 +1,16 @@
 package me.luligabi.logicates.common.block.logicate.inputless.keypad;
 
 import me.luligabi.logicates.common.Logicates;
+import me.luligabi.logicates.common.block.BlockRegistry;
 import me.luligabi.logicates.common.block.logicate.inputless.InputlessLogicateBlock;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.MutableText;
@@ -22,6 +27,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -29,6 +35,10 @@ import java.util.List;
 @SuppressWarnings("deprecation")
 public class KeypadLogicateBlock extends InputlessLogicateBlock implements BlockEntityProvider {
 
+
+    public KeypadLogicateBlock() {
+        super(FabricBlockSettings.copyOf(Blocks.REPEATER).strength(0.5F, 3600000.0F));
+    }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -42,18 +52,6 @@ public class KeypadLogicateBlock extends InputlessLogicateBlock implements Block
         return ActionResult.CONSUME;
     }
 
-    @Nullable
-    @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new KeypadLogicateBlockEntity(pos, state);
-    }
-
-    @Override
-    public boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
-        super.onSyncedBlockEvent(state, world, pos, type, data);
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        return blockEntity != null && blockEntity.onSyncedBlockEvent(type, data);
-    }
 
     @SuppressWarnings("ConstantConditions")
     public void powerOn(BlockState state, World world, BlockPos pos) {
@@ -84,10 +82,25 @@ public class KeypadLogicateBlock extends InputlessLogicateBlock implements Block
 
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        Direction direction = state.get(FACING);
-        BlockPos blockPos = pos.offset(direction.getOpposite());
-        BlockState blockState = world.getBlockState(blockPos);
-        return direction.getAxis().isHorizontal() && blockState.isSideSolidFullSquare(world, blockPos, direction);
+       return true;
+    }
+
+    @Override
+    public PistonBehavior getPistonBehavior(BlockState state) {
+        return PistonBehavior.BLOCK;
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new KeypadLogicateBlockEntity(pos, state);
+    }
+
+    @Override
+    public boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
+        super.onSyncedBlockEvent(state, world, pos, type, data);
+        BlockEntity blockEntity = world.getBlockEntity(pos);
+        return blockEntity != null && blockEntity.onSyncedBlockEvent(type, data);
     }
 
     @Override
@@ -105,6 +118,18 @@ public class KeypadLogicateBlock extends InputlessLogicateBlock implements Block
     public List<MutableText> getLogicateTooltip() {
         return List.of(
                 Text.translatable("tooltip.logicates.keypad_logicate")
+        );
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    public static void initBlockBreakingLogic() {
+        PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, blockEntity) -> {
+                if(state.getBlock() != BlockRegistry.KEYPAD_LOGICATE) return true;
+                if(StringUtils.isEmpty(((KeypadLogicateBlockEntity) blockEntity).password) || state.get(POWERED) || (player.isCreative() && player.hasPermissionLevel(3))) {
+                    return true;
+                }
+                return false;
+            }
         );
     }
 

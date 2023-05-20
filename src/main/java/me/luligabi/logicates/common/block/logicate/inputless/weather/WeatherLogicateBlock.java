@@ -3,9 +3,11 @@ package me.luligabi.logicates.common.block.logicate.inputless.weather;
 import me.luligabi.logicates.common.block.BlockRegistry;
 import me.luligabi.logicates.common.block.logicate.inputless.InputlessLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.property.PropertyRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -26,6 +28,10 @@ import java.util.List;
 
 public class WeatherLogicateBlock extends InputlessLogicateBlock implements BlockEntityProvider {
 
+
+    public WeatherLogicateBlock() {
+        super(FabricBlockSettings.copyOf(Blocks.REPEATER));
+    }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {

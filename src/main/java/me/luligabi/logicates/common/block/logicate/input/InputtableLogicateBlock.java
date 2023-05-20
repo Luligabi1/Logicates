@@ -2,8 +2,10 @@ package me.luligabi.logicates.common.block.logicate.input;
 
 import me.luligabi.logicates.common.block.logicate.LogicateBlock;
 import me.luligabi.logicates.common.block.logicate.property.InputSides;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
@@ -15,6 +17,10 @@ import net.minecraft.world.World;
 
 public abstract class InputtableLogicateBlock extends LogicateBlock {
 
+
+    protected InputtableLogicateBlock() {
+        super(FabricBlockSettings.copyOf(Blocks.REPEATER));
+    }
 
     protected abstract EnumProperty<InputSides> getInputSideProperty();
 
