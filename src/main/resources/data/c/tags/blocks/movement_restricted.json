@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "logicates:pressure_plate_logicate",
     "logicates:keypad_logicate"
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "type": "logicates:logicate_fabrication",
+
+  "logicatePlateAmount": 1,
+  "redstoneAmount": 3,
+  "quartzAmount": 2,
+  "leverAmount": 1,
+
+  "outputItem": "logicates:keypad_logicate"
+}
