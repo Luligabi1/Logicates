@@ -42,17 +42,8 @@
   "tooltip.logicates.pressure_plate_logicate.8": "• Tamed Pets.",
   "tooltip.logicates.pressure_plate_logicate.9": "Hold SHIFT to see all mob groups.",
 
-  "logicates.ticks": "%d ticks (%d second)",
-  "logicates.ticks_plural": "%d ticks (%d seconds)",
-  "logicates.mute": "Mute",
-  "logicates.unmute": "Unmute",
-  "timer_logicate.increase": "§eClick §7to increase time by §e%d §7ticks.",
-  "timer_logicate.shift_increase": "§eShift-Click §7to increase time by §e%d §7ticks.",
-
-  "timer_logicate.decrease": "§eClick §7to decrease time by §e%d §7ticks.",
-  "timer_logicate.shift_decrease": "§eShift-Click §7to decrease time by §e%d §7ticks.",
-  
   "block.logicates.keypad_logicate": "Keypad Logicate",
+  "tooltip.logicates.keypad_logicate": "Emits a signal when the predefined PIN is inserted.",
 
   "block.logicates.logicate_fabricator": "Logicate Fabricator",
   "container.logicates.logicate_fabricator": "Logicate Fabrication",
@@ -75,15 +66,22 @@
   "text.logicates.timer_logicate.shift_decrease": "§eShift-Click §7to decrease time by §e%d §7ticks.",
 
 
-  "container.logicates.keypad_logicate": "Enter password:",
-  "container.logicates.keypad_logicate.2": "Set password:",
+  "container.logicates.keypad_logicate": "Insert PIN:",
+  "container.logicates.keypad_logicate.2": "Set PIN:",
 
   "text.logicates.keypad_logicate.closing_delay.title": "Closing Delay",
   "text.logicates.keypad_logicate.closing_delay.title.2": "§7Current delay: §e%d §7second(s)",
   "text.logicates.keypad_logicate.closing_delay.title.3": "§eClick §7to increase delay by §e1 §7second.",
   "text.logicates.keypad_logicate.closing_delay.title.4": "§eShift-Click §7to decrease delay by §e1 §7second.",
 
-  "text.logicates.keypad_logicate.reset_password.title": "Reset Password",
-  "text.logicates.keypad_logicate.reset_password.title.2": "§eClick §7and enter the password to reset",
-  "text.logicates.keypad_logicate.reset_password.enabled": "Password reset enabled"
+  "text.logicates.keypad_logicate.reset_password.title": "Reset PIN",
+  "text.logicates.keypad_logicate.reset_password.title.2": "§eClick §7and enter the PIN to reset",
+  "text.logicates.keypad_logicate.reset_password.enabled": "PIN reset enabled",
+
+  "message.logicates.keypad_logicate.correct_password": "Welcome back, %s.",
+  "message.logicates.keypad_logicate.incorrect_password": "Incorrect PIN! Try again.",
+  "message.logicates.keypad_logicate.reset_password": "Successfully reset PIN.",
+  "message.logicates.keypad_logicate.reset_password.fail": "Failed to reset PIN! Try again.",
+  "message.logicates.keypad_logicate.set_password": "Successfully set PIN."
+
 }

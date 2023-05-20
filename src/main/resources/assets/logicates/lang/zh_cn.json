@@ -28,15 +28,6 @@
   "tooltip.logicates.weather_logicate.1": "如果遇上特定的天气，",
   "tooltip.logicates.weather_logicate.2": "则发射信号。",
 
-  "logicates.ticks": "%d刻（%d秒）",
-  "logicates.mute": "沉默",
-  "logicates.unmute": "非沉默",
-  "timer_logicate.increase": "§e点击§7以增加§e%d §7刻时间。",
-  "timer_logicate.shift_increase": "§e按住Shift点击§7以增加§e%d §7刻时间。",
-
-  "timer_logicate.decrease": "§e点击§7以减少§e%d §7刻时间。",
-  "timer_logicate.shift_decrease": "§e按住Shift点击§7以减少§e%d §7刻时间。",
-
   "block.logicates.logicate_fabricator": "逻辑通路制作器",
   "container.logicates.logicate_fabricator": "逻辑通路制作",
 
@@ -46,5 +37,14 @@
   "logicateType.logicates.dual_input": "多输入",
   "logicateType.logicates.inputless": "无输入",
 
-  "itemGroup.logicates.item_group": "逻辑通路"
+  "itemGroup.logicates.item_group": "逻辑通路",
+
+  "text.logicates.timer_logicate.ticks_plural": "%d刻（%d秒）",
+  "text.logicates.timer_logicate.mute": "沉默",
+  "text.logicates.timer_logicate.unmute": "非沉默",
+  "text.logicates.timer_logicate.increase": "§e点击§7以增加§e%d §7刻时间。",
+  "text.logicates.timer_logicate.shift_increase": "§e按住Shift点击§7以增加§e%d §7刻时间。",
+  "text.logicates.timer_logicate.decrease": "§e点击§7以减少§e%d §7刻时间。",
+  "text.logicates.timer_logicate.shift_decrease": "§e按住Shift点击§7以减少§e%d §7刻时间。"
+
 }

@@ -42,17 +42,8 @@
   "tooltip.logicates.pressure_plate_logicate.8": "• Pets Domesticados.",
   "tooltip.logicates.pressure_plate_logicate.9": "Segure SHIFT para ver os grupos de Mobs.",
 
-  "logicates.ticks": "%d ticks (%d segundo)",
-  "logicates.ticks_plural": "%d ticks (%d segundos)",
-  "logicates.mute": "Silenciar",
-  "logicates.unmute": "Desilenciar",
-  "timer_logicate.increase": "§eClique §7para aumentar tempo em §e%d §7ticks.",
-  "timer_logicate.shift_increase": "§eShift-Clique §7para aumentar tempo em §e%d §7ticks.",
-
-  "timer_logicate.decrease": "§eClique §7para diminuir tempo em §e%d §7ticks.",
-  "timer_logicate.shift_decrease": "§eShift-Clique §7para diminuir tempo em §e%d §7ticks.",
-
   "block.logicates.keypad_logicate": "Lógicado de Senha",
+  "tooltip.logicates.keypad_logicate": "Emite um sinal quando o PIN pré-definido é inserido.",
 
   "block.logicates.logicate_fabricator": "Fabricador de Lógicados",
   "container.logicates.logicate_fabricator": "Fabricação de Lógicados",
@@ -74,15 +65,21 @@
   "text.logicates.timer_logicate.decrease": "§eClique §7para diminuir tempo em §e%d §7ticks.",
   "text.logicates.timer_logicate.shift_decrease": "§eShift-Clique §7para diminuir tempo em §e%d §7ticks.",
 
-  "container.logicates.keypad_logicate": "Insira a senha:",
-  "container.logicates.keypad_logicate.2": "Defina a senha:",
+  "container.logicates.keypad_logicate": "Insira o PIN:",
+  "container.logicates.keypad_logicate.2": "Defina o PIN:",
 
   "text.logicates.keypad_logicate.closing_delay.title": "Delay de Fechadura",
   "text.logicates.keypad_logicate.closing_delay.title.2": "§7Delay atual: §e%d §7segundo(s)",
   "text.logicates.keypad_logicate.closing_delay.title.3": "§eClique §7para aumentar o delay em §e1 §7segundo.",
   "text.logicates.keypad_logicate.closing_delay.title.4": "§eShift-Clique §7para diminuir o delay em §e1 §7segundo.",
 
-  "text.logicates.keypad_logicate.reset_password.title": "Redefinir Senha",
-  "text.logicates.keypad_logicate.reset_password.title.2": "§eClique §7e insira a senha para redefinir",
-  "text.logicates.keypad_logicate.reset_password.enabled": "Reset de senha ativo"
+  "text.logicates.keypad_logicate.reset_password.title": "Redefinir PIN",
+  "text.logicates.keypad_logicate.reset_password.title.2": "§eClique §7e insira o PIN para redefinir",
+  "text.logicates.keypad_logicate.reset_password.enabled": "Reset de PIN ativo",
+
+  "message.logicates.keypad_logicate.correct_password": "Bem-vindo(a) de volta, %s.",
+  "message.logicates.keypad_logicate.incorrect_password": "PIN incorreto! Tente novamente.",
+  "message.logicates.keypad_logicate.reset_password": "PIN redefinido com sucesso.",
+  "message.logicates.keypad_logicate.reset_password.fail": "Falha ao redefinir PIN! Tente novamente.",
+  "message.logicates.keypad_logicate.set_password": "PIN definido com sucesso."
 }
