@@ -142,7 +142,7 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
             PacketByteBuf buf = blockPosBuf();
             buf.writeString(Integer.toString(id));
 
-            ClientPlayNetworking.send(KeypadLogicateBlock.KEYPAD_PASSWORD, buf);
+            ClientPlayNetworking.send(KeypadLogicateBlock.KEYPAD_INSERT, buf);
         }
 
         @Override

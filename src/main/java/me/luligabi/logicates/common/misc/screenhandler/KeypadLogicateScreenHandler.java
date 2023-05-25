@@ -47,7 +47,7 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
 
 
     public static void initPacketReceivers() {
-        ServerPlayNetworking.registerGlobalReceiver(KeypadLogicateBlock.KEYPAD_PASSWORD, (server, player, handler, buf, responseSender) -> {
+        ServerPlayNetworking.registerGlobalReceiver(KeypadLogicateBlock.KEYPAD_INSERT, (server, player, handler, buf, responseSender) -> {
             BlockPos pos = buf.readBlockPos();
             String password = buf.readString();
 
@@ -74,8 +74,17 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
                 modifyKeypad(player, pos, (blockEntity) -> {
                     if(StringUtils.isEmpty(blockEntity.getActivePassword())) return;
 
+
                     if(blockEntity.hasPassword) { // Check password
+                        BlockState state = player.world.getBlockState(pos);
+
                         if(blockEntity.currentPassword.equals(blockEntity.password)) {
+                            if(!blockEntity.passwordReset) {
+                                ((KeypadLogicateBlock) state.getBlock()).powerOn(state, player.world, pos);
+                            } else {
+                                ((KeypadLogicateBlock) state.getBlock()).powerOff(state, player.world, pos);
+                                modifyKeypad(player, pos, KeypadLogicateBlockEntity::reset);
+                            }
                             player.sendMessage(
                                     Text.translatable(
                                             blockEntity.passwordReset ?
@@ -86,13 +95,8 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
                                     .formatted(Formatting.GREEN),
                                     true
                             );
-                            if(!blockEntity.passwordReset) {
-                                BlockState state = player.world.getBlockState(pos);
-                                ((KeypadLogicateBlock) state.getBlock()).powerOn(state, player.world, pos);
-                            } else {
-                                modifyKeypad(player, pos, KeypadLogicateBlockEntity::reset);
-                            }
                         } else {
+                            ((KeypadLogicateBlock) state.getBlock()).powerOff(state, player.world, pos);
                             player.sendMessage(
                                     Text.translatable(
                                             blockEntity.passwordReset ?

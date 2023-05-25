@@ -62,6 +62,13 @@ public class KeypadLogicateBlock extends InputlessLogicateBlock implements Block
         world.scheduleBlockTick(pos, this, blockEntity.closingDelay * 20);
     }
 
+
+    public void powerOff(BlockState state, World world, BlockPos pos) {
+        if(!state.get(POWERED)) return;
+        world.setBlockState(pos, state.with(POWERED, false), 3);
+        world.updateNeighborsAlways(pos, state.getBlock());
+    }
+
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if(state.get(POWERED)) {
@@ -135,7 +142,7 @@ public class KeypadLogicateBlock extends InputlessLogicateBlock implements Block
 
     public static final int MIN_CLOSING_DELAY = 1;
     public static final int MAX_CLOSING_DELAY = 30;
-    public static final Identifier KEYPAD_PASSWORD = Logicates.id("keypad_password");
+    public static final Identifier KEYPAD_INSERT = Logicates.id("keypad_insert");
     public static final Identifier KEYPAD_DELETE = Logicates.id("keypad_delete");
     public static final Identifier KEYPAD_CONFIRM = Logicates.id("keypad_confirm");
     public static final Identifier KEYPAD_TOGGLE_PASSWORD_RESET = Logicates.id("keypad_toggle_password_reset");
