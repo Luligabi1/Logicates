@@ -32,6 +32,7 @@ import java.util.List;
 public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHandler> {
 
 
+    @SuppressWarnings("ConstantConditions")
     public KeypadLogicateScreen(KeypadLogicateScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
         blockEntity = (KeypadLogicateBlockEntity) inventory.player.world.getBlockEntity(handler.clientPos);
@@ -87,11 +88,7 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
 
     @Override
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
-        Text title = Text.translatable(
-                (!blockEntity.hasPassword || blockEntity.passwordReset) ?
-                        "container.logicates.keypad_logicate.2" :
-                        "container.logicates.keypad_logicate"
-        ).formatted(Formatting.DARK_GRAY);
+        Text title = Text.translatable(getTitleTranslationKey()).formatted(Formatting.DARK_GRAY);
         textRenderer.draw(matrices, title, (float) (titleX - textRenderer.getWidth(title) / 2), 6F, 0);
         for(LogicateButtonWidget buttonWidget : this.buttons) {
             if(!buttonWidget.shouldRenderTooltip()) continue;
@@ -109,6 +106,15 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
     private <T extends ClickableWidget> void addButton(T button) {
         this.addDrawableChild(button);
         this.buttons.add((LogicateButtonWidget) button);
+    }
+
+    private String getTitleTranslationKey() {
+        if(blockEntity.passwordReset) {
+            return "container.logicates.keypad_logicate.reset";
+        } else if(!blockEntity.hasPassword) {
+            return "container.logicates.keypad_logicate.set";
+        }
+        return "container.logicates.keypad_logicate";
     }
 
     private PacketByteBuf blockPosBuf() {
@@ -272,15 +278,10 @@ public class KeypadLogicateScreen extends HandledScreen<KeypadLogicateScreenHand
             setDisabled(!blockEntity.hasPassword);
         }
 
-        @Override // FIXME add password reset dynamically
+        @Override
         List<Text> getTooltipText() {
             return List.of(
-                    Text.translatable("text.logicates.keypad_logicate.reset_password.title.2").formatted(Formatting.GRAY),
-                    Text.translatable(
-                            blockEntity.passwordReset ?
-                                    "text.logicates.keypad_logicate.reset_password.enabled":
-                                    ""
-                    ).formatted(Formatting.GREEN)
+                    Text.translatable("text.logicates.keypad_logicate.reset_password.title.2")
             );
         }
     }

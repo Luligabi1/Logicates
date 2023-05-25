@@ -79,15 +79,17 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
                         BlockState state = player.world.getBlockState(pos);
 
                         if(blockEntity.currentPassword.equals(blockEntity.password)) {
+                            boolean wasOnReset = false;
                             if(!blockEntity.passwordReset) {
                                 ((KeypadLogicateBlock) state.getBlock()).powerOn(state, player.world, pos);
                             } else {
                                 ((KeypadLogicateBlock) state.getBlock()).powerOff(state, player.world, pos);
                                 modifyKeypad(player, pos, KeypadLogicateBlockEntity::reset);
+                                wasOnReset = true;
                             }
                             player.sendMessage(
                                     Text.translatable(
-                                            blockEntity.passwordReset ?
+                                                    wasOnReset ?
                                                     "message.logicates.keypad_logicate.reset_password" :
                                                     "message.logicates.keypad_logicate.correct_password",
                                             player.getName()

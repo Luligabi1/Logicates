@@ -65,8 +65,9 @@
   "text.logicates.timer_logicate.decrease": "§eClique §7para diminuir tempo em §e%d §7ticks.",
   "text.logicates.timer_logicate.shift_decrease": "§eShift-Clique §7para diminuir tempo em §e%d §7ticks.",
 
-  "container.logicates.keypad_logicate": "Insira o PIN:",
-  "container.logicates.keypad_logicate.2": "Defina o PIN:",
+  "container.logicates.keypad_logicate": "Insira o PIN",
+  "container.logicates.keypad_logicate.set": "Defina o PIN",
+  "container.logicates.keypad_logicate.reset": "Redefinir PIN",
 
   "text.logicates.keypad_logicate.closing_delay.title": "Delay de Fechadura",
   "text.logicates.keypad_logicate.closing_delay.title.2": "§7Delay atual: §e%d §7segundo(s)",
@@ -75,7 +76,6 @@
 
   "text.logicates.keypad_logicate.reset_password.title": "Redefinir PIN",
   "text.logicates.keypad_logicate.reset_password.title.2": "§eClique §7e insira o PIN para redefinir",
-  "text.logicates.keypad_logicate.reset_password.enabled": "Reset de PIN ativo",
 
   "message.logicates.keypad_logicate.correct_password": "Bem-vindo(a) de volta, %s.",
   "message.logicates.keypad_logicate.incorrect_password": "PIN incorreto! Tente novamente.",
