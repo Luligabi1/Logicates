@@ -1,5 +1,6 @@
 package me.luligabi.logicates.common.misc.screenhandler;
 
+import me.luligabi.logicates.common.block.BlockRegistry;
 import me.luligabi.logicates.common.block.logicate.inputless.keypad.KeypadLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.inputless.keypad.KeypadLogicateBlockEntity;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -9,6 +10,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -22,21 +24,23 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
 
 
     public KeypadLogicateScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
-        this(syncId);
+        this(syncId, ScreenHandlerContext.EMPTY);
         clientPos = buf.readBlockPos();
     }
 
-    public KeypadLogicateScreenHandler(int syncId) {
+    public KeypadLogicateScreenHandler(int syncId, ScreenHandlerContext ctx) {
         super(ScreenHandlingRegistry.KEYPAD_LOGICATE_SCREEN_HANDLER, syncId);
+        this.ctx = ctx;
         clientPos = BlockPos.ORIGIN;
     }
 
 
     public BlockPos clientPos;
+    private final ScreenHandlerContext ctx;
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return true;
+        return ScreenHandler.canUse(ctx, player, BlockRegistry.KEYPAD_LOGICATE);
     }
 
     @Override
