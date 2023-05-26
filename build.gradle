@@ -15,7 +15,7 @@ def RELEASE_FILE = "${buildDir}/libs/${archivesBaseName}-${version}.jar"
 
 @SuppressWarnings('GrMethodMayBeStatic')
 def getChangeLog() {
-    return ""
+    return "- Updated to 1.19.4;\n- Added the Keypad Logicate;\n- Added the Pressure Plate Logicate."
 }
 
 
@@ -108,6 +108,6 @@ modrinth {
     changelog = getChangeLog()
     dependencies {
         required.project("fabric-api")
-        optional.project("roughly-enough-items")
+        optional.project("rei")
     }
 }
