@@ -63,11 +63,6 @@ public class ToggleLogicateBlock extends SingleInputLogicateBlock {
     }
 
     @Override
-    protected boolean isValidInput(BlockState state) {
-        return isRedstoneGate(state);
-    }
-
-    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
         builder.add(INPUT_POWER);

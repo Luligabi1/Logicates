@@ -33,9 +33,9 @@
     "logicates.mixins.json"
   ],
   "depends": {
+    "minecraft": ">=1.20-beta.1",
     "fabricloader": "*",
-    "fabric": "*",
-    "minecraft": ">=1.19.4"
+    "fabric": "*"
   },
   "custom": {
     "modmenu": {

@@ -80,14 +80,14 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
 
 
                     if(blockEntity.hasPassword) { // Check password
-                        BlockState state = player.world.getBlockState(pos);
+                        BlockState state = player.getWorld().getBlockState(pos);
 
                         if(blockEntity.currentPassword.equals(blockEntity.password)) {
                             boolean wasOnReset = false;
                             if(!blockEntity.passwordReset) {
-                                ((KeypadLogicateBlock) state.getBlock()).powerOn(state, player.world, pos);
+                                ((KeypadLogicateBlock) state.getBlock()).powerOn(state, player.getWorld(), pos);
                             } else {
-                                ((KeypadLogicateBlock) state.getBlock()).powerOff(state, player.world, pos);
+                                ((KeypadLogicateBlock) state.getBlock()).powerOff(state, player.getWorld(), pos);
                                 modifyKeypad(player, pos, KeypadLogicateBlockEntity::reset);
                                 wasOnReset = true;
                             }
@@ -102,7 +102,7 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
                                     true
                             );
                         } else {
-                            ((KeypadLogicateBlock) state.getBlock()).powerOff(state, player.world, pos);
+                            ((KeypadLogicateBlock) state.getBlock()).powerOff(state, player.getWorld(), pos);
                             player.sendMessage(
                                     Text.translatable(
                                             blockEntity.passwordReset ?
@@ -148,10 +148,10 @@ public class KeypadLogicateScreenHandler extends ScreenHandler {
     }
 
     private static void modifyKeypad(ServerPlayerEntity player, BlockPos pos, Consumer<KeypadLogicateBlockEntity> consumer) {
-        ServerWorld world = (ServerWorld) player.world;
+        ServerWorld world = (ServerWorld) player.getWorld();
 
         if(world.isChunkLoaded(pos)) {
-            KeypadLogicateBlockEntity blockEntity = (KeypadLogicateBlockEntity) player.world.getBlockEntity(pos);
+            KeypadLogicateBlockEntity blockEntity = (KeypadLogicateBlockEntity) player.getWorld().getBlockEntity(pos);
             if(blockEntity == null) return;
 
             consumer.accept(blockEntity);

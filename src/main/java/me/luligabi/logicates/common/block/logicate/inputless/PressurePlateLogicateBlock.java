@@ -5,12 +5,16 @@ import me.luligabi.logicates.common.block.logicate.LogicateType;
 import me.luligabi.logicates.common.block.logicate.property.PlateType;
 import me.luligabi.logicates.common.block.logicate.property.PropertyRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockSetType;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -34,7 +38,7 @@ public class PressurePlateLogicateBlock extends PressurePlateBlock implements Lo
     public PressurePlateLogicateBlock() {
         super(
                 null,
-                FabricBlockSettings.of(Material.STONE).requiresTool().noCollision().strength(0.5F),
+                FabricBlockSettings.create().requiresTool().noCollision().strength(0.5F).sounds(BlockSoundGroup.STONE),
                 BlockSetType.STONE
         );
         setDefaultState(stateManager.getDefaultState().with(POWERED, false).with(FACING, Direction.NORTH));

@@ -1,12 +1,12 @@
 package me.luligabi.logicates.client.screen;
 
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.gui.DrawContext;
 
 public interface LogicateButtonWidget {
 
     boolean shouldRenderTooltip();
 
-    void renderTooltip(MatrixStack var1, int mouseX, int mouseY);
+    void renderTooltip(DrawContext ctx, int mouseX, int mouseY);
 
     void tick();
 }

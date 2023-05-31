@@ -37,7 +37,7 @@ public class KeypadLogicateBlock extends InputlessLogicateBlock implements Block
 
 
     public KeypadLogicateBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.REPEATER).strength(0.5F, 3600000.0F));
+        super(FabricBlockSettings.copyOf(Blocks.REPEATER).strength(0.5F, 3600000.0F).pistonBehavior(PistonBehavior.BLOCK));
     }
 
     @Override
@@ -92,10 +92,6 @@ public class KeypadLogicateBlock extends InputlessLogicateBlock implements Block
        return true;
     }
 
-    @Override
-    public PistonBehavior getPistonBehavior(BlockState state) {
-        return PistonBehavior.BLOCK;
-    }
 
     @Nullable
     @Override
@@ -132,11 +128,8 @@ public class KeypadLogicateBlock extends InputlessLogicateBlock implements Block
     public static void initBlockBreakingLogic() {
         PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, blockEntity) -> {
                 if(state.getBlock() != BlockRegistry.KEYPAD_LOGICATE) return true;
-                if(StringUtils.isEmpty(((KeypadLogicateBlockEntity) blockEntity).password) || state.get(POWERED) || (player.isCreative() && player.hasPermissionLevel(3))) {
-                    return true;
+                return StringUtils.isEmpty(((KeypadLogicateBlockEntity) blockEntity).password) || state.get(POWERED) || (player.isCreative() && player.hasPermissionLevel(3));
                 }
-                return false;
-            }
         );
     }
 

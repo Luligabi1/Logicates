@@ -45,7 +45,7 @@ public class LogicateFabricatorScreenHandler extends ScreenHandler {
         };
         this.output = new CraftingResultInventory();
         this.context = context;
-        this.world = playerInventory.player.world;
+        this.world = playerInventory.player.getWorld();
         this.addSlot(new InputSlot(input, 0, 10, 16, new ItemStack(ItemRegistry.LOGICATE_PLATE)));
         this.addSlot(new InputSlot(input, 1, 28, 16, ConventionalItemTags.REDSTONE_DUSTS));
         this.addSlot(new InputSlot(input, 2, 10, 34, new ItemStack(Blocks.REDSTONE_TORCH)));
@@ -59,8 +59,7 @@ public class LogicateFabricatorScreenHandler extends ScreenHandler {
 
             @Override
             public void onTakeItem(PlayerEntity player, ItemStack stack) {
-                stack.onCraft(player.world, player, stack.getCount());
-                LogicateFabricatorScreenHandler.this.output.unlockLastRecipe(player);
+                stack.onCraft(player.getWorld(), player, stack.getCount());
 
                 LogicateFabricationRecipe logicateFabricationRecipe = availableRecipes.get(getSelectedRecipe());
                 for(int i = 0; i < 6; i++) {

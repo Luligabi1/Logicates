@@ -13,6 +13,10 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -31,10 +35,19 @@ public class Logicates implements ModInitializer {
         ScreenHandlingRegistry.init();
         ServerPlayReceiverRegistry.init();
 
+
         //noinspection UnstableApiUsage
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries ->
                 entries.addAfter(new ItemStack(Items.COMPARATOR), ITEMS)
         );
+
+        Registry.register(Registries.ITEM_GROUP, ITEM_GROUP, FabricItemGroup.builder()
+                .displayName(Text.translatable("itemGroup.logicates.item_group"))
+                .icon(() -> new ItemStack(BlockRegistry.XNOR_LOGICATE))
+                .entries((context, entries) ->
+                        entries.addAll(Logicates.ITEMS)
+                )
+        .build());
     }
 
 
@@ -45,13 +58,7 @@ public class Logicates implements ModInitializer {
     public static final String MOD_ID = "logicates";
 
     @SuppressWarnings("unused")
-    public static final ItemGroup ITEM_GROUP = FabricItemGroup.builder(id("item_group"))
-            .displayName(Text.translatable("itemGroup.logicates.item_group"))
-            .icon(() -> new ItemStack(BlockRegistry.XNOR_LOGICATE))
-            .entries((context, entries) ->
-                    entries.addAll(Logicates.ITEMS)
-            )
-            .build();
+    public static final RegistryKey<ItemGroup> ITEM_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, id("item_group"));
 
     public static final List<ItemStack> ITEMS = new ArrayList<>();
 

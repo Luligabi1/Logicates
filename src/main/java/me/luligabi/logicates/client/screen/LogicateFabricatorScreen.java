@@ -5,10 +5,10 @@ import me.luligabi.logicates.common.Logicates;
 import me.luligabi.logicates.common.misc.recipe.LogicateFabricationRecipe;
 import me.luligabi.logicates.common.misc.screenhandler.LogicateFabricatorScreenHandler;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.sound.PositionedSoundInstance;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -31,30 +31,29 @@ public class LogicateFabricatorScreen extends HandledScreen<LogicateFabricatorSc
         --titleY;
     }
 
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        super.render(matrices, mouseX, mouseY, delta);
-        drawMouseoverTooltip(matrices, mouseX, mouseY);
+    public void render(DrawContext ctx, int mouseX, int mouseY, float delta) {
+        super.render(ctx, mouseX, mouseY, delta);
+        drawMouseoverTooltip(ctx, mouseX, mouseY);
     }
 
-    protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        this.renderBackground(matrices);
+    protected void drawBackground(DrawContext ctx, float delta, int mouseX, int mouseY) {
+        this.renderBackground(ctx);
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
         int i = x;
         int j = y;
-        drawTexture(matrices, i, j, 0, 0, backgroundWidth, backgroundHeight);
+        ctx.drawTexture(TEXTURE, i, j, 0, 0, backgroundWidth, backgroundHeight);
         int k = (int) (41.0F * this.scrollAmount);
-        drawTexture(matrices, i + 119, j + 15 + k, 176 + (shouldScroll() ? 0 : 12), 0, 12, 15);
+        ctx.drawTexture(TEXTURE, i + 119, j + 15 + k, 176 + (shouldScroll() ? 0 : 12), 0, 12, 15);
         int l = x + 52;
         int m = y + 14;
         int n = scrollOffset + 12;
-        renderRecipeBackground(matrices, mouseX, mouseY, l, m, n);
-        renderRecipeIcons(matrices, l, m, n);
+        renderRecipeBackground(ctx, mouseX, mouseY, l, m, n);
+        renderRecipeIcons(ctx, l, m, n);
     }
 
-    protected void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
-        super.drawMouseoverTooltip(matrices, x, y);
+    protected void drawMouseoverTooltip(DrawContext ctx, int x, int y) {
+        super.drawMouseoverTooltip(ctx, x, y);
         if(canCraft) {
             int i = x + 52;
             int j = y + 14;
@@ -66,14 +65,14 @@ public class LogicateFabricatorScreen extends HandledScreen<LogicateFabricatorSc
                 int n = i + m % 4 * 16;
                 int o = j + m / 4 * 18 + 2;
                 if (x >= n && x < n + 16 && y >= o && y < o + 18) {
-                    renderTooltip(matrices, list.get(l).getOutput(), x, y);
+                    ctx.drawTooltip(textRenderer, list.get(l).getOutput().getName(), x, y);
                 }
             }
         }
 
     }
 
-    private void renderRecipeBackground(MatrixStack matrices, int mouseX, int mouseY, int x, int y, int scrollOffset) {
+    private void renderRecipeBackground(DrawContext ctx, int mouseX, int mouseY, int x, int y, int scrollOffset) {
         for(int i = this.scrollOffset; i < scrollOffset && i < handler.getAvailableRecipeCount(); ++i) {
             int j = i - this.scrollOffset;
             int k = x + j % 4 * 16;
@@ -86,12 +85,12 @@ public class LogicateFabricatorScreen extends HandledScreen<LogicateFabricatorSc
                 n += 36;
             }
 
-            drawTexture(matrices, k, m - 1, 0, n, 16, 18);
+            ctx.drawTexture(TEXTURE, k, m - 1, 0, n, 16, 18);
         }
 
     }
 
-    private void renderRecipeIcons(MatrixStack matrices, int x, int y, int scrollOffset) {
+    private void renderRecipeIcons(DrawContext ctx, int x, int y, int scrollOffset) {
         List<LogicateFabricationRecipe> list = this.handler.getAvailableRecipes();
 
         for(int i = this.scrollOffset; i < scrollOffset && i < this.handler.getAvailableRecipeCount(); ++i) {
@@ -99,7 +98,7 @@ public class LogicateFabricatorScreen extends HandledScreen<LogicateFabricatorSc
             int k = x + j % 4 * 16;
             int l = j / 4;
             int m = y + l * 18 + 2;
-            client.getItemRenderer().renderInGuiWithOverrides(matrices, list.get(i).getOutput(), k, m);
+            ctx.drawItem(list.get(i).getOutput(), k, m);
         }
 
     }
