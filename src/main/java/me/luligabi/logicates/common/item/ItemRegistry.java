@@ -1,6 +1,7 @@
 package me.luligabi.logicates.common.item;
 
 import me.luligabi.logicates.common.Logicates;
+import me.luligabi.logicates.common.misc.ItemGroupInit;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,7 +28,7 @@ public class ItemRegistry {
     private static void initItem(String id, Item item, boolean isHidden) {
         Registry.register(Registries.ITEM, Logicates.id(id), item);
         if(!isHidden) {
-            Logicates.ITEMS.add(new ItemStack(item));
+            ItemGroupInit.ITEMS.add(new ItemStack(item));
         }
     }
 

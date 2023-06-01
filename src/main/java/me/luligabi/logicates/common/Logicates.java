@@ -3,25 +3,15 @@ package me.luligabi.logicates.common;
 import me.luligabi.logicates.common.block.BlockRegistry;
 import me.luligabi.logicates.common.block.logicate.property.PropertyRegistry;
 import me.luligabi.logicates.common.item.ItemRegistry;
+import me.luligabi.logicates.common.misc.ItemGroupInit;
 import me.luligabi.logicates.common.misc.packet.ServerPlayReceiverRegistry;
 import me.luligabi.logicates.common.misc.recipe.RecipeRegistry;
 import me.luligabi.logicates.common.misc.screenhandler.ScreenHandlingRegistry;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Logicates implements ModInitializer {
 
@@ -34,20 +24,7 @@ public class Logicates implements ModInitializer {
         RecipeRegistry.init();
         ScreenHandlingRegistry.init();
         ServerPlayReceiverRegistry.init();
-
-
-        //noinspection UnstableApiUsage
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries ->
-                entries.addAfter(new ItemStack(Items.COMPARATOR), ITEMS)
-        );
-
-        Registry.register(Registries.ITEM_GROUP, ITEM_GROUP, FabricItemGroup.builder()
-                .displayName(Text.translatable("itemGroup.logicates.item_group"))
-                .icon(() -> new ItemStack(BlockRegistry.XNOR_LOGICATE))
-                .entries((context, entries) ->
-                        entries.addAll(Logicates.ITEMS)
-                )
-        .build());
+        ItemGroupInit.init();
     }
 
 
@@ -59,7 +36,4 @@ public class Logicates implements ModInitializer {
 
     @SuppressWarnings("unused")
     public static final RegistryKey<ItemGroup> ITEM_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, id("item_group"));
-
-    public static final List<ItemStack> ITEMS = new ArrayList<>();
-
 }

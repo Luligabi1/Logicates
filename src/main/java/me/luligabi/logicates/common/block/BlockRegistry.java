@@ -12,6 +12,7 @@ import me.luligabi.logicates.common.block.logicate.inputless.timer.TimerLogicate
 import me.luligabi.logicates.common.block.logicate.inputless.timer.TimerLogicateBlockEntity;
 import me.luligabi.logicates.common.block.logicate.inputless.weather.WeatherLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.inputless.weather.WeatherLogicateBlockEntity;
+import me.luligabi.logicates.common.misc.ItemGroupInit;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -87,7 +88,7 @@ public class BlockRegistry {
         Registry.register(Registries.BLOCK, Logicates.id(identifier), block);
         Registry.register(Registries.ITEM, Logicates.id(identifier), new BlockItem(block, new FabricItemSettings()));
         if(!isHidden) {
-            Logicates.ITEMS.add(new ItemStack(block));
+            ItemGroupInit.ITEMS.add(new ItemStack(block));
         }
     }
 
