@@ -10,12 +10,12 @@ group = project.maven_group
 
 def ENV = System.getenv()
 
-def RELEASE_NAME = "[${project.minecraft_version}] ${version}"
+def RELEASE_NAME = "${version}"
 def RELEASE_FILE = "${buildDir}/libs/${archivesBaseName}-${version}.jar"
 
 @SuppressWarnings('GrMethodMayBeStatic')
 def getChangeLog() {
-    return "- Updated to 1.19.4;\n- Added the Keypad Logicate;\n- Added the Pressure Plate Logicate."
+    return "- Updated to 1.20"
 }
 
 
