@@ -52,7 +52,7 @@
 
   "logicateType.logicates.single_input": "Entrada Única",
   "logicateType.logicates.dual_input": "Entrada Dupla",
-  "logicateType.logicates.inputless": "Sem Entrada",
+  "logicateType.logicates.misc": "Outros",
 
 
   "text.logicates.timer_logicate.ticks": "%d ticks (%d segundo)",

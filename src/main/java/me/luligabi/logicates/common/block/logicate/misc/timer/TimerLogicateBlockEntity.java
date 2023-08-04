@@ -1,4 +1,4 @@
-package me.luligabi.logicates.common.block.logicate.inputless.timer;
+package me.luligabi.logicates.common.block.logicate.misc.timer;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
 import me.luligabi.logicates.common.block.ClientSyncedBlockEntity;

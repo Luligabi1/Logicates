@@ -1,18 +1,18 @@
-package me.luligabi.logicates.common.block.logicate.inputless;
+package me.luligabi.logicates.common.block.logicate.misc;
 
 import me.luligabi.logicates.common.block.logicate.LogicateBlock;
 import me.luligabi.logicates.common.block.logicate.LogicateType;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-public abstract class InputlessLogicateBlock extends LogicateBlock {
+public abstract class MiscellaneousLogicateBlock extends LogicateBlock {
 
-    protected InputlessLogicateBlock(FabricBlockSettings settings) {
+    protected MiscellaneousLogicateBlock(FabricBlockSettings settings) {
         super(settings);
     }
 
     @Override
     public LogicateType getLogicateType() {
-        return LogicateType.INPUTLESS;
+        return LogicateType.MISCELLANEOUS;
     }
 
 }

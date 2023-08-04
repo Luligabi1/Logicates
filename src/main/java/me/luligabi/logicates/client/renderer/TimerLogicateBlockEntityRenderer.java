@@ -2,7 +2,7 @@ package me.luligabi.logicates.client.renderer;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
 import me.luligabi.logicates.common.block.logicate.LogicateBlock;
-import me.luligabi.logicates.common.block.logicate.inputless.timer.TimerLogicateBlockEntity;
+import me.luligabi.logicates.common.block.logicate.misc.timer.TimerLogicateBlockEntity;
 import me.luligabi.logicates.common.item.ItemRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;

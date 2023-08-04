@@ -1,4 +1,4 @@
-package me.luligabi.logicates.common.block.logicate.inputless.keypad;
+package me.luligabi.logicates.common.block.logicate.misc.keypad;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
 import me.luligabi.logicates.common.block.ClientSyncedBlockEntity;

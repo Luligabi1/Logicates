@@ -1,7 +1,7 @@
-package me.luligabi.logicates.common.block.logicate.inputless.weather;
+package me.luligabi.logicates.common.block.logicate.misc.weather;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
-import me.luligabi.logicates.common.block.logicate.inputless.InputlessLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.misc.MiscellaneousLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.property.PropertyRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class WeatherLogicateBlock extends InputlessLogicateBlock implements BlockEntityProvider {
+public class WeatherLogicateBlock extends MiscellaneousLogicateBlock implements BlockEntityProvider {
 
 
     public WeatherLogicateBlock() {

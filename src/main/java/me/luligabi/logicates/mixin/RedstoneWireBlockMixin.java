@@ -3,7 +3,7 @@ package me.luligabi.logicates.mixin;
 import me.luligabi.logicates.common.block.logicate.input.dual.DualInputLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.LogicateBlock;
 import me.luligabi.logicates.common.block.logicate.input.single.SingleInputLogicateBlock;
-import me.luligabi.logicates.common.block.logicate.inputless.InputlessLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.misc.MiscellaneousLogicateBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RedstoneWireBlock;
@@ -43,7 +43,7 @@ public class RedstoneWireBlockMixin {
                     dir == outputDirection
             );
         }
-        if(block instanceof InputlessLogicateBlock) {
+        if(block instanceof MiscellaneousLogicateBlock) {
             callbackInfo.setReturnValue(dir == state.get(LogicateBlock.FACING));
         }
     }

@@ -1,7 +1,7 @@
-package me.luligabi.logicates.common.block.logicate.inputless.timer;
+package me.luligabi.logicates.common.block.logicate.misc.timer;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
-import me.luligabi.logicates.common.block.logicate.inputless.InputlessLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.misc.MiscellaneousLogicateBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class TimerLogicateBlock extends InputlessLogicateBlock implements BlockEntityProvider {
+public class TimerLogicateBlock extends MiscellaneousLogicateBlock implements BlockEntityProvider {
 
     public TimerLogicateBlock() {
         super(FabricBlockSettings.copyOf(Blocks.REPEATER));

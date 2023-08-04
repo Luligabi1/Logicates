@@ -1,4 +1,4 @@
-package me.luligabi.logicates.common.block.logicate.inputless;
+package me.luligabi.logicates.common.block.logicate.misc;
 
 import me.luligabi.logicates.common.block.logicate.Logicatable;
 import me.luligabi.logicates.common.block.logicate.LogicateType;
@@ -64,7 +64,7 @@ public class PressurePlateLogicateBlock extends PressurePlateBlock implements Lo
 
     @Override
     public LogicateType getLogicateType() {
-        return LogicateType.INPUTLESS;
+        return LogicateType.MISCELLANEOUS;
     }
 
     @Override

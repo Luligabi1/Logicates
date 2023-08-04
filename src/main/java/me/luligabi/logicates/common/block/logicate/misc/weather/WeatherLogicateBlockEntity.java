@@ -1,4 +1,4 @@
-package me.luligabi.logicates.common.block.logicate.inputless.weather;
+package me.luligabi.logicates.common.block.logicate.misc.weather;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
 import me.luligabi.logicates.common.block.logicate.LogicateBlock;

@@ -7,7 +7,7 @@ public enum LogicateType {
 
     SINGLE_INPUT(Text.translatable("logicateType.logicates.single_input")),
     DUAL_INPUT(Text.translatable("logicateType.logicates.dual_input")),
-    INPUTLESS(Text.translatable("logicateType.logicates.inputless"));
+    MISCELLANEOUS(Text.translatable("logicateType.logicates.misc"));
 
     LogicateType(MutableText text) {
         this.text = text;

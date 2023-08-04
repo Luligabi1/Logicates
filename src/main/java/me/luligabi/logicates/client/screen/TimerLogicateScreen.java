@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.luligabi.logicates.client.RenderUtil;
 import me.luligabi.logicates.common.Logicates;
-import me.luligabi.logicates.common.block.logicate.inputless.timer.TimerLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.misc.timer.TimerLogicateBlock;
 import me.luligabi.logicates.common.misc.screenhandler.TimerLogicateScreenHandler;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;

@@ -1,8 +1,8 @@
 package me.luligabi.logicates.common.misc.screenhandler;
 
 import me.luligabi.logicates.common.block.BlockRegistry;
-import me.luligabi.logicates.common.block.logicate.inputless.keypad.KeypadLogicateBlock;
-import me.luligabi.logicates.common.block.logicate.inputless.keypad.KeypadLogicateBlockEntity;
+import me.luligabi.logicates.common.block.logicate.misc.keypad.KeypadLogicateBlock;
+import me.luligabi.logicates.common.block.logicate.misc.keypad.KeypadLogicateBlockEntity;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
