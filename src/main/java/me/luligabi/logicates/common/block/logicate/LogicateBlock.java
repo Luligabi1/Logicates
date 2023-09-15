@@ -18,7 +18,7 @@ import java.util.List;
 
 public abstract class LogicateBlock extends AbstractRedstoneGateBlock implements Logicatable {
 
-    protected LogicateBlock(FabricBlockSettings settings) {
+    public LogicateBlock(FabricBlockSettings settings) {
         super(settings);
         setDefaultState(getStateManager().getDefaultState().with(FACING, Direction.NORTH).with(POWERED, false));
     }

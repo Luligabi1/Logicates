@@ -1,0 +1,6 @@
+{
+  "parent": "logicates:block/inputless/lamp/neon_lamp",
+  "textures": {
+    "all": "logicates:block/inputless/lamp/yellow_neon_lamp"
+  }
+}

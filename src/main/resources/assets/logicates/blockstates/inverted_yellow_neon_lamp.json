@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "logicates:block/inputless/lamp/yellow_neon_lamp_off"
+    },
+    "lit=true": {
+      "model": "logicates:block/inputless/lamp/yellow_neon_lamp"
+    }
+  }
+}

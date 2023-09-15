@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 public abstract class MiscellaneousLogicateBlock extends LogicateBlock {
 
-    protected MiscellaneousLogicateBlock(FabricBlockSettings settings) {
+    public MiscellaneousLogicateBlock(FabricBlockSettings settings) {
         super(settings);
     }
 

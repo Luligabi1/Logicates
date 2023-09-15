@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "logicates:block/inputless/lamp/yellow_neon_lamp_off"
+  }
+}

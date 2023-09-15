@@ -8,6 +8,7 @@ import me.luligabi.logicates.common.block.logicate.input.single.ToggleLogicateBl
 import me.luligabi.logicates.common.block.logicate.misc.PressurePlateLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.misc.keypad.KeypadLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.misc.keypad.KeypadLogicateBlockEntity;
+import me.luligabi.logicates.common.block.logicate.misc.neonlamp.NeonLampBlock;
 import me.luligabi.logicates.common.block.logicate.misc.timer.TimerLogicateBlock;
 import me.luligabi.logicates.common.block.logicate.misc.timer.TimerLogicateBlockEntity;
 import me.luligabi.logicates.common.block.logicate.misc.weather.WeatherLogicateBlock;
@@ -23,6 +24,9 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.util.DyeColor;
+
+import java.util.LinkedHashMap;
 
 public class BlockRegistry {
 
@@ -50,6 +54,9 @@ public class BlockRegistry {
         KEYPAD_LOGICATE_BLOCK_ENTITY_TYPE = Registry.register(Registries.BLOCK_ENTITY_TYPE, Logicates.id("keypad_logicate"), FabricBlockEntityTypeBuilder.create(KeypadLogicateBlockEntity::new, KEYPAD_LOGICATE).build());
         KeypadLogicateBlock.initBlockBreakingLogic();
 
+
+        NEON_LAMPS.forEach(BlockRegistry::initBlock);
+
         initBlock("logicate_fabricator", LOGICATE_FABRICATOR);
     }
 
@@ -70,14 +77,16 @@ public class BlockRegistry {
     public static final Block WEATHER_LOGICATE = new WeatherLogicateBlock();
     public static BlockEntityType<WeatherLogicateBlockEntity> WEATHER_LOGICATE_BLOCK_ENTITY_TYPE;
 
-
     public static final Block PRESSURE_PLATE_LOGICATE = new PressurePlateLogicateBlock();
 
     public static final Block KEYPAD_LOGICATE = new KeypadLogicateBlock();
     public static BlockEntityType<KeypadLogicateBlockEntity> KEYPAD_LOGICATE_BLOCK_ENTITY_TYPE;
 
+    public static final LinkedHashMap<String, NeonLampBlock> NEON_LAMPS = getNeonLamps();
 
     public static final Block LOGICATE_FABRICATOR = new LogicateFabricatorBlock(FabricBlockSettings.copy(Blocks.SMITHING_TABLE));
+
+
 
     private static void initBlock(String identifier, Block block) {
         initBlock(identifier, block, false);
@@ -90,6 +99,26 @@ public class BlockRegistry {
         if(!isHidden) {
             ItemGroupInit.ITEMS.add(new ItemStack(block));
         }
+    }
+
+
+    private static LinkedHashMap<String, NeonLampBlock> getNeonLamps() {
+        LinkedHashMap<String, NeonLampBlock> neonLamps = new LinkedHashMap<>();
+
+        for(int i = 0; i < 2; i++) {
+            for(DyeColor color : DyeColor.values()) {
+                boolean inverted = i != 0;
+                neonLamps.put(
+                        String.format( // [inverted_]<color>_neon_lamp
+                                "%s%s_neon_lamp",
+                                inverted ? "inverted_" : "",
+                                color.getName()
+                        ),
+                        new NeonLampBlock(color, inverted)
+                );
+            }
+        }
+        return neonLamps;
     }
 
 }

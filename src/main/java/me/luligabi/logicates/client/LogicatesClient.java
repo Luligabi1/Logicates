@@ -39,5 +39,10 @@ public class LogicatesClient implements ClientModInitializer {
 
                 BlockRegistry.WEATHER_LOGICATE
         );
+
+        BlockRegistry.NEON_LAMPS.forEach((id, block) -> {
+            BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getTranslucent());
+        });
+
     }
 }
