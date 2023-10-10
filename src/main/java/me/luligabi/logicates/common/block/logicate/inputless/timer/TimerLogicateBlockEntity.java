@@ -63,12 +63,15 @@ public class TimerLogicateBlockEntity extends ClientSyncedBlockEntity implements
             blockEntity.ticks++;
         } else {
             world.setBlockState(pos, state.with(LogicateBlock.POWERED, true), 1);
-            world.setBlockState(pos, state.with(LogicateBlock.POWERED, false), 1);
             if(!blockEntity.mute) {
                 world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.UI_BUTTON_CLICK,
                         SoundCategory.BLOCKS, 0.5F, 1F, pos.asLong());
             }
             blockEntity.ticks = 0;
+        }
+
+        if (blockEntity.ticks == 1) {
+            world.setBlockState(pos, state.with(LogicateBlock.POWERED, false), 1);
         }
         blockEntity.sync();
     }
