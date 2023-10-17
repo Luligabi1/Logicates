@@ -70,7 +70,7 @@ public class TimerLogicateBlockEntity extends ClientSyncedBlockEntity implements
             blockEntity.ticks = 0;
         }
 
-        if (blockEntity.ticks == 1) {
+        if(blockEntity.ticks == 1) {
             world.setBlockState(pos, state.with(LogicateBlock.POWERED, false), 1);
         }
         blockEntity.sync();
